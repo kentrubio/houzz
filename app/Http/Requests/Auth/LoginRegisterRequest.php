@@ -2,6 +2,10 @@
 
 use App\Http\Requests\Request;
 
+/**
+ * Class LoginRegisterRequest
+ * @package App\Http\Requests\Auth
+ */
 class LoginRegisterRequest extends Request {
 
     /**

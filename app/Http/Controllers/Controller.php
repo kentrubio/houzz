@@ -2,26 +2,42 @@
 
 use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use Illuminate\Foundation\Bus\DispatchesCommands;
-use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Routing\Controller as BaseController;
 
+/**
+ * Class Controller
+ * @package App\Http\Controllers
+ */
 abstract class Controller extends BaseController {
 
-	use DispatchesCommands, ValidatesRequests;
+    use DispatchesCommands, ValidatesRequests;
 
-    public $loggedUser;
+    /**
+     * @var
+     */
+    public $logged_user;
 
+    /**
+     * @var array
+     */
     public $data = [];
 
+    /**
+     * @var Sentry
+     */
     public $auth;
 
+    /**
+     * @param Sentry $auth
+     */
     public function __construct(Sentry $auth)
     {
         $this->auth = $auth;
 
         if ($auth::check())
         {
-            $this->data['loggedUser'] = $this->loggedUser = $this->auth = $auth::getUser();
+            $this->data['logged_user'] = $this->logged_user = $this->auth = $auth::getUser();
         }
     }
 

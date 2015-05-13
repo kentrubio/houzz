@@ -1,17 +1,20 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreatePhotoTypesTable
+ */
 class CreatePhotoTypesTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         Schema::create('photo_types', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
@@ -21,16 +24,15 @@ class CreatePhotoTypesTable extends Migration {
             $table->string('description');
             $table->timestamps();
         });
-	}
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
         Schema::drop('photo_types');
-	}
-
+    }
 }

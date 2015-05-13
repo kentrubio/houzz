@@ -1,17 +1,20 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreateAttributesTable
+ */
 class CreateAttributesTable extends Migration {
 
-	/**
-	 * Run the migrations.
-	 *
-	 * @return void
-	 */
-	public function up()
-	{
+    /**
+     * Run the migrations.
+     *
+     * @return void
+     */
+    public function up()
+    {
         Schema::create('attributes', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
@@ -20,16 +23,16 @@ class CreateAttributesTable extends Migration {
             $table->string('name');
             $table->string('description')->nullable();
             $table->timestamps();
-        });	}
+        });
+    }
 
-	/**
-	 * Reverse the migrations.
-	 *
-	 * @return void
-	 */
-	public function down()
-	{
-		Schema::drop('attributes');
-	}
-
+    /**
+     * Reverse the migrations.
+     *
+     * @return void
+     */
+    public function down()
+    {
+        Schema::drop('attributes');
+    }
 }

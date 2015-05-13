@@ -2,6 +2,10 @@
 
 use App\Http\Requests\Request;
 
+/**
+ * Class ActivateUserRequest
+ * @package App\Http\Requests\Auth
+ */
 class ActivateUserRequest extends Request {
 
     /**
@@ -22,8 +26,8 @@ class ActivateUserRequest extends Request {
     public function rules()
     {
         return [
-            'email'             => 'required',
-            'activation_code'   => 'required',
+            'email'           => 'required',
+            'activation_code' => 'required',
         ];
     }
 

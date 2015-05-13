@@ -1,14 +1,18 @@
 <?php namespace App\Http\Controllers\Auth;
 
-use App\Http\Requests\Auth\ActivateUserRequest;
-use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Auth\ActivateUserRequest;
 use App\Http\Requests\Auth\LoginRegisterRequest;
+use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
 use Exception;
 
+/**
+ * Class AuthController
+ * @package App\Http\Controllers\Auth
+ */
 class AuthController extends Controller {
 
     /*
@@ -54,7 +58,6 @@ class AuthController extends Controller {
         }
     }
 
-
     /**
      * User signup to the application.
      *
@@ -71,16 +74,16 @@ class AuthController extends Controller {
         {
             $user = $auth::register(
                 [
-                    'email' => $request->get('email'),
+                    'email'    => $request->get('email'),
                     'password' => $request->get('password')
                 ]
             );
 
-            $activationCode = $user->getActivationCode();
+            $activation_code = $user->getActivationCode();
 
-            // Send email that a user has been created
+            // TODO: Send email that a user has been created
 
-            dd($activationCode);
+            dd($activation_code);
 
         } catch (UserExistsException $e)
         {
@@ -118,12 +121,10 @@ class AuthController extends Controller {
             {
                 dd('User activation failed.');
             }
-        }
-        catch (UserNotFoundException $e)
+        } catch (UserNotFoundException $e)
         {
             dd('User was not found.');
-        }
-        catch (UserAlreadyActivatedException $e)
+        } catch (UserAlreadyActivatedException $e)
         {
             dd('User is already activated.');
         }

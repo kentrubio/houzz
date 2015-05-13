@@ -17,6 +17,7 @@ class AnnotationsServiceProvider extends ServiceProvider {
      * @var array
      */
     protected $scanRoutes = [
+        'App\Http\Controllers\Auth\AuthController',
     ];
 
     /**

@@ -20,4 +20,12 @@ class Attribute extends Model {
     {
         return $this->belongsToMany('App\Eloquent\PhotoType');
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function data()
+    {
+        return $this->hasMany('App\Eloquent\AttributeData');
+    }
 }

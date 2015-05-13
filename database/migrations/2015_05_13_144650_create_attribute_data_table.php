@@ -4,9 +4,9 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
 /**
- * Class CreatePivotAttributePhotoTypeTable
+ * Class CreateAttributeDataTable
  */
-class CreatePivotAttributePhotoTypeTable extends Migration {
+class CreateAttributeDataTable extends Migration {
 
     /**
      * Run the migrations.
@@ -15,14 +15,16 @@ class CreatePivotAttributePhotoTypeTable extends Migration {
      */
     public function up()
     {
-        Schema::create('attribute_photo_type', function (Blueprint $table)
+        Schema::create('attribute_data', function (Blueprint $table)
         {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->integer('photo_type_id')->unsigned()->index();
             $table->integer('attribute_id')->unsigned()->index();
-            $table->foreign('photo_type_id')->references('id')->on('photo_types')->onDelete('cascade');
+            $table->string('name');
+            $table->string('description')->nullable();
+            $table->timestamps();
+
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });
     }
@@ -34,6 +36,7 @@ class CreatePivotAttributePhotoTypeTable extends Migration {
      */
     public function down()
     {
-        Schema::drop('attribute_photo_type');
+        Schema::drop('attribute_data');
     }
+
 }

@@ -1,8 +1,11 @@
 <?php
 
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
+/**
+ * Class CreatePhotosTable
+ */
 class CreatePhotosTable extends Migration {
 
     /**
@@ -17,8 +20,8 @@ class CreatePhotosTable extends Migration {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->integer('parent_id')->unsigned()->index();
             $table->integer('type_id')->unsigned()->index();
+            $table->integer('parent_type_id')->unsigned()->index();
             $table->string('name');
             $table->string('description');
             $table->integer('user_id')->unsigned()->index();
@@ -38,5 +41,4 @@ class CreatePhotosTable extends Migration {
     {
         Schema::drop('photos');
     }
-
 }

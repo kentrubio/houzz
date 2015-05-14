@@ -15,8 +15,7 @@ use Illuminate\Support\Facades\Mail;
  * Class AuthController
  * @package App\Http\Controllers\Auth
  */
-class AuthController extends Controller
-{
+class AuthController extends Controller {
 
     /*
     |--------------------------------------------------------------------------
@@ -36,6 +35,7 @@ class AuthController extends Controller
     public function getSignIn()
     {
         $this->data['page_title'] = 'Sign In';
+
         return $this->template('signin');
     }
 
@@ -45,6 +45,7 @@ class AuthController extends Controller
     public function getSignUp()
     {
         $this->data['page_title'] = 'Sign Up';
+
         return $this->template('signup');
     }
 
@@ -54,6 +55,7 @@ class AuthController extends Controller
     public function getEmailVerification()
     {
         $this->data['page_title'] = 'Email Verification';
+
         return $this->template('email-verification');
     }
 
@@ -68,17 +70,23 @@ class AuthController extends Controller
     public function postSignin(SigninRequest $request)
     {
         $auth = $this->auth;
-        try {
+        try
+        {
             $user = $auth::authenticate($request->only('email', 'password'), $request->get('remember'));
 
-            if ($user) {
-                    return redirect('/');
-            } else {
+            if ($user)
+            {
+                return redirect('/');
+            }
+            else
+            {
                 return redirect()->back()->withInput()->withErrors('Invalid Credentials.');
             }
-        } catch (PDOException $e) {
+        } catch (PDOException $e)
+        {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
-        } catch (Exception $e) {
+        } catch (Exception $e)
+        {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
@@ -95,37 +103,47 @@ class AuthController extends Controller
     {
         $auth = $this->auth;
 
-        try {
+        try
+        {
+            $first_name = $request->get('first_name');
+            $last_name = $request->get('last_name');
+            $email = $request->get('email');
+            $password = $request->get('password');
+
             $user = $auth::register(
                 [
-                    'first_name' => $request->get('first_name'),
-                    'last_name' => $request->get('last_name'),
-                    'email' => $request->get('email'),
-                    'password' => $request->get('password')
+                    'first_name' => $first_name,
+                    'last_name'  => $last_name,
+                    'email'      => $email,
+                    'password'   => $password
                 ]
             );
 
             $activation_code = $user->getActivationCode();
 
             $data = [
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'email' => $request->get('email'),
+                'first_name'      => $first_name,
+                'last_name'       => $last_name,
+                'email'           => $email,
                 'activation_code' => $activation_code
             ];
 
-
-            Mail::send('emails.activate-user', $data, function ($message) use ($request) {
+            // Send email for user account activation
+            // You need to run the artisan command `php artisan queue:listen`
+            Mail::queue('emails.activate-user', $data, function ($message) use ($email)
+            {
                 $message->from(env('MAIL_ADDRESS', 'mail@example.com'), env('MAIL_NAME', 'Wizard Mailer'));
-                $message->to($request->get('email'));
+                $message->to($email);
                 $message->subject('Account Activation');
             });
 
             return redirect('email-verification');
 
-        } catch (UserExistsException $e) {
+        } catch (UserExistsException $e)
+        {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
-        } catch (Exception $e) {
+        } catch (Exception $e)
+        {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
@@ -144,19 +162,24 @@ class AuthController extends Controller
         $email = $request->get('email');
         $activation_code = $request->get('activation_code');
 
-        try {
+        try
+        {
             $user = $auth::findUserByLogin($email);
 
-
-            if ($user->attemptActivation($activation_code)) {
+            if ($user->attemptActivation($activation_code))
+            {
                 // Pass
                 return redirect('/');
-            } else {
+            }
+            else
+            {
                 return redirect('account-activation-failed');
             }
-        } catch (UserNotFoundException $e) {
+        } catch (UserNotFoundException $e)
+        {
             return redirect('account-activation-failed')->withErrors($e->getMessage());
-        } catch (UserAlreadyActivatedException $e) {
+        } catch (UserAlreadyActivatedException $e)
+        {
             return redirect('account-activation-failed')->withErrors($e->getMessage());
         }
 

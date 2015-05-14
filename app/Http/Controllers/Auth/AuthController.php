@@ -9,6 +9,7 @@ use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
 use Exception;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 
 /**
@@ -125,7 +126,8 @@ class AuthController extends Controller {
                 'first_name'      => $first_name,
                 'last_name'       => $last_name,
                 'email'           => $email,
-                'activation_code' => $activation_code
+                'activation_code' => $activation_code,
+                'app_name'        => Config::get('app.name'),
             ];
 
             // Send email for user account activation

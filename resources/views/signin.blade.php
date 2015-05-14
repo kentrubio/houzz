@@ -1,7 +1,9 @@
 @extends('master')
-
+@section('header')
+    @include('partials.title-only-header')
+@endsection
 @section('content')
-    <div class="custom-modal">
+    <div class="custom-modal" style="width:780px; margin:80px auto;">
 
         @include('partials.form-errors')
 
@@ -31,4 +33,8 @@
         {!! Form::close() !!}
     </div>
 
+@endsection
+
+@section('footer')
+    @include('partials.title-only-footer')
 @endsection

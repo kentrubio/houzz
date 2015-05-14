@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers\Auth;
 
+use App\AuthenticateUser;
+use App\AuthenticateUserListener;
+use App\Eloquent\SocialUser;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ActivateUserRequest;
 use App\Http\Requests\Auth\SigninRequest;
@@ -9,6 +12,7 @@ use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 
@@ -16,7 +20,7 @@ use Illuminate\Support\Facades\Mail;
  * Class AuthController
  * @package App\Http\Controllers\Auth
  */
-class AuthController extends Controller {
+class AuthController extends Controller implements AuthenticateUserListener {
 
     /*
     |--------------------------------------------------------------------------
@@ -198,6 +202,31 @@ class AuthController extends Controller {
     {
         Sentry::logout();
 
+        return redirect('/');
+    }
+
+    /**
+     *
+     * @Get("oauth/facebook")
+     * @param AuthenticateUser $authenticateUser
+     * @param \Illuminate\Http\Request $request
+     * @return \Symfony\Component\HttpFoundation\RedirectResponse
+     */
+    public function oauth(AuthenticateUser $authenticateUser, Request $request)
+    {
+        $hasCode = $request->has('code');
+
+        return $authenticateUser->execute($hasCode, $this);
+    }
+
+    /**
+     * When a user has successfully been logged in...
+     *
+     * @param $user
+     * @return \Illuminate\Routing\Redirector
+     */
+    public function userHasLoggedIn($user)
+    {
         return redirect('/');
     }
 }

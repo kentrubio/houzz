@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers;
 
+use Cartalyst\Sentry\Facades\Laravel\Sentry;
+
 class WelcomeController extends Controller {
 
 	/*
@@ -18,8 +20,10 @@ class WelcomeController extends Controller {
 	 *
 	 * @return void
 	 */
-	public function __construct()
+	public function __construct(Sentry $auth)
 	{
+        parent::__construct($auth);
+        parent::_getScript(__FILE__);
 		$this->middleware('guest');
 	}
 
@@ -30,7 +34,8 @@ class WelcomeController extends Controller {
 	 */
 	public function index()
 	{
-		return view('welcome');
+        $this->data['page_title'] = 'Welcome';
+		return $this->template('welcome');
 	}
 
 }

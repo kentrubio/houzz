@@ -2,7 +2,7 @@
 
 use Cartalyst\Sentry\Facades\Laravel\Sentry;
 
-class WelcomeController extends Controller {
+class HomeController extends Controller {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -15,11 +15,11 @@ class WelcomeController extends Controller {
 	|
 	*/
 
-	/**
-	 * Create a new controller instance.
-	 *
-	 * @return void
-	 */
+    /**
+     * Create a new controller instance.
+     *
+     * @param Sentry $auth
+     */
 	public function __construct(Sentry $auth)
 	{
         parent::__construct($auth);
@@ -29,12 +29,13 @@ class WelcomeController extends Controller {
 	/**
 	 * Show the application welcome screen to the user.
 	 *
+     * @Get("/")
 	 * @return Response
 	 */
 	public function index()
 	{
-        $this->data['page_title'] = 'Welcome';
-		return $this->template('welcome');
+        $this->data['page_title'] = 'Home';
+		return $this->template('home');
 	}
 
 }

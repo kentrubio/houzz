@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="custom-modal">
-
+        @include('partials.form-errors')
         {!! Form::open(['url' => 'signup']) !!}
         <div class="form-group">
             <label for="first-name">First Name</label>

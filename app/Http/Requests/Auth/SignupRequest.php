@@ -6,7 +6,8 @@ use App\Http\Requests\Request;
  * Class LoginRegisterRequest
  * @package App\Http\Requests\Auth
  */
-class LoginRegisterRequest extends Request {
+class SignupRequest extends Request
+{
 
     /**
      * Determine if the user is authorized to make this request.
@@ -26,8 +27,10 @@ class LoginRegisterRequest extends Request {
     public function rules()
     {
         return [
-            'email'    => 'required|email|unique:users',
-            'password' => 'required',
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required|email|unique:users',
+            'password' => 'required|min:6',
         ];
     }
 

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ActivateUserRequest;
-use App\Http\Requests\Auth\LoginRegisterRequest;
+use App\Http\Requests\Auth\SigninRequest;
+use App\Http\Requests\Auth\SignupRequest;
 use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
@@ -63,28 +64,30 @@ class AuthController extends Controller {
      *
      * @Post("signin")
      *
-     * @param  LoginRegisterRequest $request
+     * @param SigninRequest $request
      * @return Response
      */
-    public function postLogin(LoginRegisterRequest $request)
+    public function postSignin(SigninRequest $request)
     {
         $auth = $this->auth;
-
         try
         {
-            $user = $auth::authenticate($request->only('email', 'password'), false);
+            $user = $auth::authenticate($request->only('email', 'password'), $request->get('remember'));
 
             if ($user)
             {
-                dd('User login successful.');
+                return redirect('/');
+            }
+            else
+            {
+                return redirect()->back()->withInput()->withErrors('Invalid Credentials.');
             }
         } catch (PDOException $e)
         {
-            return $e->getMessage();
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         } catch (Exception $e)
         {
-            return 'These credentials do not match our records.';
-
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
 
@@ -93,10 +96,10 @@ class AuthController extends Controller {
      *
      * @Post("signup")
      *
-     * @param LoginRegisterRequest $request
+     * @param SignupRequest $request
      * @return Response
      */
-    public function postSignup(LoginRegisterRequest $request)
+    public function postSignup(SignupRequest $request)
     {
         $auth = $this->auth;
 
@@ -129,7 +132,7 @@ class AuthController extends Controller {
             // You need to run the artisan command `php artisan queue:listen`
             Mail::queue('emails.activate-user', $data, function ($message) use ($email)
             {
-                $message->from('wizardoncouch@gmail.com', 'Houzz Wizard');
+                $message->from(env('MAIL_ADDRESS', 'mail@example.com'), env('MAIL_NAME', 'Wizard Mailer'));
                 $message->to($email);
                 $message->subject('Account Activation');
             });
@@ -138,10 +141,10 @@ class AuthController extends Controller {
 
         } catch (UserExistsException $e)
         {
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         } catch (Exception $e)
         {
-            return redirect()->back()->withErrors($e->getMessage());
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
 
@@ -162,7 +165,6 @@ class AuthController extends Controller {
         try
         {
             $user = $auth::findUserByLogin($email);
-
 
             if ($user->attemptActivation($activation_code))
             {

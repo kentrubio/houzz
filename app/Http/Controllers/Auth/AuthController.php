@@ -34,6 +34,7 @@ class AuthController extends Controller {
     public function getSignIn()
     {
         $this->data['page_title'] = 'Sign In';
+
         return $this->template('signin');
     }
 
@@ -43,6 +44,7 @@ class AuthController extends Controller {
     public function getSignUp()
     {
         $this->data['page_title'] = 'Sign Up';
+
         return $this->template('signup');
     }
 
@@ -52,6 +54,7 @@ class AuthController extends Controller {
     public function getEmailVerification()
     {
         $this->data['page_title'] = 'Email Verification';
+
         return $this->template('email-verification');
     }
 
@@ -99,30 +102,35 @@ class AuthController extends Controller {
 
         try
         {
+            $first_name = $request->get('first_name');
+            $last_name = $request->get('last_name');
+            $email = $request->get('email');
+            $password = $request->get('password');
+
             $user = $auth::register(
                 [
-                    'first_name' => $request->get('first_name'),
-                    'last_name' => $request->get('last_name'),
-                    'email'    => $request->get('email'),
-                    'password' => $request->get('password')
+                    'first_name' => $first_name,
+                    'last_name'  => $last_name,
+                    'email'      => $email,
+                    'password'   => $password
                 ]
             );
 
             $activation_code = $user->getActivationCode();
 
-            $data =[
-                'first_name' => $request->get('first_name'),
-                'last_name' => $request->get('last_name'),
-                'email' => $request->get('email'),
+            $data = [
+                'first_name'      => $first_name,
+                'last_name'       => $last_name,
+                'email'           => $email,
                 'activation_code' => $activation_code
             ];
 
-
-            // TODO: Send email that a user has been created
-            Mail::send('emails.activate-user', $data, function($message) use ($request)
+            // Send email for user account activation
+            // You need to run the artisan command `php artisan queue:listen`
+            Mail::queue('emails.activate-user', $data, function ($message) use ($email)
             {
-                $message->from('wizardoncouch@gmail.com', 'Houzz wizard');
-                $message->to($request->get('email'));
+                $message->from('wizardoncouch@gmail.com', 'Houzz Wizard');
+                $message->to($email);
                 $message->subject('Account Activation');
             });
 
@@ -142,6 +150,7 @@ class AuthController extends Controller {
      *
      * @Get("activate-user")
      * @param ActivateUserRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function getActivateUser(ActivateUserRequest $request)
     {

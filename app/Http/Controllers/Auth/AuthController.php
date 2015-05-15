@@ -8,6 +8,7 @@ use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
 use Cartalyst\Sentry\Users\UserNotFoundException;
 use Exception;
+use Illuminate\Support\Facades\Mail;
 
 /**
  * Class AuthController
@@ -26,7 +27,28 @@ class AuthController extends Controller {
     |
     */
 
-//	use AuthenticatesAndRegistersUsers;
+
+    /**
+     * @Get("signin")
+     */
+    public function getSignIn()
+    {
+        $this->data['page_title'] = 'Sign In';
+        return $this->template('signin');
+    }
+
+    /**
+     * @Get("signup")
+     */
+    public function getSignUp()
+    {
+        $this->data['page_title'] = 'Sign Up';
+        return $this->template('signup');
+    }
+
+    /**
+     *
+     */
 
     /**
      * Handle a login request to the application.
@@ -82,15 +104,21 @@ class AuthController extends Controller {
             $activation_code = $user->getActivationCode();
 
             // TODO: Send email that a user has been created
+            Mail::send('emails.activate-user', ['email' => $request->get('email'), 'activation_code' => $activation_code], function($message) use ($request)
+            {
+                $message->from('wizardoncouch@gmail.com', 'Houzz wizard');
+                $message->to($request->get('email'));
+                $message->subject('Account Activation');
+            });
 
-            dd($activation_code);
+            return redirect('success');
 
         } catch (UserExistsException $e)
         {
-            dd('User with this login already exists.');
+            return redirect()->back()->withErrors($e->getMessage());
         } catch (Exception $e)
         {
-
+            return redirect()->back()->withErrors($e->getMessage());
         }
     }
 

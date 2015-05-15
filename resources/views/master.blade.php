@@ -13,10 +13,7 @@
     <!-- application master css -->
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}" type="text/css"/>
     <!-- page custom css -->
-    @if( isset($page_css) )
-        <link rel="stylesheet" href="{{URL::asset('css' . DIRECTORY_SEPARATOR . $page_css)}}" type="text/css"/>
-    @endif
-
+    @yield('page_css')
 </head>
 <body>
 <div id="class-container">
@@ -36,8 +33,6 @@
 <!--application master javascript-->
 <script type="text/javascript" src="{{URL::asset('js/app.js')}}"></script>
 <!--page custom javascript-->
-@if( isset($page_js) )
-    <script type="text/javascript" src="{{URL::asset('js' . DIRECTORY_SEPARATOR . $page_js)}}"></script>
-@endif
+@yield('page_js')
 </body>
 </html>

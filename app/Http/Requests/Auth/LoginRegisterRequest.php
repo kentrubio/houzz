@@ -26,7 +26,7 @@ class LoginRegisterRequest extends Request {
     public function rules()
     {
         return [
-            'email'    => 'required',
+            'email'    => 'required|email|unique:users',
             'password' => 'required',
         ];
     }

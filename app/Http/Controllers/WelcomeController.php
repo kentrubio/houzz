@@ -23,7 +23,6 @@ class WelcomeController extends Controller {
 	public function __construct(Sentry $auth)
 	{
         parent::__construct($auth);
-        parent::_getScript(__FILE__);
 		$this->middleware('guest');
 	}
 

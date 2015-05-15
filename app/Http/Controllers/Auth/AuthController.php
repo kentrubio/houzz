@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ActivateUserRequest;
 use App\Http\Requests\Auth\SigninRequest;
 use App\Http\Requests\Auth\SignupRequest;
+use App\Translate;
 use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
@@ -95,7 +96,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
             return redirect()->back()->withInput()->withErrors($e->getMessage());
         } catch (Exception $e)
         {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
+            return redirect()->back()->withInput()->withErrors(Translate::error($e->getMessage()));
         }
     }
 
@@ -150,10 +151,10 @@ class AuthController extends Controller implements AuthenticateUserListener {
 
         } catch (UserExistsException $e)
         {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
+            return redirect()->back()->withInput()->withErrors(Translate::error($e->getMessage()));
         } catch (Exception $e)
         {
-            return redirect()->back()->withInput()->withErrors($e->getMessage());
+            return redirect()->back()->withInput()->withErrors(Translate::error($e->getMessage()));
         }
     }
 
@@ -178,6 +179,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
             if ($user->attemptActivation($activation_code))
             {
                 $auth::login($user, true);
+
                 return redirect('/');
             }
             else
@@ -186,10 +188,10 @@ class AuthController extends Controller implements AuthenticateUserListener {
             }
         } catch (UserNotFoundException $e)
         {
-            return redirect('account-activation-failed')->withErrors($e->getMessage());
+            return redirect('account-activation-failed')->withErrors(Translate::error($e->getMessage()));
         } catch (UserAlreadyActivatedException $e)
         {
-            return redirect('account-activation-failed')->withErrors($e->getMessage());
+            return redirect('account-activation-failed')->withErrors(Translate::error($e->getMessage()));
         }
 
     }

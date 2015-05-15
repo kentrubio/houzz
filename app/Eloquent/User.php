@@ -49,7 +49,7 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
             $user = User::create([
                 'first_name' => $userData->user['first_name'],
                 'last_name'  => $userData->user['last_name'],
-                'password'   => Hash::make('FacebookLogin'),
+                'password'   => Hash::make(str_random(40)),
                 'email'      => $userData->user['email'],
                 'activated'  => true,
             ]);

@@ -20,8 +20,9 @@
 
 html,body
 {
-    font-family: "yugothil", "roboto light", "helvetica neue", Verdana, Arial, Geneva, sans-serif;
+    font-family: "roboto light", "helvetica neue", Verdana, Arial, Geneva, sans-serif;
     font-size:13px;
+    font-weight: bold;
     background:#efefef;
 }
 .nav, .btn {
@@ -52,11 +53,13 @@ h3{
 .container-780
 {
     width:780px;
+    max-width: 100%;
     padding:0;
 }
 .modal-780
 {
     width:780px;
+    max-width: 100%;
     margin:0 auto;
 }
 .padding-ten-thirty{

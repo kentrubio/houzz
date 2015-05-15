@@ -11,8 +11,7 @@
         </div>
         <hr />
         <div class="row">
-
-            <div class="col-md-5">
+            <div class="col-md-5 padding-ten-thirty">
                 @include('partials.form-errors')
 
                 {!! Form::open(['url' => 'signin']) !!}
@@ -35,14 +34,13 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-success">Sign In</button>
+                    <button type="submit" class="btn btn-success col-xs-12 col-md-3">Sign In</button>
                 </div>
                 {!! Form::close() !!}
             </div>
             <div class="col-md-1">
             </div>
-            <div class="col-md-6">
-                <div class="width-80">
+            <div class="col-md-6 padding-ten-thirty">
                     <div>
                         <label for="facebook">&nbsp;</label>
                     </div>
@@ -58,7 +56,6 @@
                         <p><a class="text-success" href="signup">Join now <span
                                         class="glyphicon glyphicon-chevron-right"></span></a></p>
                     </div>
-                </div>
             </div>
         </div>
 

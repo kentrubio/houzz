@@ -158,6 +158,7 @@ return [
         'App\Providers\SentryServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
         'Overtrue\LaravelLang\TranslationServiceProvider',
+        'Laravel\Socialite\SocialiteServiceProvider',
 
 	],
 
@@ -211,7 +212,9 @@ return [
         'Sentry'    => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
         'Debugbar'  => 'Barryvdh\Debugbar\Facade',
         'Carbon'    => 'Carbon\Carbon',
+        'Socialize' => 'Laravel\Socialite\Facades\Socialite',
 
-	],
+
+    ],
 
 ];

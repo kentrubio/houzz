@@ -5,6 +5,7 @@ use Illuminate\Auth\Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
+use Illuminate\Support\Facades\Hash;
 
 /**
  * Class User
@@ -26,7 +27,7 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
      *
      * @var array
      */
-    protected $fillable = ['name', 'email', 'password'];
+    protected $fillable = ['email', 'password', 'activated', 'first_name', 'last_name'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -34,5 +35,30 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
      * @var array
      */
     protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * @param $userData
+     * @return static
+     */
+    public function findByUsernameOrCreate($userData)
+    {
+        $user = User::whereEmail($userData->user['email'])->first();
+
+        if ( ! $user)
+        {
+            $user = User::create([
+                'first_name' => $userData->user['first_name'],
+                'last_name'  => $userData->user['last_name'],
+                'password'   => Hash::make('FacebookLogin'),
+                'email'      => $userData->user['email'],
+                'activated'  => true,
+            ]);
+
+            $user->save();
+        }
+
+        return $user;
+
+    }
 
 }

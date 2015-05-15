@@ -9,7 +9,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Project name</a>
+            <a class="navbar-brand" href="/">{{\Illuminate\Support\Facades\Config::get('app.name')}}</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -22,7 +22,11 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/cart">Cart</a></li>
-                <li><a href="/signin">Sign In</a></li>
+                @if (isset($logged_user))
+                    <li><a href="/user/{{$logged_user->email}}">Your Houzz</a></li>
+                @else
+                    <li><a href="/signin">Sign In</a></li>
+                @endif
             </ul>
         </div>
         <!--/.nav-collapse -->

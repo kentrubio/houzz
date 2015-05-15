@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Mail;
 /**
  * Class AuthController
  * @package App\Http\Controllers\Auth
+ *
+ * @Middleware("guest", except={"signout"})
  */
 class AuthController extends Controller implements AuthenticateUserListener {
 

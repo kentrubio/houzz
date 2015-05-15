@@ -15,12 +15,13 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 
 /**
  * Class AuthController
  * @package App\Http\Controllers\Auth
  *
- * @Middleware("guest", except={"signout"})
+ * @Middleware("guest", except={"getSignout"})
  */
 class AuthController extends Controller implements AuthenticateUserListener {
 
@@ -83,7 +84,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
 
             if ($user)
             {
-                return redirect('/');
+                return Redirect::intended('/');
             }
             else
             {

@@ -2,7 +2,8 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ActivateUserRequest;
-use App\Http\Requests\Auth\LoginRegisterRequest;
+use App\Http\Requests\Auth\SigninRequest;
+use App\Http\Requests\Auth\SignupRequest;
 use Cartalyst\Sentry\Facades\Laravel\Sentry;
 use Cartalyst\Sentry\Users\UserAlreadyActivatedException;
 use Cartalyst\Sentry\Users\UserExistsException;
@@ -14,7 +15,8 @@ use Illuminate\Support\Facades\Mail;
  * Class AuthController
  * @package App\Http\Controllers\Auth
  */
-class AuthController extends Controller {
+class AuthController extends Controller
+{
 
     /*
     |--------------------------------------------------------------------------
@@ -60,28 +62,24 @@ class AuthController extends Controller {
      *
      * @Post("signin")
      *
-     * @param  LoginRegisterRequest $request
+     * @param SigninRequest $request
      * @return Response
      */
-    public function postLogin(LoginRegisterRequest $request)
+    public function postSignin(SigninRequest $request)
     {
         $auth = $this->auth;
+        try {
+            $user = $auth::authenticate($request->only('email', 'password'), $request->get('remember'));
 
-        try
-        {
-            $user = $auth::authenticate($request->only('email', 'password'), false);
-
-            if ($user)
-            {
-                dd('User login successful.');
+            if ($user) {
+                    return redirect('/');
+            } else {
+                return redirect()->back()->withInput()->withErrors('Invalid Credentials.');
             }
-        } catch (PDOException $e)
-        {
-            return $e->getMessage();
-        } catch (Exception $e)
-        {
-            return 'These credentials do not match our records.';
-
+        } catch (PDOException $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
+        } catch (Exception $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
 
@@ -90,27 +88,26 @@ class AuthController extends Controller {
      *
      * @Post("signup")
      *
-     * @param LoginRegisterRequest $request
+     * @param SignupRequest $request
      * @return Response
      */
-    public function postSignup(LoginRegisterRequest $request)
+    public function postSignup(SignupRequest $request)
     {
         $auth = $this->auth;
 
-        try
-        {
+        try {
             $user = $auth::register(
                 [
                     'first_name' => $request->get('first_name'),
                     'last_name' => $request->get('last_name'),
-                    'email'    => $request->get('email'),
+                    'email' => $request->get('email'),
                     'password' => $request->get('password')
                 ]
             );
 
             $activation_code = $user->getActivationCode();
 
-            $data =[
+            $data = [
                 'first_name' => $request->get('first_name'),
                 'last_name' => $request->get('last_name'),
                 'email' => $request->get('email'),
@@ -118,22 +115,18 @@ class AuthController extends Controller {
             ];
 
 
-            // TODO: Send email that a user has been created
-            Mail::send('emails.activate-user', $data, function($message) use ($request)
-            {
-                $message->from('wizardoncouch@gmail.com', 'Houzz wizard');
+            Mail::send('emails.activate-user', $data, function ($message) use ($request) {
+                $message->from(env('MAIL_ADDRESS', 'mail@example.com'), env('MAIL_NAME', 'Wizard Mailer'));
                 $message->to($request->get('email'));
                 $message->subject('Account Activation');
             });
 
             return redirect('email-verification');
 
-        } catch (UserExistsException $e)
-        {
-            return redirect()->back()->withErrors($e->getMessage());
-        } catch (Exception $e)
-        {
-            return redirect()->back()->withErrors($e->getMessage());
+        } catch (UserExistsException $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
+        } catch (Exception $e) {
+            return redirect()->back()->withInput()->withErrors($e->getMessage());
         }
     }
 
@@ -142,6 +135,7 @@ class AuthController extends Controller {
      *
      * @Get("activate-user")
      * @param ActivateUserRequest $request
+     * @return $this|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function getActivateUser(ActivateUserRequest $request)
     {
@@ -150,25 +144,19 @@ class AuthController extends Controller {
         $email = $request->get('email');
         $activation_code = $request->get('activation_code');
 
-        try
-        {
+        try {
             $user = $auth::findUserByLogin($email);
 
 
-            if ($user->attemptActivation($activation_code))
-            {
+            if ($user->attemptActivation($activation_code)) {
                 // Pass
                 return redirect('/');
-            }
-            else
-            {
+            } else {
                 return redirect('account-activation-failed');
             }
-        } catch (UserNotFoundException $e)
-        {
+        } catch (UserNotFoundException $e) {
             return redirect('account-activation-failed')->withErrors($e->getMessage());
-        } catch (UserAlreadyActivatedException $e)
-        {
+        } catch (UserAlreadyActivatedException $e) {
             return redirect('account-activation-failed')->withErrors($e->getMessage());
         }
 

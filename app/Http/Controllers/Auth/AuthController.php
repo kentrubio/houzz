@@ -194,11 +194,11 @@ class AuthController extends Controller implements AuthenticateUserListener {
     /**
      * Log the user out of the application.
      *
-     * @Get("logout")
+     * @Get("signout")
      *
      * @return Response
      */
-    public function getLogout()
+    public function getSignout()
     {
         Sentry::logout();
 

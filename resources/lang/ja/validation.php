@@ -101,6 +101,11 @@ return [
     |
     */
 
-    'attributes' => [],
+    'attributes' => [
+        'first_name' => 'ファーストネーム',
+        'last_name' => '苗字',
+        'email' => 'メールアドレス',
+        'password' => 'パスワード',
+    ],
 
 ];

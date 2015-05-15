@@ -28,22 +28,22 @@
                     @include('partials.form-errors')
                     {!! Form::open(['url' => 'signup']) !!}
                     <div class="form-group">
-                        <label for="first-name">First Name</label>
+                        <label for="first-name">{{trans('signup.first_name')}}</label>
                         <input type="text" name="first_name" id="first-name" class="form-control"
-                               placeholder="First Name">
+                               placeholder="{{trans('signup.first_name')}}">
                     </div>
                     <div class="form-group">
-                        <label for="last-name">Last Name</label>
-                        <input type="text" name="last_name" id="last-name" class="form-control" placeholder="Last Name">
+                        <label for="last-name">{{trans('signup.last_name')}}</label>
+                        <input type="text" name="last_name" id="last-name" class="form-control" placeholder="{{trans('signup.last_name')}}">
                     </div>
                     <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="Email">
+                        <label for="email">{{trans('signup.email')}}</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="{{trans('signup.email')}}">
                     </div>
                     <div class="form-group">
-                        <label for="password">Password</label>
+                        <label for="password">{{trans('signup.password')}}</label>
                         <input type="password" class="form-control" name="password" id="password"
-                               placeholder="Minimum 6 characters">
+                               placeholder="{{trans('signup.minimum_6_characters')}}">
                     </div>
                     <div class="form-group margin-top-twenty">
                         <button type="submit" class="form-control btn btn-success">Sign Up</button>

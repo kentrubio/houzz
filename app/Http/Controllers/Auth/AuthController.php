@@ -174,7 +174,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
 
             if ($user->attemptActivation($activation_code))
             {
-                // Pass
+                $auth::login($user, true);
                 return redirect('/');
             }
             else

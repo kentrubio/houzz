@@ -6,9 +6,9 @@
     <meta http-equiv="Content-Language" content="{{Session::get('locale')}}">
     <title>{{$page_title}} - Houzz</title>
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="{{URL::asset('css/flatstrap.min.css')}}" type="text/css"/>
     <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="{{URL::asset('css/flatstrap-theme.min.css')}}" type="text/css"/>
 
     <!-- application master css -->
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}" type="text/css"/>
@@ -29,7 +29,7 @@
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="{{URL::asset('js/flatstrap.min.js')}}"></script>
 
 <!--application master javascript-->
 <script type="text/javascript" src="{{URL::asset('js/app.js')}}"></script>

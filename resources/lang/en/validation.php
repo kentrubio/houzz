@@ -86,9 +86,9 @@ return [
 	*/
 
 	'custom' => [
-		'attribute-name' => [
-			'rule-name' => 'custom-message',
-		],
+        'attribute-name' => [
+            'rule-name' => 'custom-message',
+        ],
 	],
 
 	/*
@@ -102,6 +102,7 @@ return [
 	|
 	*/
 
-	'attributes' => [],
+	'attributes' => [
+    ],
 
 ];

@@ -47,8 +47,13 @@ class AuthController extends Controller {
     }
 
     /**
-     *
+     * @Get("email-verification")
      */
+    public function getEmailVerification()
+    {
+        $this->data['page_title'] = 'Email Verification';
+        return $this->template('email-verification');
+    }
 
     /**
      * Handle a login request to the application.
@@ -96,6 +101,8 @@ class AuthController extends Controller {
         {
             $user = $auth::register(
                 [
+                    'first_name' => $request->get('first_name'),
+                    'last_name' => $request->get('last_name'),
                     'email'    => $request->get('email'),
                     'password' => $request->get('password')
                 ]
@@ -103,15 +110,23 @@ class AuthController extends Controller {
 
             $activation_code = $user->getActivationCode();
 
+            $data =[
+                'first_name' => $request->get('first_name'),
+                'last_name' => $request->get('last_name'),
+                'email' => $request->get('email'),
+                'activation_code' => $activation_code
+            ];
+
+
             // TODO: Send email that a user has been created
-            Mail::send('emails.activate-user', ['email' => $request->get('email'), 'activation_code' => $activation_code], function($message) use ($request)
+            Mail::send('emails.activate-user', $data, function($message) use ($request)
             {
                 $message->from('wizardoncouch@gmail.com', 'Houzz wizard');
                 $message->to($request->get('email'));
                 $message->subject('Account Activation');
             });
 
-            return redirect('success');
+            return redirect('email-verification');
 
         } catch (UserExistsException $e)
         {
@@ -143,18 +158,18 @@ class AuthController extends Controller {
             if ($user->attemptActivation($activation_code))
             {
                 // Pass
-                dd('User activation passed.');
+                return redirect('/');
             }
             else
             {
-                dd('User activation failed.');
+                return redirect('account-activation-failed');
             }
         } catch (UserNotFoundException $e)
         {
-            dd('User was not found.');
+            return redirect('account-activation-failed')->withErrors($e->getMessage());
         } catch (UserAlreadyActivatedException $e)
         {
-            dd('User is already activated.');
+            return redirect('account-activation-failed')->withErrors($e->getMessage());
         }
 
     }

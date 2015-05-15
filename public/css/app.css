@@ -1,27 +1,66 @@
-/*
-* {
-  border-radius: 0 !important;
+@font-face {
+    font-family: "helvetica neue";
+    src: url("../fonts/HelveticaNeue.ttf");
 }
-
-* {
-  -webkit-border-radius: 0 !important;
-     -moz-border-radius: 0 !important;
-          border-radius: 0 !important;
+@font-face {
+    font-family: "roboto light";
+    src: url("../fonts/Roboto-Light.ttf");
 }
-*/
+@font-face {
+    font-family: "roboto medium";
+    src: url("../fonts/Roboto-Medium.ttf");
+}
+@font-face {
+    font-family: "yugothil";
+    src: url("../fonts/yugothil.ttf");
+}
+.btn{
+    border:none !important;
+}
 
 html,body
 {
-    font-family: Tahoma, Verdana, Arial, Geneva, sans-serif;
+    font-family: "yugothil", "roboto light", "helvetica neue", Verdana, Arial, Geneva, sans-serif;
     font-size:13px;
+    background:#efefef;
 }
-.custom-modal
+.nav, .btn {
+    font-family: "helvetica neue", Verdana, Arial, Geneva, sans-serif;
+}
+h3{
+    font-weight: normal;
+}
+.page-container
 {
-    width:600px;
-    margin:30px auto;
+    background:#ffffff;
+    margin:0;
+    padding:0;
+    border-bottom:1px solid #efefef;
 }
-.padding-ten{
-    padding:10px;
+.page-content{
+    padding:0;
+    background:#ffffff;
+    margin:0;
+}
+.jumbotron{
+    background:#ffffff;
+}
+.page-footer
+{
+    border-top:1px solid #dedede;
+}
+.container-780
+{
+    width:780px;
+    padding:0;
+}
+.modal-780
+{
+    width:780px;
+    margin:0 auto;
+}
+.padding-ten-thirty{
+    padding:10px 30px;
 }
 .padding-five{
     padding:5px;
@@ -37,5 +76,44 @@ html,body
 }
 .margin-zero{
     margin:0;
+}
+.margin-top-twenty{
+    margin-top:20px;
+}
+.margin-auto{
+    margin:0 auto;
+}
+.row.vdivide [class*='col-']:not(:last-child):after {
+    background: #e0e0e0;
+    width: 1px;
+    content: "";
+    display:block;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    right: 0;
+    min-height: 70px;
+}
+.width-100{
+    width:100%;
+}
+.width-80{
+    width:80%;
+}
+.text-bold{
+    font-weight: bold;
+}
+.btn-content-section {
+    text-align:center;
+    padding: 0 20px 0 10px;
+    margin-left: 10px;
+    border-left: 1px solid #86c7fe;
+}
+.text-left{
+    text-align: left !important;
+}
+/*TODO: for deletion*/
+.border{
+    border:1px solid red;
 }
 

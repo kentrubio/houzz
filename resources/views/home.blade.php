@@ -4,13 +4,14 @@
 @endsection
 @section('content')
     <!-- Jumbotron -->
-    <div class="jumbotron text-center" style="margin-top:50px;">
+    <div class="jumbotron text-center">
         <p class="lead">{{Config::get('app.name')}} on going.</p>
 
         @if(!isset($logged_user))
             <p>
-                <a class="btn btn-lg btn-success" href="/signup" role="button">Sign Up with Email</a>
-                <a class="btn btn-lg btn-primary" href="/oauth/facebook" role="button">Sign In with Facebook</a>
+                <a class="btn btn-lg btn-success" href="/signup" role="button"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;Sign Up with Email</a>
+                &nbsp;&nbsp;
+                <a class="btn btn-lg btn-primary" href="/oauth/facebook" role="button"><i class="fa fa-facebook"></i>&nbsp;&nbsp;Sign In with Facebook</a>
             </p>
         @else
             <p>

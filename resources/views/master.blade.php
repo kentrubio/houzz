@@ -9,23 +9,23 @@
     <link rel="stylesheet" href="{{URL::asset('css/flatstrap.min.css')}}" type="text/css"/>
     <!-- Optional theme -->
     <link rel="stylesheet" href="{{URL::asset('css/flatstrap-theme.min.css')}}" type="text/css"/>
-
     <!-- application master css -->
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}" type="text/css"/>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- page custom css -->
     @yield('page_css')
 </head>
 <body>
-<div id="class-container">
-    <div id="page-header">
+<div class="page-container">
+    <div class="page-header">
         @yield('header')
     </div>
-    <div id="page-content">
+    <div class="page-content">
         @yield('content')
     </div>
-    <div id="page-footer">
-        @yield('footer')
-    </div>
+</div>
+<div class="page-footer">
+    @yield('footer')
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>

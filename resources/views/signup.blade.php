@@ -5,7 +5,7 @@
     <div class="modal-dialog" style="width:780px;">
         <div class="modal-content">
             <div class="modal-header">
-                <h2 class="modal-title text-center">Welcome to Rockstar Project</h2>
+                <h2 class="modal-title text-center">Welcome to {{Config::get('app.name')}}</h2>
                 <h4 class="text-center">The new way to become awesome.</h4>
             </div>
             <div class="modal-body">

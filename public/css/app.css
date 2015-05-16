@@ -1,0 +1,29 @@
+html,body
+{
+    font-family: Tahoma, Verdana, Arial, Geneva, sans-serif;
+    font-size:13px;
+}
+.custom-modal
+{
+    width:600px;
+    margin:30px auto;
+}
+.padding-ten{
+    padding:10px;
+}
+.padding-five{
+    padding:5px;
+}
+.padding-zero{
+    padding:0;
+}
+.margin-ten{
+    margin:10px;
+}
+.margin-five{
+    margin:5px;
+}
+.margin-zero{
+    margin:0;
+}
+

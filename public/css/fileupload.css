@@ -1,0 +1,30 @@
+.progression .large-header {
+    font-size: 32px;
+    font-family: "roboto light", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 100;
+}
+.progression .step2{
+    color:#cccccc;
+}
+.upload-choice{
+    background:#efefef;
+    min-height: 50px;
+    cursor:pointer;
+}
+.upload-choice .collapsed{
+    display:block;
+    color:#aaaaaa;
+}
+.upload-choice .expanded{
+    display:none;
+}
+.upload-choice.selected{
+    background:#CBE290;
+    cursor:default;
+}
+.upload-choice.selected .collapsed{
+    display:none;
+}
+.upload-choice.selected .expanded{
+    display:block;
+}

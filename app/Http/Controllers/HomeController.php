@@ -10,7 +10,7 @@ class HomeController extends Controller {
      */
     public function index()
     {
-        $this->data['page_title'] = 'Home';
+        $this->data['page_title'] = trans('app.home');
 
         return $this->template('home');
     }

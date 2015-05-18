@@ -15,18 +15,18 @@ class ProfileController extends Controller {
     /**
      * Edit User's profile
      *
-     * @Get("@{username}/edit")
+     * @Get("/edit-profile")
      */
-    public function edit($username)
+    public function edit()
     {
-        $user = User::whereUsername($username)->first();
+        $user = $this->logged_user;
 
         if ( ! $user)
         {
             return Response::make('errors.404', 404);
         }
 
-        $this->data['page_title'] = "Edit Your Profile";
+        $this->data['page_title'] = trans('app.edit_your_profile');
 
         return $this->template('user.edit-profile');
     }

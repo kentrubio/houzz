@@ -43,5 +43,7 @@ return [
     'your_activation_code'                          => 'アクティベーションコード',
     'have_fun'                                      => '楽しみます！',
     'finish_your_registration'                      => '登録を完了します...',
+    'edit_your_profile'                             => 'あなたのプロフィールを編集',
+    'home'                                          => 'ホーム',
 
 ];

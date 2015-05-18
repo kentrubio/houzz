@@ -35,7 +35,7 @@ return [
     'invalid_credentials'                           => 'Invalid Credentials.',
     'account_activation'                            => 'Account Activation',
     'email_verification_text'                       => 'Please check your email to activate your account.',
-    'activate_user_1'                         => 'Thanks for joining Rockstar Project',
+    'activate_user_1'                               => 'Thanks for joining Rockstar Project',
     'activate_user_2'                               => 'We listed your sign in details below, make sure you keep them safe.',
     'activate_user_3'                               => 'To verify your email address, please follow this link',
     'activate_user_4_link'                          => 'Link doesn\'t work? Copy the following link to your browser address bar',

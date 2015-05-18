@@ -43,9 +43,10 @@ abstract class Controller extends BaseController {
         if ($auth::check())
         {
             $this->data['logged_user'] = $this->logged_user = $this->auth = $auth::getUser();
-
-            $this->data['locale'] = Session::has('locale') ? Session::get('locale') : Config::get('app.locale');
         }
+
+        $this->data['locale'] = Session::get('locale');
+
         $this->date['page_title'] = 'Untitled';
     }
 

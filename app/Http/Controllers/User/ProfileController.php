@@ -11,12 +11,15 @@ use App\Http\Controllers\Controller;
 class ProfileController extends Controller {
 
     /**
-     * Show
-     * @Get("u/{username}/edit")
+     * Edit User's profile
+     *
+     * @Get("@{username}/edit")
      */
     public function edit($username)
     {
+        $this->data['page_title'] = "Edit Your Profile";
 
+        return $this->template('user.edit-profile');
     }
 
     /**
@@ -28,8 +31,7 @@ class ProfileController extends Controller {
      */
     public function show($username)
     {
-        dd('test');
-        $this->data['page_title'] = 'Upload Photo';
+        $this->data['page_title'] = 'Upload ';
 
         return $this->template('user.upload-photo');
     }

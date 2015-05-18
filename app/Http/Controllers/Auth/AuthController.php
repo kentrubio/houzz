@@ -119,14 +119,19 @@ class AuthController extends Controller implements AuthenticateUserListener {
             $email = $request->get('email');
             $password = $request->get('password');
 
+            $username = substr($email, 0, strpos($email, '@'));
+
             $user = $auth::register(
                 [
                     'first_name' => $first_name,
                     'last_name'  => $last_name,
                     'email'      => $email,
-                    'password'   => $password
+                    'password'   => $password,
                 ]
             );
+
+            // TODO: check if duplicate username
+            $user->username = $username;
 
             $activation_code = $user->getActivationCode();
 

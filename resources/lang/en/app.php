@@ -43,5 +43,7 @@ return [
     'your_activation_code'                          => 'Your activation code',
     'have_fun'                                      => 'Have fun!',
     'finish_your_registration'                      => 'Finish your registration...',
+    'edit_your_profile'                             => 'Edit Your Profile',
+    'home'                                          => 'Home',
 
 ];

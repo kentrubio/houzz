@@ -1,3 +1,12 @@
 <div class="text-center" style="border-top:1px solid #efefef;">
-    &copy; {{date('Y')}} {{Config::get('app.name')}}
+    <div>
+        &copy; {{date('Y')}} {{Config::get('app.name')}}
+    </div>
+    <div>
+    {!! Form::open(['url' => '/language']) !!}
+
+        {!! Form::select('locale',['en'=>'English','ja'=>'日本語'], $locale, ['onchange'=>'submit()']) !!}
+
+    {!! Form::close() !!}
+    </div>
 </div>

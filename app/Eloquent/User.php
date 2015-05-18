@@ -54,6 +54,10 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
                 'activated'  => true,
             ]);
 
+            // TODO: check if duplicate username
+            $username = substr($userData->user['email'], 0, strpos($userData->user['email'], '@'));
+
+            $user->username = $username;
             $user->save();
         }
 

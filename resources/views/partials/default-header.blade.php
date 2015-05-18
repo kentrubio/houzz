@@ -14,29 +14,29 @@
         <div id="navbar" class="navbar-collapse collapse">
             @if(!(isset($no_nav) && $no_nav))
                 <ul class="nav navbar-nav">
-                    <li><a href="/photos">Photos</a></li>
-                    <li><a href="/find-photos">Find Photos</a></li>
-                    <li><a href="/shop">Shop</a></li>
-                    <li><a href="/category">Category</a></li>
-                    <li><a href="/stories">Stories</a></li>
-                    <li><a href="/advice">Advice</a></li>
+                    <li><a href="/photos">{{ trans('app.photos') }}</a></li>
+                    <li><a href="/find-photos">{{ trans('app.find_photos') }}</a></li>
+                    <li><a href="/shop">{{ trans('app.shop') }}</a></li>
+                    <li><a href="/category">{{ trans('app.categories') }}</a></li>
+                    <li><a href="/stories">{{ trans('app.stories') }}</a></li>
+                    <li><a href="/advice">{{ trans('app.advice') }}</a></li>
                 </ul>
             @endif
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span></a></li>
                 @if (isset($logged_user))
                     <li class="dropdown">
-                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Your Houzz <span class="caret"></span></a>
+                        <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"> {{ trans('app.your_app') }} <span class="caret"></span></a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">{{$logged_user->first_name}} {{$logged_user->last_name}}</a></li>
-                            <li>{!! Html::link("/@$logged_user->username/edit", 'Edit Profile')  !!}</li>
-                            <li><a href="file-upload"><i class="fa fa-upload"></i>&nbsp;Upload Photo or File</a></li>
+                            <li>{!! Html::link("/@$logged_user->username/edit", trans('app.edit_profile'))  !!}</li>
+                            <li><a href="file-upload"><i class="fa fa-upload"></i>&nbsp;{{ trans('app.upload_photo_or_file') }}</a></li>
                             <li class="divider"></li>
-                            <li><a href="signout">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
+                            <li><a href="signout">{{ trans('app.sign_out') }}&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
                         </ul>
                     </li>
                 @else
-                    <li><a href="/signin">Sign In</a></li>
+                    <li><a href="/signin"> {{ trans('app.sign_in') }}</a></li>
                 @endif
             </ul>
         </div>

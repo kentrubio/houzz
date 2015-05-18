@@ -19,7 +19,7 @@
 <div class="modal-780 margin-top-twenty">
     <div class="modal-content">
         <div class="modal-header">
-            <h2 class="modal-title text-center">Welcome to {{Config::get('app.name')}}</h2>
+            <h2 class="modal-title text-center">{{ trans('app.welcome_to') }} {{Config::get('app.name')}}</h2>
             <h4 class="text-center">The new way to become awesome.</h4>
         </div>
         <div class="modal-body">
@@ -28,25 +28,25 @@
                     @include('partials.form-errors')
                     {!! Form::open(['url' => 'signup']) !!}
                     <div class="form-group">
-                        <label for="first-name">{{trans('signup.first_name')}}</label>
+                        <label for="first-name">{{trans('app.first_name')}}</label>
                         <input type="text" name="first_name" id="first-name" class="form-control"
-                               placeholder="{{trans('signup.first_name')}}">
+                               placeholder="{{trans('app.first_name')}}">
                     </div>
                     <div class="form-group">
-                        <label for="last-name">{{trans('signup.last_name')}}</label>
-                        <input type="text" name="last_name" id="last-name" class="form-control" placeholder="{{trans('signup.last_name')}}">
+                        <label for="last-name">{{trans('app.last_name')}}</label>
+                        <input type="text" name="last_name" id="last-name" class="form-control" placeholder="{{trans('app.last_name')}}">
                     </div>
                     <div class="form-group">
-                        <label for="email">{{trans('signup.email')}}</label>
-                        <input type="email" name="email" id="email" class="form-control" placeholder="{{trans('signup.email')}}">
+                        <label for="email">{{trans('app.email')}}</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="{{trans('app.email')}}">
                     </div>
                     <div class="form-group">
-                        <label for="password">{{trans('signup.password')}}</label>
+                        <label for="password">{{trans('app.password')}}</label>
                         <input type="password" class="form-control" name="password" id="password"
-                               placeholder="{{trans('signup.minimum_6_characters')}}">
+                               placeholder="{{trans('app.minimum_6_characters')}}">
                     </div>
                     <div class="form-group margin-top-twenty">
-                        <button type="submit" class="form-control btn btn-success">Sign Up</button>
+                        <button type="submit" class="form-control btn btn-success">{{ trans('app.sign_up') }}</button>
                     </div>
                     <div class="margin-top-twenty">
                         By clicking "Sign Up" or "Sign In with Facebook" I acknowledge and agree to the <a href="terms"
@@ -64,20 +64,20 @@
                         <label for="facebook">&nbsp;</label>
                     </div>
                     <div class="margin-top-twenty">
-                        <p>Easily share with facebook friends and family.</p>
+                        <p>{{ trans('app.easily_share_with_facebook_friends_and_family') }}</p>
                     </div>
                     <div>
                         <a class="btn btn-primary text-left text-bold width-100" href="/oauth/facebook"
                            role="button"
                            id="facebook"><i
                                     class="fa fa-facebook"></i><span
-                                    class="btn-content-section">Sign In with Facebook</span></a>
+                                    class="btn-content-section"> {{ trans('app.sign_in_with_facebook') }} </span></a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="modal-footer">
-            <p class="text-center">Already have an account? <a href="signin" class="text-success">Sign In<span
+            <p class="text-center"> {{ trans('app.already_have_an_account') }} <a href="signin" class="text-success">{{ trans('app.sign_in') }}<span
                             class="glyphicon glyphicon-chevron-right"></span></a></p>
         </div>
     </div>

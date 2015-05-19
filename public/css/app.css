@@ -115,6 +115,16 @@ h3{
 .text-left{
     text-align: left !important;
 }
+p{
+    font-size:12px;
+    font-family: "roboto light", Arial, Geneva, sans-serif !important;
+}
+.testing::before{
+    content: "hahahaha";
+}
+.testing::after{
+    content:"No way!";
+}
 /*TODO: for deletion*/
 .border{
     border:1px solid red;

@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadRequest;
 
 /**
  * Class PhotoController
@@ -17,18 +18,52 @@ class PhotoController extends Controller
      */
     public function GetUploadPhoto()
     {
+
         $this->data['no_nav'] = true;
         $this->data['page_title'] = 'Upload Photo';
         return $this->template('user.upload-photo');
     }
 
     /**
-     * @Post("upload-photo")
+     * @Post("file-upload")
+     * @param UploadRequest $request
      * @return Response
      */
-    public function PostUploadPhoto()
+    public function PostUploadPhoto(UploadRequest $request)
     {
-        $this->data['page_title'] = 'Upload Photo';
-        return $this->template('user.upload-photo');
+        $destination_id = 0;
+        if($request->get('upload_to') == 'project')
+        {
+            if($request->get('project') == 0)
+            {
+
+            }
+        }
+        else if($request->get('upload_to') == 'ideabook')
+        {
+            if($request->get('gallery') == 0)
+            {
+
+            }
+            else
+            {
+            }
+        }
+
+        if(isset($_FILES) && $destination_id > 0){
+            $file_directory = storage_path();
+            $file_directory .= DIRECTORY_SEPARATOR.files.DIRECTORY_SEPARATOR.$this->logged_user->id;
+            $file_directory .= DIRECTORY_SEPARATOR.$request->get('upload_to').DIRECTORY_SEPARATOR.$destination_id;
+            if($this->checkIfDirectoryExists($file_directory))
+            {
+
+            }
+        }
     }
+
+    private function checkIfDirectoryExists($directory)
+    {
+        return false;
+    }
+
 }

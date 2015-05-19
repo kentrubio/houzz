@@ -21,7 +21,7 @@ return [
     'sign_in_to'                                    => 'するにはログインしてください',
     'on_going'                                      => '行くの。',
     'welcome'                                       => 'ようこそ！',
-    'your_app'                                      => 'あなたHouzz',
+    'your_app'                                      => 'あなたの計画',
     'edit_profile'                                  => 'プロファイル編集',
     'upload_photo_or_file'                          => '写真をアップロードまたはファイル',
     'sign_out'                                      => 'サインアウト',

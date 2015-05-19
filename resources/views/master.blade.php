@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta http-equiv="Content-Language" content="{{Session::get('locale')}}">
-    <title>{{$page_title}} - Houzz</title>
+    <title>{{$page_title}} - {{Config::get('app.name')}}</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="{{URL::asset('css/flatstrap.min.css')}}" type="text/css"/>
     <!-- Optional theme -->

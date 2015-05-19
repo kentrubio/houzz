@@ -21,7 +21,7 @@ return [
     'sign_in_to'                                    => 'Sign In to',
     'on_going'                                      => 'on going.',
     'welcome'                                       => 'Welcome',
-    'your_app'                                      => 'Your Houzz',
+    'your_app'                                      => 'Your Plan',
     'edit_profile'                                  => 'Edit Profile',
     'upload_photo_or_file'                          => 'Upload Photo or File',
     'sign_out'                                      => 'Sign Out',

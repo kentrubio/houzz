@@ -30,7 +30,7 @@
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="#">{{$logged_user->first_name}} {{$logged_user->last_name}}</a></li>
                             <li>{!! Html::link("/@$logged_user->username/edit", 'Edit Profile')  !!}</li>
-                            <li><a href="file-upload"><i class="fa fa-upload"></i>&nbsp;Upload Photo or File</a></li>
+                            <li><a href="/file-upload"><i class="fa fa-upload"></i>&nbsp;Upload Photo or File</a></li>
                             <li class="divider"></li>
                             <li><a href="signout">Sign Out&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
                         </ul>

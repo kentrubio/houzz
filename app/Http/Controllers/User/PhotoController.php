@@ -14,15 +14,14 @@ class PhotoController extends Controller
 
     /**
      * @Get("file-upload")
-     * @return Response
      */
     public function GetUploadPhoto()
     {
-
         $this->data['no_nav'] = true;
-        $this->data['page_title'] = 'Upload Photo';
-        return $this->template('user.upload-photo');
+        $this->data['page_title'] = 'Upload File';
+        return $this->template('user.file-upload');
     }
+
 
     /**
      * @Post("file-upload")

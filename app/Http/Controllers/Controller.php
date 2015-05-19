@@ -37,9 +37,11 @@ abstract class Controller extends BaseController {
         header('Expires: Thu, 19 Nov 1981 08:52:00 GMT');
         header('Cache-Control: no-store, no-cache, must-revalidate');
 
+        $this->auth = $auth;
+
         if ($auth::check())
         {
-            $this->data['logged_user'] = $this->logged_user = $auth::getUser();
+            $this->data['logged_user'] = $this->logged_user = $this->auth = $auth::getUser();
         }
 
         $this->data['locale'] = Session::get('locale');

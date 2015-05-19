@@ -2,6 +2,7 @@
 
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\UploadRequest;
 use App\Services\FileUploadService;
 use Illuminate\Support\Facades\Input;
 
@@ -33,12 +34,11 @@ class UploadController extends Controller
 
     /**
      * @Post("file-upload")
+     * @param UploadRequest $request
      * @return Response
-     * Todo: add validation in request
      */
-    public function PostFileUpload()
+    public function PostFileUpload(UploadRequest $request)
     {
-
         $upload_to = Input::get('upload_to');
         $destination_id = 1;
         if ($upload_to == 'project') {

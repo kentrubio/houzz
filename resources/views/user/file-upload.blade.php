@@ -87,9 +87,9 @@
                         <label for="category" class="col-md-2 control-label text-left">Category</label>
 
                         <div class="col-md-5">
-                            <input type="radio" name="category" class="form-data" value="Category 1">Category 1
-                            <input type="radio" name="category" class="form-data" value="Category 2">Category 2
-                            <input type="radio" name="category" class="form-data" value="Category 3">Category 3
+                            <input type="radio" name="category" class="form-data" value="1">&nbsp;Category 1
+                            <input type="radio" name="category" class="form-data" value="2">&nbsp;Category 2
+                            <input type="radio" name="category" class="form-data" value="3">&nbsp;Category 3
                         </div>
                     </div>
                 </div>
@@ -250,7 +250,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" id="do-and-donts-section">
+            <div class="col-md-6" id="dos-and-donts-section">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6 padding-zero">

@@ -19,12 +19,13 @@ $(document).ready(function () {
         init: function () {
             var dz = this;
             $("#form-submit").click(function (e) {
+                $(this).html('Uploading...');
                 e.preventDefault();
                 dz.processQueue();
             });
         },
         success: function (file, response) {
-            console.log(response);
+            $(this).html('Uploading...');
         }
     });
     $('.upload-choice').click(function () {

@@ -111,7 +111,6 @@ class AuthController extends Controller implements AuthenticateUserListener {
     public function postSignup(SignupRequest $request)
     {
         $auth = $this->auth;
-
         try
         {
             $first_name = $request->get('first_name');

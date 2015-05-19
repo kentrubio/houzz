@@ -43,7 +43,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
      */
     public function getSignIn()
     {
-        $this->data['page_title'] = 'Sign In';
+        $this->data['page_title'] = trans('app.sign_in');
 
         return $this->template('signin');
     }
@@ -53,7 +53,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
      */
     public function getSignUp()
     {
-        $this->data['page_title'] = 'Sign Up';
+        $this->data['page_title'] = trans('app.sign_up');
 
         return $this->template('signup');
     }
@@ -63,7 +63,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
      */
     public function getEmailVerification()
     {
-        $this->data['page_title'] = 'Email Verification';
+        $this->data['page_title'] = trans('app.email_verification');
 
         return $this->template('email-verification');
     }
@@ -89,7 +89,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
             }
             else
             {
-                return redirect()->back()->withInput()->withErrors('Invalid Credentials.');
+                return redirect()->back()->withInput()->withErrors(trans('app.invalid_credentials'));
             }
         } catch (PDOException $e)
         {
@@ -149,7 +149,7 @@ class AuthController extends Controller implements AuthenticateUserListener {
             {
                 $message->from(env('MAIL_ADDRESS', 'mail@example.com'), env('MAIL_NAME', 'Wizard Mailer'));
                 $message->to($email);
-                $message->subject('Account Activation');
+                $message->subject(trans('app.account_activation'));
             });
 
             return redirect('email-verification');

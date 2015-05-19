@@ -46,60 +46,6 @@ abstract class Controller extends BaseController
         $this->date['page_title'] = 'Untitled';
     }
 
-/*
-    private function getPageJS($script_name)
-    {
-        $script_name = 'js'.DIRECTORY_SEPARATOR.$script_name.'.js';
-        $path = URL::asset($script_name);
-        echo $path."<br>";
-        dd();
-        if(file_exists($path))
-        {
-            return asset($script_name);
-        }
-        return false;
-    }
-
-    private function getPageCSS($script_name)
-    {
-        $script_name = 'css'.DIRECTORY_SEPARATOR.$script_name.'.css';
-        $path = base_path().DIRECTORY_SEPARATOR.'resources'.DIRECTORY_SEPARATOR.$script_name;
-        if(file_exists($path))
-        {
-            return asset($script_name);
-        }
-        return false;
-    }
-
-    protected function _getScript($file)
-    {
-        $base_file = basename($file);
-        $array = explode(DIRECTORY_SEPARATOR, $file);
-        $script = [];
-        $found = false;
-        foreach ($array as $value) {
-            if ($found) {
-                if ($value == $base_file)
-                    $value = str_replace('controller.php', '', strtolower($value));
-
-                $script[] = $value;
-            }
-            if (strtolower($value) == 'controllers') $found = true;
-        }
-
-        $script_name = implode(DIRECTORY_SEPARATOR, $script);
-        $page_js = $this->getPageJS($script_name);
-        $page_css = $this->getPageCSS($script_name);
-        dd($page_js);
-
-        if (!empty($page_js))
-            $this->data['page_js'] = $page_js;
-
-        if (!empty($page_css))
-            $this->data['page_css'] = $page_css;
-    }
-*/
-
     /**
      * @param $blade
      * @return \Illuminate\View\View

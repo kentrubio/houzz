@@ -81,7 +81,10 @@ h3{
     margin:0;
 }
 .margin-top-twenty{
-    margin-top:20px;
+    margin-top:20px !important;
+}
+.margin-tb-twenty{
+    margin:20px 0 !important;
 }
 .margin-auto{
     margin:0 auto;

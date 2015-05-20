@@ -8,7 +8,7 @@
 }
 .upload-choice{
     background:#efefef;
-    min-height: 50px;
+    min-height: 80px;
     cursor:pointer;
 }
 .upload-choice .collapsed{
@@ -27,4 +27,10 @@
 }
 .upload-choice.selected .expanded{
     display:block;
+}
+.upload-choice .upload-choice-title{
+    font-size:20px;
+}
+.upload-choice .upload-choice-text{
+    width:70%;
 }

@@ -13,30 +13,34 @@
             <div class="col-md-8 step2 large-header">Step 2: Tell us what you like about the photos</div>
         </div>
         <div class="row">
-            <div class="upload-choice gallery col-md-8 selected">
-                <div class="expanded">
-                    <div class="upload-choice-title">Upload Photos to an Ideabook</div>
-                    <div class="upload-choice-text">You can create an ideabook from photos or upload
-                        your own.
+            <div class="col-md-12">
+                <div class="upload-choice selected col-md-8" id="gallery">
+                    <div class="expanded">
+                        <div class="upload-choice-title">Upload Photos to an Ideabook</div>
+                        <div class="upload-choice-text">You can create an ideabook from photos or upload
+                            your own.
+                        </div>
+                    </div>
+                    <div class="collapsed">
+                        <div class="upload-choice-text">Or Upload Photos to a Project</div>
                     </div>
                 </div>
-                <div class="collapsed vcenter">
-                    <div class="upload-choice-text">Or Upload Photos to a Project</div>
-                </div>
-            </div>
-            <div class="upload-choice col-md-4 project">
-                <div class="expanded">
-                    <div class="upload-choice-title">Upload Photos to a Project</div>
-                    <div class="upload-choice-text">A Project is a collection of photos of your own work or products.
-                        Projects are usually best organized by client, job site, or product line.
+                <div class="upload-choice col-md-4" id="project">
+                    <div class="expanded">
+                        <div class="upload-choice-title">Upload Photos to a Project</div>
+                        <div class="upload-choice-text">A Project is a collection of photos of your own work or
+                            products.
+                            Projects are usually best organized by client, job site, or product line.
+                        </div>
                     </div>
-                </div>
-                <div class="collapsed vcenter">
-                    <div class="upload-choice-text">Or Upload Photos to a Project</div>
+                    <div class="collapsed">
+                        <div class="upload-choice-text">Or Upload Photos to a Project</div>
+                    </div>
                 </div>
             </div>
         </div>
         {!! Form::open(['url' => 'file-upload', 'class' => 'form-horizontal']) !!}
+        {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to']) !!}
         <div id="project-section">
             <div class="row">
                 <div class="col-md-12">
@@ -57,8 +61,26 @@
                     </select>
                 </div>
             </div>
+            <div class="form-group">
+                <label for="category" class="col-md-2 control-label text-left">Category</label>
+
+                <div class="col-md-5">
+                    <!--Todo: radio for category -->
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="styles" class="col-md-2 control-label text-left">Style</label>
+
+                <div class="col-md-5">
+                    <select id="style" name="style" class="form-control">
+                        <option value="">What is the style of the space?</option>
+                        <option>Style 2</option>
+                        <option>Style 3</option>
+                    </select>
+                </div>
+            </div>
         </div>
-        <div id="ideabook-section">
+        <div id="gallery-section">
             <div id="to-pro" class="row">
                 <div class="col-md-12">
                     <b>Are you a professional?</b> <a class="boldLink colorLink" href="#">Upgrade
@@ -98,38 +120,39 @@
             </div>
             <div class="col-md-6" id="do-and-donts-section">
                 <div class="row">
-                    <div class="col-md-6 padding-zero">
-                        <div class="bg-success text-success padding-five">
-                            DO UPLOAD
+                    <div class="col-md-12">
+                        <div class="col-md-6 padding-zero">
+                            <div class="bg-success text-success padding-five">
+                                DO UPLOAD
+                            </div>
+                            <div>
+                                <p>Photos of residential spaces.</p>
+
+                                <p>Large Photos(1000 pixels wide or more)</p>
+
+                                <p>JPEG, GIF, PNG, or 1-Page TIFF file formats</p>
+
+                                <p>Good Quality photos</p>
+                            </div>
                         </div>
-                        <div>
-                            <p>Photos of residential spaces.</p>
+                        <div class="col-md-6 padding-zero">
+                            <div class="bg-danger text-danger padding-five">
+                                DON'T UPLOAD
+                            </div>
+                            <div>
+                                <p>Photos of commerical or office spaces.</p>
 
-                            <p>Large Photos(1000 pixels wide or more)</p>
+                                <p>Small Photos</p>
 
-                            <p>JPEG, GIF, PNG, or 1-Page TIFF file formats</p>
+                                <p>PDF, Multi-Page TIFF, or EPS file formats</p>
 
-                            <p>Good Quality photos</p>
+                                <p>Low Quality photos</p>
+                            </div>
+                        </div>
+                        <div class="col-md-12 padding-zero margin-zero">
+                            Photos that do not meet these guidelines will be removed.
                         </div>
                     </div>
-                    <div class="col-md-6 padding-zero">
-                        <div class="bg-danger text-danger padding-five">
-                            DON'T UPLOAD
-                        </div>
-                        <div>
-                            <p>Photos of commerical or office spaces.</p>
-
-                            <p>Small Photos</p>
-
-                            <p>PDF, Multi-Page TIFF, or EPS file formats</p>
-
-                            <p>Low Quality photos</p>
-                        </div>
-                    </div>
-                    <div class="col-md-12 padding-zero margin-zero">
-                        Photos that do not meet these guidelines will be removed.
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -141,7 +164,7 @@
                     copyright holder, and agreeing to abide by {{Config::get('app.name')}} {!!link_to('terms', 'terms of
                     use')!!}.
                 </div>
-                <div class="margin-top-twenty">
+                <div class="margin-tb-twenty">
                     <button type="submit" id="form-submit" class="btn btn-success">Upload</button>
                 </div>
             </div>

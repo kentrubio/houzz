@@ -5,11 +5,11 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadRequest;
 
 /**
- * Class PhotoController
+ * Class UploadController
  * @package App\Http\Controllers\User
  * @Middleware("auth")
  */
-class PhotoController extends Controller
+class UploadController extends Controller
 {
 
     /**
@@ -17,6 +17,12 @@ class PhotoController extends Controller
      */
     public function GetUploadPhoto()
     {
+        $upload_to = 'gallery';
+        if($this->logged_user->hasAccess('professional'))
+        {
+            $upload_to = 'project';
+        }
+        $this->data['upload_to'] = $upload_to;
         $this->data['no_nav'] = true;
         $this->data['page_title'] = 'Upload File';
         return $this->template('user.file-upload');

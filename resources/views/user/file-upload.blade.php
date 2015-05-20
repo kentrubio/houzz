@@ -4,6 +4,7 @@
 @endsection
 @section('page_css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/dropzone.css')}}"/>
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/jquery.tagsinput.css')}}"/>
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/fileupload.css')}}"/>
 @endsection
 @section('content')
@@ -14,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="upload-choice selected col-md-8" id="gallery">
+                <div class="upload-choice selected col-md-8" id="ideabook">
                     <div class="expanded">
                         <div class="upload-choice-title">Upload Photos to an Ideabook</div>
                         <div class="upload-choice-text">You can create an ideabook from photos or upload
@@ -39,7 +40,6 @@
                 </div>
             </div>
         </div>
-        {!! Form::open(['url' => 'file-upload', 'class' => 'form-horizontal']) !!}
         {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to']) !!}
         <div id="project-section">
             <div class="row">
@@ -47,40 +47,152 @@
                     <h4>Project Description</h4>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="project" class="col-md-2 control-label text-left">Project</label>
+            <div class="row">
+                <div class="col-md-12 padding-five">
+                    <div class="form-group">
+                        <label for="select-project" class="col-md-2 control-label text-left">Project</label>
 
-                <div class="col-md-5">
-                    <select id="project" class="form-control">
-                        <option value="">Which project was it part of?</option>
-                        <option value="0">Create a new project</option>
-                        <optgroup label="Existing Projects:">
-                            <option>Project 2</option>
-                            <option>Project 3</option>
-                        </optgroup>
-                    </select>
+                        <div class="col-md-5">
+                            <select id="select-project" name="project" class="form-control form-data">
+                                <option value="">Which project was it part of?</option>
+                                <option value="0">Create a new project</option>
+                                <optgroup label="Existing Projects:">
+                                    @foreach($projects as $project)
+                                        <option value="{{$project->id}}">{{$project->name}}</option>
+                                    @endforeach
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="category" class="col-md-2 control-label text-left">Category</label>
 
-                <div class="col-md-5">
-                    <!--Todo: radio for category -->
+            <div class="row display-none" id="create-project">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="project-name" class="col-md-2 control-label text-left">New Project Name</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="project_name" class="form-control form-data">
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="styles" class="col-md-2 control-label text-left">Style</label>
 
-                <div class="col-md-5">
-                    <select id="style" name="style" class="form-control">
-                        <option value="">What is the style of the space?</option>
-                        <option>Style 2</option>
-                        <option>Style 3</option>
-                    </select>
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="category" class="col-md-2 control-label text-left">Category</label>
+
+                        <div class="col-md-5">
+                            <input type="radio" name="category" class="form-data" value="Category 1">Category 1
+                            <input type="radio" name="category" class="form-data" value="Category 2">Category 2
+                            <input type="radio" name="category" class="form-data" value="Category 3">Category 3
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="styles" class="col-md-2 control-label text-left">Style</label>
+
+                        <div class="col-md-5">
+                            <select name="style" class="form-control form-data">
+                                <option value="">What is the style of the space?</option>
+                                <option>Style 2</option>
+                                <option>Style 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="country" class="col-md-2 control-label text-left">Style</label>
+
+                        <div class="col-md-5">
+                            <select name="country" class="form-control form-data">
+                                <option value="">Select Country</option>
+                                <option>Country 2</option>
+                                <option>Country 3</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="city" class="col-md-2 control-label text-left">City</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="city" class="form-control form-data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="zip" class="col-md-2 control-label text-left">Zip</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="zip" class="form-control form-data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="link" class="col-md-2 control-label text-left">Link to web site</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="link" class="form-control form-data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+                    <div class="form-group">
+                        <label for="keywords" class="col-md-2 control-label text-left">Keywords</label>
+
+                        <div class="col-md-5">
+                            <input type="text" id="keywords" name="keywords" class="form-control form-data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-12 padding-five">
+                    <div class="form-group">
+                        <label for="credit" class="col-md-2 control-label text-left">Photo Credit</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="credit" class="form-control form-data">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-        <div id="gallery-section">
+        <div id="ideabook-section">
             <div id="to-pro" class="row">
                 <div class="col-md-12">
                     <b>Are you a professional?</b> <a class="boldLink colorLink" href="#">Upgrade
@@ -89,23 +201,43 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Select an Ideabook</h4>
+                    <h4>Select a ideabook</h4>
                 </div>
             </div>
-            <div class="form-group">
-                <label for="project" class="col-md-2 control-label text-left">Ideabook</label>
+            <div class="row">
+                <div class="col-md-12 padding-five">
 
-                <div class="col-md-5">
-                    <select id="project" class="form-control">
-                        <option value="">Which ideabook do you want to upload photos to?</option>
-                        <option value="0">Create a new ideabook</option>
-                        <optgroup label="Existing Ideabooks:">
-                            <option>Ideabook 1</option>
-                            <option>Ideabook 2</option>
-                        </optgroup>
-                    </select>
+                    <div class="form-group">
+                        <label for="select-ideabook" class="col-md-2 control-label text-left">Ideabook</label>
+
+                        <div class="col-md-5">
+                            <select id="select-ideabook" name="ideabook" class="form-control form-data">
+                                <option value="">Which ideabook do you want to upload photos to?</option>
+                                <option value="0">Create a new ideabook</option>
+                                <optgroup label="Existing Ideabooks:">
+                                    @foreach($ideabooks as $ideabook)
+                                        <option value="{{$ideabook->id}}">{{$ideabook->name}}</option>
+                                    @endforeach
+                                </optgroup>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class="row display-none" id="create-ideabook">
+                <div class="col-md-12 padding-five">
+
+                    <div class="form-group">
+                        <label for="ideabook-name" class="col-md-2 control-label text-left">New ideabook Name</label>
+
+                        <div class="col-md-5">
+                            <input type="text" name="ideabook_name" class="form-control form-data">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -169,12 +301,12 @@
                 </div>
             </div>
         </div>
-        {!! Form::close() !!}
     </div>
 @endsection
 @section('page_js')
     <script src="{{URL::asset('js/dropzone.js')}}" type="text/javascript"></script>
     <script src="{{URL::asset('js/fileupload.js')}}" type="text/javascript"></script>
+    <script src="{{URL::asset('js/jquery.tagsinput.js')}}" type="text/javascript"></script>
 @endsection
 @section('footer')
     @include('partials.title-only-footer')

@@ -21,9 +21,24 @@ class UploadRequest extends Request {
 	 */
 	public function rules()
 	{
-		return [
-			//
-		];
+        $rules = [];
+/*        if($this->request->get('upload_to') == 'project')
+        {
+            $rules['project'] = 'required';
+            $rules['category'] = 'required';
+            $rules['style'] = 'required';
+            $rules['country'] = 'required';
+            $rules['city'] = 'required';
+            $rules['zip'] = 'required';
+            $rules['keywords'] = 'required|max:300';
+
+        }
+        else
+        {
+            $rules['gallery'] = 'required';
+        }*/
+
+        return $rules;
 	}
 
 }

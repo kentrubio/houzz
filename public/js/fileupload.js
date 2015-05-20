@@ -3,19 +3,55 @@ $(document).ready(function () {
         method: 'post',
         autoProcessQueue: false,
         uploadMultiple: true,
-        url: "{{ route('file-upload') }}",
+        parallelUploads:50,
+        url: "/file-upload",
+        sending: function (file, xhr, formData) {
+
+            formData.append("_token", $("input[name=_token]").val());
+
+            $('.form-data').each(function(){
+                var name = $(this).attr('name');
+                var val = $(this).val();
+                formData.append(name, val);
+            });
+
+        },
         init: function () {
             var dz = this;
-            $('#form-submit').click(function () {
+            $("#form-submit").click(function (e) {
+                e.preventDefault();
                 dz.processQueue();
             });
+        },
+        success: function (file, response) {
+            console.log(response);
         }
     });
-
     $('.upload-choice').click(function () {
         var selected = $(this).attr('id');
         $('#upload-to').val(selected);
         selection();
+    });
+    $('#keywords').tagsInput({
+        'width': '100%',
+        'height': '50px',
+        'interactive': true,
+        'defaultText': '',
+        'delimiter': [',']
+    });
+    $('select#select-project').change(function () {
+        if ($(this).val() === '0') {
+            $('div#create-project').show();
+        }else{
+            $('div#create-project').hide();
+        }
+    });
+    $('select#select-ideabook').change(function () {
+        if ($(this).val() === '0') {
+            $('div#create-ideabook').show();
+        }else{
+            $('div#create-ideabook').hide();
+        }
     });
 
     selection();
@@ -26,7 +62,7 @@ function selection() {
     var collapsed = 'project';
     var step = 'Step 2: Tell us what you like about the photos.';
     if (selected == 'project') {
-        collapsed = 'gallery';
+        collapsed = 'ideabook';
         step = 'Step 2: Describe Photos';
     }
     $('.step2').html(step);
@@ -35,15 +71,13 @@ function selection() {
     $('#' + selected).removeClass('col-md-4');
     $('#' + selected).addClass('selected col-md-8');
 
-    $('#' + collapsed +'-section').hide();
-    $('#' + selected +'-section').show();
+    $('#' + collapsed + '-section').hide();
+    $('#' + selected + '-section').show();
 
-    if(selected == 'project')
-    {
+    if (selected == 'project') {
         $('#dos-and-donts-section').show();
     }
-    else
-    {
+    else {
         $('#dos-and-donts-section').hide();
     }
 

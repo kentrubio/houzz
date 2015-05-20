@@ -2,7 +2,8 @@
 
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\UploadRequest;
+use App\Services\FileUploadService;
+use Illuminate\Support\Facades\Input;
 
 /**
  * Class UploadController
@@ -15,14 +16,15 @@ class UploadController extends Controller
     /**
      * @Get("file-upload")
      */
-    public function GetUploadPhoto()
+    public function GetFileUpload()
     {
-        $upload_to = 'gallery';
-        if($this->logged_user->hasAccess('professional'))
-        {
+        $upload_to = 'ideabook';
+        if ($this->logged_user->hasAccess('professional')) {
             $upload_to = 'project';
         }
         $this->data['upload_to'] = $upload_to;
+        $this->data['projects'] = [];
+        $this->data['ideabooks'] = [];
         $this->data['no_nav'] = true;
         $this->data['page_title'] = 'Upload File';
         return $this->template('user.file-upload');
@@ -31,44 +33,29 @@ class UploadController extends Controller
 
     /**
      * @Post("file-upload")
-     * @param UploadRequest $request
      * @return Response
+     * Todo: add validation in request
      */
-    public function PostUploadPhoto(UploadRequest $request)
+    public function PostFileUpload()
     {
-        $destination_id = 0;
-        if($request->get('upload_to') == 'project')
-        {
-            if($request->get('project') == 0)
-            {
+
+        $upload_to = Input::get('upload_to');
+        $destination_id = 1;
+        if ($upload_to == 'project') {
+            if ($upload_to == 0) {
+            }
+        } else if ($upload_to == 'ideabook') {
+            if ($upload_to == 0) {
+
+            } else {
 
             }
         }
-        else if($request->get('upload_to') == 'ideabook')
-        {
-            if($request->get('gallery') == 0)
-            {
-
-            }
-            else
-            {
-            }
-        }
-
-        if(isset($_FILES) && $destination_id > 0){
-            $file_directory = storage_path();
-            $file_directory .= DIRECTORY_SEPARATOR.files.DIRECTORY_SEPARATOR.$this->logged_user->id;
-            $file_directory .= DIRECTORY_SEPARATOR.$request->get('upload_to').DIRECTORY_SEPARATOR.$destination_id;
-            if($this->checkIfDirectoryExists($file_directory))
-            {
-
-            }
+        if (isset($_FILES) && $destination_id > 0) {
+            $file_upload_service = new FileUploadService($this->logged_user);
+            $file_upload_service->upload($_FILES, $upload_to, $destination_id);
         }
     }
 
-    private function checkIfDirectoryExists($directory)
-    {
-        return false;
-    }
 
 }

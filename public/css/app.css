@@ -108,6 +108,9 @@ h3{
     text-align: left !important;
 }
 
+.display-none{
+    display:none;
+}
 
 /*TODO: for deletion*/
 .border{

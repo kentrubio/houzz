@@ -15,19 +15,23 @@
         <div class="row">
             <div class="col-md-12">
                 @include('partials.form-errors')
-                <div class="input-group">
-                    {!! Form::label('username', trans('app.username'), ['class' => 'control-label']) !!}
-                    {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('app.username')]) !!}
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Edit</button>
-                     </span>
+                <div class="form-group">
+                    <label for="username" class="control-label">{{ trans('app.username') }}</label>
+                    <div class="input-group">
+                        {!! Form::text('username', null, ['class' => 'form-control', 'placeholder' => trans('app.username')]) !!}
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Edit</button>
+                         </span>
+                    </div>
                 </div>
-                <div class="input-group">
-                    {!! Form::label('email', trans('app.email') . ' (private)', ['class' => 'control-label']) !!}
-                    {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => trans('app.email')]) !!}
-                    <span class="input-group-btn">
-                        <button class="btn btn-primary" type="button">Edit</button>
-                     </span>
+                <div class="form-group">
+                    <label for="email" class="control-label">{{ trans('app.email') }} <small>(private)</small></label>
+                    <div class="input-group">
+                        {!! Form::text('email', null, ['class' => 'form-control', 'placeholder' => trans('app.email')]) !!}
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary" type="button">Edit</button>
+                         </span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -41,23 +45,23 @@
             <div class="col-md-12">
                 @include('partials.form-errors')
                 <div class="form-group">
-                    {!! Form::label('first_name', trans('app.first_name') . ' (publicly displayed)', ['class' => 'control-label']) !!}
+                    <label for="first_name" class="control-label">{{ trans('app.first_name') }} <small>(publicly displayed)</small></label>
                     {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => trans('app.first_name')]) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('last_name', trans('app.last_name') . ' (publicly displayed)', ['class' => 'control-label']) !!}
+                    <label for="last_name" class="control-label">{{ trans('app.last_name') }} <small>(publicly displayed)</small></label>
                     {!! Form::text('last_name', null, ['class' => 'form-control', 'placeholder' => trans('app.last_name')]) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('about_me', trans('app.about_me'), ['class' => 'control-label']) !!}
-                    {!! Form::text('about_me', null, ['class' => 'form-control', 'placeholder' => trans('app.about_me')]) !!}
+                    <label for="about_me" class="control-label">{{ trans('app.about_me') }}</label>
+                    {!! Form::textarea('about_me', null, ['class' => 'form-control', 'size' => '10x3', 'placeholder' => trans('app.about_me')]) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('my_favorite_style', trans('app.my_favorite_style'), ['class' => 'control-label']) !!}
+                    <label for="my_favorite_style" class="control-label">{{ trans('app.my_favorite_style') }}</label>
                     {!! Form::text('my_favorite_style', null, ['class' => 'form-control', 'placeholder' => trans('app.my_favorite_style')]) !!}
                 </div>
                 <div class="form-group">
-                    {!! Form::label('my_next_house_project', trans('app.my_next_house_project'), ['class' => 'control-label']) !!}
+                    <label for="my_next_house_project" class="control-label">{{ trans('app.my_next_house_project') }}</label>
                     {!! Form::text('my_next_house_project', null, ['class' => 'form-control', 'placeholder' => trans('app.my_next_house_project')]) !!}
                 </div>
                 <div class="form-group">

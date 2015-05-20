@@ -2,6 +2,7 @@
 
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 /**
@@ -29,6 +30,25 @@ class ProfileController extends Controller {
         $this->data['page_title'] = trans('app.edit_your_profile');
 
         return $this->template('user.edit-profile');
+    }
+
+    /**
+     * Post function for Edit User's profile
+     *
+     * @Patch("/edit-profile")
+     */
+    public function postEdit()
+    {
+        $user = User::whereId(Input::get('id'))->first();
+
+        if ( ! $user)
+        {
+            return Response::make('errors.404', 404);
+        }
+
+        $user->update(Input::all());
+
+        return redirect('/edit-profile')->with('success', trans('app.success_update_message'));
     }
 
     /**

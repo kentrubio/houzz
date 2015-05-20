@@ -21,6 +21,7 @@ class AnnotationsServiceProvider extends ServiceProvider {
         'App\Http\Controllers\HomeController',
         'App\Http\Controllers\LanguageController',
         'App\Http\Controllers\User\UploadController',
+        'App\Http\Controllers\User\ContactController',
         'App\Http\Controllers\User\ProfileController',
     ];
 

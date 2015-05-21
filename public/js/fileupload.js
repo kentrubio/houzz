@@ -25,7 +25,8 @@ $(document).ready(function () {
             });
         },
         success: function (file, response) {
-            $(this).html('Uploading...');
+            $(this).html('Upload');
+            console.log(response);
         }
     });
     $('.upload-choice').click(function () {

@@ -25,12 +25,31 @@ class FileUploadService
 
     public function upload($files, $upload_to = '', $destination_id = 0)
     {
+        $response = new \stdClass();
         $file_directory = storage_path();
         $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->looged_user->id;
         $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $destination_id;
         if ($this->checkDirectory($file_directory)) {
+            $count = 0;
+            foreach ($files['file']['name'] as $file_name) {
+                try {
+                    move_uploaded_file($files['file']['tmp_name'][$count], $file_directory . DIRECTORY_SEPARATOR . basename($file_name));
+                } catch (\Exception $e) {
+                    $response->status = 'error';
+                    $response->message = $e->getMessage();
+                    break;
+                }
+                $count++;
 
+            }
+            $response->status = 'ok';
         }
+        else
+        {
+            $response->status = 'error';
+            $response->message = trans('app.directory_not_found');
+        }
+        return $response;
     }
 
     private function checkDirectory($directory)
@@ -48,10 +67,11 @@ class FileUploadService
                     mkdir($temp_dir, 0777, true);
                 }
             }
-            return true;
         } catch (\Exception $e) {
             throw new \Exception($e->getMessage());
         }
+
+        return true;
 
     }
 

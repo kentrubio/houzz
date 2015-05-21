@@ -11,7 +11,7 @@
             <p>
                 <a class="btn btn-lg btn-success" href="/signup" role="button"><i class="fa fa-envelope-o"></i>&nbsp;&nbsp;{{ trans('app.sign_up_with_email') }}</a>
                 &nbsp;&nbsp;
-                <a class="btn btn-lg btn-primary" href="/oauth/facebook" role="button"><i class="fa fa-facebook"></i>&nbsp;&nbsp;{{ trans('app.sign_up_with_facebook') }}</a>
+                <a class="btn btn-lg btn-primary" href="/oauth/facebook" role="button"><i class="fa fa-facebook"></i>&nbsp;&nbsp;{{ trans('app.sign_in_with_facebook') }}</a>
             </p>
         @else
             <p>

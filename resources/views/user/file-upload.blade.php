@@ -40,7 +40,7 @@
                 </div>
             </div>
         </div>
-        {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to']) !!}
+        {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to', 'class' => 'form-data']) !!}
         <div id="project-section">
             <div class="row">
                 <div class="col-md-12">

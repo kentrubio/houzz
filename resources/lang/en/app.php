@@ -16,7 +16,6 @@ return [
     'already_have_an_account'                       => 'Already have an account?',
     'sign_up'                                       => 'Sign Up',
     'sign_up_with_email'                            => 'Sign Up with Email',
-    'sign_up_with_facebook'                         => 'Sign Up with Facebook',
     'welcome_to'                                    => 'Welcome to',
     'sign_in_to'                                    => 'Sign In to',
     'on_going'                                      => 'on going.',

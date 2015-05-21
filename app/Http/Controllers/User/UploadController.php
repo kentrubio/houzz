@@ -3,6 +3,7 @@
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UploadRequest;
+use App\Ideabook;
 use App\Services\FileUploadService;
 use Illuminate\Support\Facades\Input;
 
@@ -37,24 +38,56 @@ class UploadController extends Controller
      * @param UploadRequest $request
      * @return Response
      */
-    public function PostFileUpload(UploadRequest $request)
+    public function PostFileUpload()
     {
         $upload_to = Input::get('upload_to');
-        $destination_id = 1;
-        if ($upload_to == 'project') {
-            if ($upload_to == 0) {
-            }
-        } else if ($upload_to == 'ideabook') {
-            if ($upload_to == 0) {
+        $ok = true;
+        $error = [];
+        if (isset($_FILES)) {
+            if ($upload_to == 'project') {
+                if ($upload_to == 0) {
+                }
+            } else if ($upload_to == 'ideabook') {
+                try {
+                    $book_id = Input::get('ideabook');
+                    if ($book_id == 0) {
+                        $book_name = Input::get('ideabook_name');
+                        $book = new Ideabook();
+                        $book->user_id = $this->logged_user->id;
+                        $book->name = $book_name;
+                        $book->save();
+                    } else {
+                        $book = Ideabook::find($book_id);
+                    }
 
-            } else {
+                    $id = $book->id;
 
+                } catch (\PDOException $e) {
+                    $error[] = $e->getMessage();
+                    $ok = false;
+                }
             }
+            if ($ok) {
+                $file_upload_service = new FileUploadService($this->logged_user);
+                $uploaded = $file_upload_service->upload($_FILES, $upload_to, $id);
+                if ($uploaded->status == 'ok') {
+                    $error[] = $uploaded;
+                    $ok = false;
+                }
+            }
+        } else {
+            $error[] = 'Select files to upload';
+            $ok = false;
         }
-        if (isset($_FILES) && $destination_id > 0) {
-            $file_upload_service = new FileUploadService($this->logged_user);
-            $file_upload_service->upload($_FILES, $upload_to, $destination_id);
+        $return = [];
+        if ($ok) {
+            $return['code'] = '100';
+            $return['text'] = 'success';
+        } else {
+            $return['code'] = '300';
+            $return['text'] = $error;
         }
+        echo json_encode($return);
     }
 
 

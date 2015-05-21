@@ -34,7 +34,7 @@ class CreateIdeabooksTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('ideabooks');
+		Schema::drop('ideabooks');
 	}
 
 }

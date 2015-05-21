@@ -3,10 +3,6 @@
         &copy; {{date('Y')}} {{Config::get('app.name')}}
     </div>
     <div>
-    {!! Form::open(['url' => '/language']) !!}
-
-        {!! Form::select('locale',['en'=>'English','ja'=>'日本語'], $locale, ['onchange'=>'submit()']) !!}
-
-    {!! Form::close() !!}
+    {!! Form::select('locale',['en'=>'English','ja'=>'日本語'], $locale, ['onchange'=>'document.location="/language/"+$(this).val();']) !!}
     </div>
 </div>

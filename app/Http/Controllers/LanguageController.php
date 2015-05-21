@@ -8,12 +8,12 @@ class LanguageController extends Controller {
     /**
      * Show the application welcome screen to the user.
      *
-     * @Post("language")
+     * @Get("language/{locale}")
+     * @param $locale
      * @return Response
      */
-    public function index()
+    public function index($locale)
     {
-        $locale = Input::get('locale');
         app()->setLocale($locale);
 
         Session::put('locale', $locale);

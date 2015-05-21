@@ -40,6 +40,7 @@
                 </div>
             </div>
         </div>
+        {!! Form::open()!!}
         {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to', 'class' => 'form-data']) !!}
         <div id="project-section">
             <div class="row">
@@ -85,11 +86,11 @@
 
                     <div class="form-group">
                         <label for="category" class="col-md-2 control-label text-left">Category</label>
-
-                        <div class="col-md-5">
-                            <input type="radio" name="category" class="form-data" value="1">&nbsp;Category 1
-                            <input type="radio" name="category" class="form-data" value="2">&nbsp;Category 2
-                            <input type="radio" name="category" class="form-data" value="3">&nbsp;Category 3
+                        <div class="col-xs-5">
+                            <label for="category-1" class="radio-inline"><input id="category-1" type="radio" name="category" checked="checked" value="1">Category 1</label>
+                            <label for="category-2" class="radio-inline"><input id="category-2" type="radio" name="category" value="2">Category 2</label>
+                            <label for="category-3" class="radio-inline"><input id="category-3" type="radio" name="category" value="3">Category 3</label>
+                            <label for="category-4" class="radio-inline"><input id="category-4" type="radio" name="category" value="5">Category 4</label>
                         </div>
                     </div>
                 </div>
@@ -301,6 +302,7 @@
                 </div>
             </div>
         </div>
+        {!! Form::close() !!}
     </div>
 @endsection
 @section('page_js')

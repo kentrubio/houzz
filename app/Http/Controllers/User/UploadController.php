@@ -38,7 +38,7 @@ class UploadController extends Controller
      * @param UploadRequest $request
      * @return Response
      */
-    public function PostFileUpload()
+    public function PostFileUpload(/*UploadRequest $request*/)
     {
         $upload_to = Input::get('upload_to');
         $ok = true;

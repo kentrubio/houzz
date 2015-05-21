@@ -159,6 +159,7 @@ return [
         'Barryvdh\Debugbar\ServiceProvider',
         'Overtrue\LaravelLang\TranslationServiceProvider',
         'Laravel\Socialite\SocialiteServiceProvider',
+        'Barryvdh\TranslationManager\ManagerServiceProvider',
 
 	],
 

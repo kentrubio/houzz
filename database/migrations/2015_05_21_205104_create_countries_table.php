@@ -6,6 +6,9 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 use League\Csv\Reader;
 
+/**
+ * Class CreateCountriesTable
+ */
 class CreateCountriesTable extends Migration {
 
     /**
@@ -38,6 +41,9 @@ class CreateCountriesTable extends Migration {
         Schema::drop('countries');
     }
 
+    /**
+     *
+     */
     public function populateCountries()
     {
         $csv = Reader::createFromPath(base_path('resources/assets/ISO3166/ISO3166-1.csv'));

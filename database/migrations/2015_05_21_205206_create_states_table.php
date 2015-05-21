@@ -1,10 +1,14 @@
 <?php
 
 use App\Eloquent\State;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 use League\Csv\Reader;
 
+/**
+ * Class CreateStatesTable
+ */
 class CreateStatesTable extends Migration {
 
     /**
@@ -19,10 +23,12 @@ class CreateStatesTable extends Migration {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->string('country');
-            $table->string('subdivision');
+            $table->char('code', 10);
             $table->string('name');
-            $table->string('level');
+            $table->char('country_code', 2);
+
+            $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade');
+
         });
 
         $this->populateStates();
@@ -38,23 +44,26 @@ class CreateStatesTable extends Migration {
         Schema::drop('states');
     }
 
+    /**
+     *
+     */
     public function populateStates()
     {
-        $csv = Reader::createFromPath(base_path('resources/assets/unlocode/2014-2 SubdivisionCodes.csv'));
+        $csv = Reader::createFromPath(base_path('resources/assets/ISO3166/ISO3166-2.csv'));
+
+        $csv->setOffset(1);
 
         $states = $csv->query();
 
         foreach ($states as $index => $state)
         {
             $data = [
-                'country'     => $state[0],
-                'subdivision' => $state[1],
-                'name'        => $state[2],
-                'level'       => $state[3],
+                'code'         => $state[2],
+                'name'         => $state[1],
+                'country_code' => $state[0],
             ];
 
             State::create($data);
         }
     }
-
 }

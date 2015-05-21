@@ -9,4 +9,5 @@ class State extends Model {
 
     public $timestamps = false;
 
-    protected $fillable = ['country', 'subdivision', 'name', 'level'];}
+    protected $fillable = ['name', 'code', 'country_code'];
+}

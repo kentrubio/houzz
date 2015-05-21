@@ -55,6 +55,7 @@ class ProfileController extends Controller {
      * @Get("@{username}")
      *
      * @param $username
+     * @return \Illuminate\View\View
      */
     public function show($username)
     {
@@ -65,10 +66,8 @@ class ProfileController extends Controller {
             return Response::make('errors.404', 404);
         }
 
-        return $user->toJson();
+        $this->data['page_title'] =  trans('app.my_profile');
 
-        $this->data['page_title'] = 'Upload ';
-
-        return $this->template('user.upload-photo');
+        return $this->template('user.show-profile');
     }
 }

@@ -36,7 +36,6 @@ class UploadController extends Controller
     /**
      * @Post("file-upload")
      * @param UploadRequest $request
-     * @return Response
      */
     public function PostFileUpload(/*UploadRequest $request*/)
     {
@@ -88,6 +87,14 @@ class UploadController extends Controller
             $return['text'] = $error;
         }
         echo json_encode($return);
+    }
+
+    /**
+     * @Post("upload")
+     */
+    public function PostUpload()
+    {
+        
     }
 
 

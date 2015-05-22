@@ -9,7 +9,8 @@
 namespace App\Services;
 
 
-use Illuminate\Support\Facades\Storage;
+use App\Eloquent\Book;
+use App\Eloquent\Project;
 
 class FileUploadService
 {
@@ -23,52 +24,94 @@ class FileUploadService
         $this->looged_user = $user;
     }
 
-    public function upload($files, $upload_to = '', $destination_id = 0)
+    public function uploadProcess($request)
     {
-        $response = new \stdClass();
-        $file_directory = storage_path();
-        $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->looged_user->id;
-        $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $destination_id;
-        if ($this->checkDirectory($file_directory)) {
-            $count = 0;
-            foreach ($files['file']['name'] as $file_name) {
-                try {
-                    move_uploaded_file($files['file']['tmp_name'][$count], $file_directory . DIRECTORY_SEPARATOR . basename($file_name));
-                } catch (\Exception $e) {
-                    $response->status = 'error';
-                    $response->message = $e->getMessage();
-                    break;
+        $upload_to = $request->get('upload_to');
+        $files = $request->file('file');
+        $ok = true;
+        $error = [];
+
+        if (count($files) > 0) {
+
+            $id = $request->get($upload_to);
+
+            try {
+                if ($id == 0) {
+                    $name = $request->get($upload_to . '_name');
+                    $obj = $upload_to == 'project' ? new Project() : new Book();
+                    $obj->user_id = $this->looged_user->id;
+                    $obj->name = $name;
+                    $obj->save();
+                } else {
+                    $obj = $upload_to == 'project' ? Project::find($id) : Book::find($id);
                 }
-                $count++;
+                $id = $obj->id;
+
+            } catch (\PDOException $e) {
+                $error[] = $e->getMessage();
+                $ok = false;
+            }
+
+            if ($ok) {
+
+                try {
+
+                    $file_directory = storage_path();
+                    $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->looged_user->id;
+                    $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $id;
+                    $chk_dir = $this->checkDirectory($file_directory);
+
+                    if ($chk_dir === true) {
+                        foreach ($files as $file) {
+                            $name = $file->getClientOriginalName();
+                            $file->move($file_directory, $name);
+                        }
+                    } else {
+                        $error[] = $chk_dir;
+                        $ok = false;
+                    }
+
+                } catch (\Exception $e) {
+                    $error[] = $e->getMessage();
+                    $ok = false;
+                }
 
             }
-            $response->status = 'ok';
+        } else {
+            $error[] = trans('app.select_files_to_upload');
+            $ok = false;
         }
-        else
-        {
-            $response->status = 'error';
-            $response->message = trans('app.directory_not_found');
+
+        $result = [];
+        if ($ok) {
+            $result['code'] = '100';
+            $result['text'] = 'success';
+        } else {
+            $result['code'] = '300';
+            $result['text'] = $error;
         }
-        return $response;
+        return $result;
+
     }
+
 
     private function checkDirectory($directory)
     {
         try {
             $base_array = explode(DIRECTORY_SEPARATOR, base_path());
             $storage_array = explode(DIRECTORY_SEPARATOR, $directory);
-            $chkdir = '';
+            $chk_dir = '';
             foreach ($storage_array as $dir) {
-                $chkdir .= $dir . DIRECTORY_SEPARATOR;
+                $chk_dir .= $dir . DIRECTORY_SEPARATOR;
                 if (in_array($dir, $base_array)) continue;
 
-                $temp_dir = trim($chkdir, DIRECTORY_SEPARATOR);
+                $temp_dir = trim($chk_dir, DIRECTORY_SEPARATOR);
                 if (!is_dir($temp_dir)) {
                     mkdir($temp_dir, 0777, true);
                 }
             }
         } catch (\Exception $e) {
-            throw new \Exception($e->getMessage());
+            return $e->getMessage();
         }
 
         return true;

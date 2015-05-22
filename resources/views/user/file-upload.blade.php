@@ -15,7 +15,7 @@
         </div>
         <div class="row">
             <div class="col-md-12">
-                <div class="upload-choice selected col-md-8" id="ideabook">
+                <div class="upload-choice selected col-md-8" id="book">
                     <div class="expanded">
                         <div class="upload-choice-title">Upload Photos to an Ideabook</div>
                         <div class="upload-choice-text">You can create an ideabook from photos or upload
@@ -193,7 +193,7 @@
                 </div>
             </div>
         </div>
-        <div id="ideabook-section">
+        <div id="book-section">
             <div id="to-pro" class="row">
                 <div class="col-md-12">
                     <b>Are you a professional?</b> <a class="boldLink colorLink" href="#">Upgrade
@@ -202,22 +202,22 @@
             </div>
             <div class="row">
                 <div class="col-md-12">
-                    <h4>Select a ideabook</h4>
+                    <h4>Select a book</h4>
                 </div>
             </div>
             <div class="row">
                 <div class="col-md-12 padding-five">
 
                     <div class="form-group">
-                        <label for="select-ideabook" class="col-md-2 control-label text-left">Ideabook</label>
+                        <label for="select-book" class="col-md-2 control-label text-left">Ideabook</label>
 
                         <div class="col-md-5">
-                            <select id="select-ideabook" name="ideabook" class="form-control form-data">
+                            <select id="select-book" name="book" class="form-control form-data">
                                 <option value="">Which ideabook do you want to upload photos to?</option>
                                 <option value="0">Create a new ideabook</option>
                                 <optgroup label="Existing Ideabooks:">
-                                    @foreach($ideabooks as $ideabook)
-                                        <option value="{{$ideabook->id}}">{{$ideabook->name}}</option>
+                                    @foreach($books as $book)
+                                        <option value="{{$book->id}}">{{$book->name}}</option>
                                     @endforeach
                                 </optgroup>
                             </select>
@@ -226,14 +226,14 @@
                 </div>
             </div>
 
-            <div class="row display-none" id="create-ideabook">
+            <div class="row display-none" id="create-book">
                 <div class="col-md-12 padding-five">
 
                     <div class="form-group">
-                        <label for="ideabook-name" class="col-md-2 control-label text-left">New ideabook Name</label>
+                        <label for="book-name" class="col-md-2 control-label text-left">New ideabook Name</label>
 
                         <div class="col-md-5">
-                            <input type="text" name="ideabook_name" class="form-control form-data">
+                            <input type="text" name="book_name" class="form-control form-data">
                         </div>
                     </div>
                 </div>

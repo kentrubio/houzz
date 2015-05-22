@@ -25,8 +25,7 @@ $(document).ready(function () {
             });
         },
         success: function (file, response) {
-            $(this).html('Upload');
-
+            $("#form-submit").html('Upload');
         }
     });
     $('.upload-choice').click(function () {
@@ -48,11 +47,11 @@ $(document).ready(function () {
             $('div#create-project').hide();
         }
     });
-    $('select#select-ideabook').change(function () {
+    $('select#select-book').change(function () {
         if ($(this).val() === '0') {
-            $('div#create-ideabook').show();
+            $('div#create-book').show();
         }else{
-            $('div#create-ideabook').hide();
+            $('div#create-book').hide();
         }
     });
 
@@ -64,7 +63,7 @@ function selection() {
     var collapsed = 'project';
     var step = 'Step 2: Tell us what you like about the photos.';
     if (selected == 'project') {
-        collapsed = 'ideabook';
+        collapsed = 'book';
         step = 'Step 2: Describe Photos';
     }
     $('.step2').html(step);

@@ -21,10 +21,9 @@ class CreateAttributeDataTable extends Migration {
 
             $table->increments('id');
             $table->integer('attribute_id')->unsigned()->index();
-            $table->string('name');
+            $table->string('value');
             $table->string('description')->nullable();
             $table->timestamps();
-
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
         });
     }

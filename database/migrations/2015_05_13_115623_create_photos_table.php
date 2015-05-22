@@ -20,15 +20,27 @@ class CreatePhotosTable extends Migration {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->integer('type_id')->unsigned()->index();
-            $table->integer('parent_type_id')->unsigned()->index();
-            $table->string('name');
-            $table->string('description');
+            $table->string('title');
             $table->integer('user_id')->unsigned()->index();
+            $table->integer('category_id')->unsigned()->index();
+            $table->integer('style_id')->unsigned()->index();
+            $table->integer('country_id')->unsigned()->index();
+            $table->integer('state_id')->unsigned()->index();
+            $table->integer('city_id')->unsigned()->index();
+            $table->string('zip');
+            $table->string('url')->nullable();
+            $table->text('keywords')->nullable();
+            $table->text('description')->nullable();
+            $table->char('currency', 3)->nullable();
+            $table->decimal('price', 10,2)->nullable();
             $table->timestamps();
 
-            $table->foreign('type_id')->references('id')->on('photo_types')->onDelete('cascade');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+            $table->foreign('style_id')->references('id')->on('styles')->onDelete('cascade');
+            $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');
+            $table->foreign('state_id')->references('id')->on('states')->onDelete('cascade');
+            $table->foreign('city_id')->references('id')->on('cities')->onDelete('cascade');
         });
     }
 

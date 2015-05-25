@@ -2,6 +2,12 @@ $(document).ready(function () {
 
     function updateStateValues()
     {
+        if ($('#address_country_code').val() == 0)
+        {
+            $("#address_state_code").html("");
+            $("#address_state_code").append('<option value="0" selected>--- Select ---</option>');
+        }
+
         $.post( "update-state-values", {
             country_code: $('#address_country_code').val(),
             _token: $('input[name=_token]').val() }, function( response ) {
@@ -24,5 +30,6 @@ $(document).ready(function () {
         updateStateValues();
     });
 
+    updateStateValues();
 
 });

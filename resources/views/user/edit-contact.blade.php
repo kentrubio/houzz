@@ -3,7 +3,7 @@
     @include('partials.default-header')
 @endsection
 @section('content')
-    {!! Form::model($logged_user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
+    {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
         <div class="row">
@@ -22,12 +22,12 @@
                 <div class="form-group">
                     <label for="country" class="control-label">{{ trans('app.country') }} <small>(publicly displayed)</small></label>
                     {{--{!! Form::text('country', null, ['class' => 'form-control', 'placeholder' => trans('app.country')]) !!}--}}
-                    {!! Form::select('address_country_id', App\Eloquent\Country::listsWithPlaceholder('name', 'code'), $user->profile->address_country_id, ['class' => 'form-control', 'id' => 'address_country_code']) !!}
+                    {!! Form::select('address_country_code', App\Eloquent\Country::listsWithPlaceholder('name', 'code'), isset($user->profile->address_country_code) ? $user->profile->address_country_code : null, ['class' => 'form-control', 'id' => 'address_country_code']) !!}
 
                 </div>
                 <div class="form-group">
-                    <label for="state" class="control-label">{{ trans('app.state') }}</label>
-                    {!! Form::select('address_state_code', App\Eloquent\State::listsWithPlaceholder('name', 'code'), $user->profile->address_state_code, ['class' => 'form-control', 'id' => 'address_state_code']) !!}
+                    <label for="state_county_province" class="control-label">{{ trans('app.state_county_province') }}</label>
+                    {!! Form::select('address_state_code', App\Eloquent\State::listsWithPlaceholder('name', 'code'), isset($user->profile->address_state_code) ? $user->profile->address_state_code : null, ['class' => 'form-control', 'id' => 'address_state_code']) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit(trans('app.update'), ['class' => 'btn btn-success col-xs-12 col-md-3']) !!}

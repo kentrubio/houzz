@@ -3,7 +3,7 @@
     @include('partials.default-header')
 @endsection
 @section('content')
-    {!! Form::model($logged_user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
+    {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
         <div class="row">
@@ -54,15 +54,15 @@
                 </div>
                 <div class="form-group">
                     <label for="about_me" class="control-label">{{ trans('app.about_me') }}</label>
-                    {!! Form::textarea('about_me', null, ['class' => 'form-control', 'size' => '10x3', 'placeholder' => trans('app.about_me')]) !!}
+                    {!! Form::textarea('profile[about_me]', null, ['class' => 'form-control', 'size' => '10x3', 'placeholder' => trans('app.about_me')]) !!}
                 </div>
                 <div class="form-group">
                     <label for="my_favorite_style" class="control-label">{{ trans('app.my_favorite_style') }}</label>
-                    {!! Form::text('my_favorite_style', null, ['class' => 'form-control', 'placeholder' => trans('app.my_favorite_style')]) !!}
+                    {!! Form::text('profile[my_favorite_style]', null, ['class' => 'form-control', 'placeholder' => trans('app.my_favorite_style')]) !!}
                 </div>
                 <div class="form-group">
-                    <label for="my_next_house_project" class="control-label">{{ trans('app.my_next_house_project') }}</label>
-                    {!! Form::text('my_next_house_project', null, ['class' => 'form-control', 'placeholder' => trans('app.my_next_house_project')]) !!}
+                    <label for="my_next_project" class="control-label">{{ trans('app.my_next_project') }}</label>
+                    {!! Form::text('profile[my_next_project]', null, ['class' => 'form-control', 'placeholder' => trans('app.my_next_project')]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit(trans('app.update'), ['class' => 'btn btn-success col-xs-12 col-md-3']) !!}

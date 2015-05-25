@@ -1,5 +1,6 @@
 <?php namespace App\Http\Controllers\User;
 
+use App\Eloquent\Profile;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -20,13 +21,14 @@ class ProfileController extends Controller {
      */
     public function edit()
     {
-        $user = $this->logged_user;
+        $user = User::with('profile')->whereId($this->logged_user->id)->first();
 
         if ( ! $user)
         {
             return Response::make('errors.404', 404);
         }
 
+        $this->data['user'] = $user;
         $this->data['page_title'] = trans('app.edit_your_profile');
 
         return $this->template('user.edit-profile');
@@ -39,11 +41,31 @@ class ProfileController extends Controller {
      */
     public function postEdit()
     {
-        $user = User::whereId(Input::get('id'))->first();
+        $user = User::with('profile')->whereId(Input::get('id'))->first();
+
+        $profile_input = Input::get('profile');
 
         if ( ! $user)
         {
             return Response::make('errors.404', 404);
+        }
+
+        // No profile information yet? We'll create it for you.
+        if (is_null($user->profile))
+        {
+            $profile = new Profile;
+
+            $profile->fill($profile_input);
+
+            $user->profile()->save($profile);
+        }
+        else
+        {
+            $user->profile->about_me          = $profile_input['about_me'];
+            $user->profile->my_favorite_style = $profile_input['my_favorite_style'];
+            $user->profile->my_next_project   = $profile_input['my_next_project'];
+
+            $user->profile->save();
         }
 
         $user->update(Input::all());
@@ -66,7 +88,7 @@ class ProfileController extends Controller {
             return Response::make('errors.404', 404);
         }
 
-        $this->data['page_title'] =  trans('app.my_profile');
+        $this->data['page_title'] = trans('app.my_profile');
 
         return $this->template('user.show-profile');
     }

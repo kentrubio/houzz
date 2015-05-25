@@ -14,6 +14,8 @@ class PhotoTypeAttribute extends Model {
     public $timestamps = false;
 
     /**
+     * The database table used by the model.
+     *
      * @var string
      */
     protected $table = 'attribute_photo_type';

@@ -14,6 +14,8 @@ class CreateCitiesTable extends Migration {
 	{
 		Schema::create('cities', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
+
 			$table->increments('id');
             $table->string('name');
             $table->char('country_code', 2)->index();

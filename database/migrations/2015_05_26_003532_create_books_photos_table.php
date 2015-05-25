@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateStylesTable extends Migration {
+class CreateBooksPhotosTable extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,18 +12,19 @@ class CreateStylesTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('styles', function(Blueprint $table)
+		Schema::create('book_photos', function(Blueprint $table)
 		{
             $table->engine = 'InnoDB';
-
+            
 			$table->increments('id');
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->integer('book_id')->unsigned()->index();
+            $table->integer('photo_id')->unsigned()->index();
             $table->integer('created_by')->unsigned();
             $table->integer('updated_by')->unsigned();
-			$table->timestamps();
+            $table->timestamps();
 
-
+            $table->foreign('book_id')->references('id')->on('books')->onDelete('cascade');
+            $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
 		});
@@ -36,7 +37,7 @@ class CreateStylesTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('styles');
+		Schema::drop('book_photos');
 	}
 
 }

@@ -14,11 +14,19 @@ class CreateCategoriesTable extends Migration {
 	{
 		Schema::create('categories', function(Blueprint $table)
 		{
+            $table->engine = 'InnoDB';
+            
 			$table->increments('id');
             $table->integer('parent_id');
             $table->string('name');
             $table->text('description');
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
 			$table->timestamps();
+
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

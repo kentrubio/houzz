@@ -13,7 +13,18 @@ class Country extends Model {
      */
     protected $table = 'countries';
 
+    /**
+     * @var bool
+     */
     public $timestamps = false;
 
+    /**
+     * @var array
+     */
     protected $fillable = ['code', 'name'];
+
+    public function states()
+    {
+        return $this->hasMany('App\Eloquent\State', 'country_code', 'code');
+    }
 }

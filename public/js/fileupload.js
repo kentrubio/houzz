@@ -25,6 +25,7 @@ $(document).ready(function () {
             });
         },
         success: function (file, response) {
+            console.log(response);
             $("#form-submit").html('Upload');
         }
     });

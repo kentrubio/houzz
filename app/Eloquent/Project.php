@@ -16,7 +16,12 @@ class Project extends Model {
      */
     public function user()
     {
-        return $this->hasOne('App\Eloquent\User', 'id', 'user_id');
+        return $this->hasOne('App\Eloquent\User');
+    }
+
+    public function photos()
+    {
+        return $this->hasMany('App\Eloquent\Photo');
     }
 
 

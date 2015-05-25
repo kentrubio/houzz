@@ -22,9 +22,11 @@ class Book extends Model {
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function projects()
+    public function photos()
     {
-        return $this->hasMany('App\Eloquent\Project');
+        return $this->belongsToMany('App\Eloquent\Photo');
     }
+
+
 
 }

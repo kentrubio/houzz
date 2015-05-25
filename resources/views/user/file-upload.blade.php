@@ -87,10 +87,10 @@
                     <div class="form-group">
                         <label for="category" class="col-md-2 control-label text-left">Category</label>
                         <div class="col-xs-5">
-                            <label for="category-1" class="radio-inline"><input id="category-1" type="radio" name="category" checked="checked" value="1">Category 1</label>
-                            <label for="category-2" class="radio-inline"><input id="category-2" type="radio" name="category" value="2">Category 2</label>
-                            <label for="category-3" class="radio-inline"><input id="category-3" type="radio" name="category" value="3">Category 3</label>
-                            <label for="category-4" class="radio-inline"><input id="category-4" type="radio" name="category" value="5">Category 4</label>
+                            <label for="category-1" class="radio-inline"><input id="category-1" type="radio" name="category_id" checked="checked" value="1">Category 1</label>
+                            <label for="category-2" class="radio-inline"><input id="category-2" type="radio" name="category_id" value="2">Category 2</label>
+                            <label for="category-3" class="radio-inline"><input id="category-3" type="radio" name="category_id" value="3">Category 3</label>
+                            <label for="category-4" class="radio-inline"><input id="category-4" type="radio" name="category_id" value="5">Category 4</label>
                         </div>
                     </div>
                 </div>

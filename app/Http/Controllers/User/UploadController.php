@@ -48,6 +48,8 @@ class UploadController extends Controller
     {
         $file_upload_service = new FileUploadService($this->logged_user);
         $result = $file_upload_service->uploadProcess($request);
+        print_r($request);
+        die;
         if($request->ajax()){
             return response()->json($result);
         }

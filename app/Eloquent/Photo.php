@@ -24,18 +24,18 @@ class Photo extends Model {
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function type()
+    public function books()
     {
-        return $this->hasOne('App\Eloquent\PhotoType', 'id', 'type_id');
+        return $this->belongsToMany('App\Eloquent\Book');
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function attributeData()
+    public function project()
     {
-        return $this->belongsToMany('App\Eloquent\AttributeData');
+        return $this->belongsTo('App\Eloquent\Project');
     }
 }

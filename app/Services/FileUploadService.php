@@ -10,6 +10,7 @@ namespace App\Services;
 
 
 use App\Eloquent\Book;
+use App\Eloquent\Photo;
 use App\Eloquent\Project;
 
 class FileUploadService
@@ -63,8 +64,38 @@ class FileUploadService
 
                     if ($chk_dir === true) {
                         foreach ($files as $file) {
-                            $name = $file->getClientOriginalName();
-                            $file->move($file_directory, $name);
+
+                            $file_name = $file->getClientOriginalName();
+                            $file->move($file_directory, $file_name);
+
+                            if($upload_to == 'project')
+                            {
+                                $photo = new Photo([
+                                    'title' => $name,
+                                    'file_name' => $file_name,
+                                    'category_id' => $request->get('category_id'),
+                                    'style_id' => $request->get('style_id'),
+                                    'country' => $request->get('country'),
+                                    'state' => $request->get('state'),
+                                    'city' => $request->get('city'),
+                                    'zip' => $request->get('zip'),
+                                    'url' => $request->get('url'),
+                                    'keywords' => $request->get('keywords'),
+                                    'description' => $request->get('description')
+                                ]);
+                                $obj->photos()->save($photo);
+                            }
+                            else
+                            {
+                                $photo = Photo::create([
+                                    'title' => $name,
+                                    'file_name' => $file_name
+                                ]);
+
+                                $obj->photos()->attach($photo->id);
+
+                            }
+
                         }
                     } else {
                         $error[] = $chk_dir;

@@ -42,7 +42,7 @@
         </div>
         {!! Form::open()!!}
         {!! Form::hidden('upload_to', $upload_to, ['id' => 'upload-to', 'class' => 'form-data']) !!}
-        <div id="project-section">
+        <div id="project-section" class="display-none">
             <div class="row">
                 <div class="col-md-12">
                     <h4>Project Description</h4>
@@ -193,7 +193,7 @@
                 </div>
             </div>
         </div>
-        <div id="book-section">
+        <div id="book-section" class="display-none">
             <div id="to-pro" class="row">
                 <div class="col-md-12">
                     <b>Are you a professional?</b> <a class="boldLink colorLink" href="#">Upgrade
@@ -251,7 +251,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6" id="dos-and-donts-section">
+            <div class="col-md-6 display-none" id="dos-and-donts-section">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="col-md-6 padding-zero">

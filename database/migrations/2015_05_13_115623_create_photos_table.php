@@ -23,9 +23,9 @@ class CreatePhotosTable extends Migration {
             $table->integer('user_id')->unsigned()->index();
             $table->integer('project_id')->nullable()->index();
             $table->string('title');
-            $table->string('file_name');
-            $table->integer('category_id')->unsigned()->index();
-            $table->integer('style_id')->unsigned()->index();
+            $table->string('filename');
+            $table->integer('category_id')->nullable()->index();
+            $table->integer('style_id')->nullable()->index();
             $table->integer('country')->index();
             $table->integer('state')->index();
             $table->integer('city')->index();
@@ -40,8 +40,6 @@ class CreatePhotosTable extends Migration {
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
-            $table->foreign('style_id')->references('id')->on('styles')->onDelete('cascade');
 
         });
     }

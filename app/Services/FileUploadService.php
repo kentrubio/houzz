@@ -60,11 +60,10 @@ class FileUploadService
                     $file_directory = storage_path();
                     $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->logged_user->id;
                     $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $id;
-                    $chk_dir = $this->checkDirectory($file_directory);
+//                    $chk_dir = $this->checkDirectory($file_directory);
 
-                    if ($chk_dir === true) {
+//                    if ($chk_dir === true) {
                         foreach ($files as $file) {
-                            die('part to store files');
 
                             $filename = $file->getClientOriginalName();
                             //$file->move($file_directory, $filename);
@@ -98,10 +97,10 @@ class FileUploadService
                             }
 
                         }
-                    } else {
-                        $error[] = $chk_dir;
-                        $ok = false;
-                    }
+//                    } else {
+//                        $error[] = $chk_dir;
+//                        $ok = false;
+//                    }
 
                 } catch (\Exception $e) {
                     $error[] = $e->getMessage();
@@ -142,7 +141,6 @@ class FileUploadService
                     mkdir($temp_dir, 0777, true);
                 }
             }
-            die('directory created...');
         } catch (\Exception $e) {
             return $e->getMessage();
         }

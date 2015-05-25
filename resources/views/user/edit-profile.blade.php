@@ -62,7 +62,7 @@
                 </div>
                 <div class="form-group">
                     <label for="my_next_project" class="control-label">{{ trans('app.my_next_project') }}</label>
-                    {!! Form::text('profile[my_next_project]', null, ['class' => 'form-control', 'placeholder' => trans('app.my_next_project')]) !!}
+                    {!! Form::textarea('profile[my_next_project]', null, ['class' => 'form-control', 'size' => '10x3', 'placeholder' => trans('app.my_next_project')]) !!}
                 </div>
                 <div class="form-group">
                     {!! Form::submit(trans('app.update'), ['class' => 'btn btn-success col-xs-12 col-md-3']) !!}

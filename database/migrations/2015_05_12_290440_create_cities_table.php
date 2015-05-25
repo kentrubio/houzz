@@ -19,10 +19,9 @@ class CreateCitiesTable extends Migration {
 			$table->increments('id');
             $table->string('name');
             $table->char('country_code', 2)->index();
-            $table->char('state_code', 10)->index();
+            $table->char('state_code', 10)->nullable();
 
             $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade');
-            $table->foreign('state_code')->references('code')->on('states')->onDelete('cascade');
         });
 	}
 

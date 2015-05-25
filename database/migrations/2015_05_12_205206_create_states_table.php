@@ -23,7 +23,7 @@ class CreateStatesTable extends Migration {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
-            $table->char('code', 10);
+            $table->char('code', 10)->index();
             $table->string('name');
             $table->char('country_code', 2);
 

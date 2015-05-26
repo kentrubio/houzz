@@ -4,7 +4,6 @@
 @endsection
 @section('page_css')
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/showprofile.css')}}"/>
-    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
 @endsection
 @section('content')
     <div class="container">

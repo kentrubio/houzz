@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{URL::asset('css/app.css')}}" type="text/css"/>
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- page custom css -->
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
     @yield('page_css')
 </head>
 <body>

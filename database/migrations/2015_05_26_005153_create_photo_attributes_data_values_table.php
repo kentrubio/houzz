@@ -20,13 +20,14 @@ class CreatePhotoAttributesDataValuesTable extends Migration {
             $table->unsignedInteger('photo_id')->index();
             $table->unsignedInteger('attribute_data_id')->index();
             $table->unsignedInteger('categories_attribute_id')->index();
+            $table->text('value');
             $table->unsignedInteger('created_by');
             $table->unsignedInteger('updated_by');
 			$table->timestamps();
 
             $table->foreign('photo_id')->references('id')->on('photos')->onDelete('cascade');
             $table->foreign('attribute_data_id')->references('id')->on('attribute_data')->onDelete('cascade');
-            $table->foreign('categories_attribute_id')->references('id')->on('categories_attributes')->onDelete('cascade');
+            $table->foreign('categories_attribute_id')->references('id')->on('category_attributes')->onDelete('cascade');
             $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
 

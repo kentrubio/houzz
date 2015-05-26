@@ -14,6 +14,8 @@ class CreateTranslationsTable extends Migration {
 	{
         Schema::create('ltm_translations', function(Blueprint $table)
         {
+            $table->engine = 'InnoDB';
+
             $table->increments('id');
             $table->integer('status')->default(0);
             $table->string('locale');

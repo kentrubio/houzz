@@ -23,8 +23,13 @@ class CreateAttributeDataTable extends Migration {
             $table->integer('attribute_id')->unsigned()->index();
             $table->string('value');
             $table->string('description')->nullable();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
             $table->timestamps();
+
             $table->foreign('attribute_id')->references('id')->on('attributes')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

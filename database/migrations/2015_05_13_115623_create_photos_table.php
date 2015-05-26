@@ -20,6 +20,7 @@ class CreatePhotosTable extends Migration {
             $table->engine = 'InnoDB';
 
             $table->increments('id');
+            $table->integer('project_id')->nullable();
             $table->string('title');
             $table->integer('user_id')->unsigned()->index();
             $table->integer('category_id')->unsigned()->index();
@@ -33,9 +34,13 @@ class CreatePhotosTable extends Migration {
             $table->text('description')->nullable();
             $table->char('currency', 3)->nullable();
             $table->decimal('price', 10,2)->nullable();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('style_id')->references('id')->on('styles')->onDelete('cascade');
             $table->foreign('country_id')->references('id')->on('countries')->onDelete('cascade');

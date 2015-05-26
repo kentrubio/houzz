@@ -17,7 +17,13 @@ class CreateStylesTable extends Migration {
 			$table->increments('id');
             $table->string('name');
             $table->string('description')->nullable();
+            $table->integer('created_by')->unsigned();
+            $table->integer('updated_by')->unsigned();
 			$table->timestamps();
+
+
+            $table->foreign('created_by')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('updated_by')->references('id')->on('users')->onDelete('cascade');
 		});
 	}
 

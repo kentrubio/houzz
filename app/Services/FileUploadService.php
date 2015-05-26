@@ -65,8 +65,6 @@ class FileUploadService
                     if ($chk_dir === true) {
                         foreach ($files as $file) {
 
-                            //TODO: master alex please make this nicer in the future
-
                             $file_name = $file->getClientOriginalName();
                             $file->move($file_directory, $file_name);
 

@@ -2,31 +2,31 @@ $(document).ready(function () {
 
     function updateStateValues()
     {
-        if ($('#address_country_code').val() == 0)
+        if ($('#country_code').val() == 0)
         {
-            $("#address_state_code").html("");
-            $("#address_state_code").append('<option value="0" selected>--- Select ---</option>');
+            $("#state_code").html("");
+            $("#state_code").append('<option value="0" selected>--- Select ---</option>');
         }
 
         $.post( "update-state-values", {
-            country_code: $('#address_country_code').val(),
+            country_code: $('#country_code').val(),
             _token: $('input[name=_token]').val() }, function( response ) {
 
             var value = jQuery.parseJSON(response);
             // disable the state select before updating its values
-            $("#address_state_code").attr('disabled', 'disabled');
-            $("#address_state_code").html("");
-            $("#address_state_code").append('<option value="0" selected>--- Select ---</option>');
+            $("#state_code").attr('disabled', 'disabled');
+            $("#state_code").html("");
+            $("#state_code").append('<option value="0" selected>--- Select ---</option>');
             for ( var i = 1; i < value.length; i++ )
             {
-                $("#address_state_code").append('<option value="' + value[i].code + '">' + value[i].name +'</option>');
+                $("#state_code").append('<option value="' + value[i].code + '">' + value[i].name +'</option>');
             }
 
-            $("#address_state_code").removeAttr('disabled');
+            $("#state_code").removeAttr('disabled');
         });
     }
 
-    $('#address_country_code').change(function() {
+    $('#country_code').change(function() {
         updateStateValues();
     });
 

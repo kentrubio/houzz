@@ -21,6 +21,9 @@ class CreateProfilesTable extends Migration {
             $table->string('about_me');
             $table->string('my_favorite_style');
             $table->string('my_next_project');
+            $table->char('country_code', 2)->index();
+            $table->char('state_code', 10)->index()->nullable();
+            $table->string('city')->nullable();
 
             $table->timestamps();
 

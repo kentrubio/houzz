@@ -64,9 +64,9 @@ class ContactController extends Controller {
         }
         else
         {
-            $user->profile->city         = $profile_input['city'];
+            $user->profile->city = $profile_input['city'];
             $user->profile->country_code = $profile_input['country_code'];
-            $user->profile->state_code   = $profile_input['state_code'];
+            $user->profile->state_code = $profile_input['state_code'];
 
             $user->profile->save();
         }
@@ -89,7 +89,7 @@ class ContactController extends Controller {
             return Response::make('errors.404', 404);
         }
 
-        $this->data['page_title'] =  trans('app.my_contact');
+        $this->data['page_title'] = trans('app.my_contact');
 
         return $this->template('user.show-contact');
     }

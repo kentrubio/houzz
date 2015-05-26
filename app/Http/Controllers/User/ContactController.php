@@ -1,6 +1,5 @@
 <?php namespace App\Http\Controllers\User;
 
-use App\Eloquent\Country;
 use App\Eloquent\Profile;
 use App\Eloquent\State;
 use App\Eloquent\User;
@@ -72,26 +71,6 @@ class ContactController extends Controller {
         }
 
         return redirect('/edit-contact')->with('success', trans('app.success_update_message'));
-    }
-
-    /**
-     * @Get("@{username}")
-     *
-     * @param $username
-     * @return \Illuminate\View\View
-     */
-    public function show($username)
-    {
-        $user = User::whereUsername($username)->first();
-
-        if ( ! $user)
-        {
-            return Response::make('errors.404', 404);
-        }
-
-        $this->data['page_title'] = trans('app.my_contact');
-
-        return $this->template('user.show-contact');
     }
 
     /**

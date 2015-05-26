@@ -26,7 +26,7 @@
 
                 </div>
                 <div class="form-group">
-                    <label for="state_county_province" class="control-label">{{ trans('app.state_county_province') }}</label>
+                    <label for="state_code" class="control-label">{{ trans('app.state_county_province') }}</label>
                     {!! Form::select('state_code', App\Eloquent\State::listsWithPlaceholder('name', 'code'), isset($user->profile->state_code) ? $user->profile->state_code : null, ['class' => 'form-control', 'id' => 'state_code']) !!}
                 </div>
                 <div class="form-group">

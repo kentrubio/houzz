@@ -20,7 +20,19 @@ class Profile extends Model {
      *
      * @var array
      */
-    protected $fillable = ['about_me', 'my_favorite_style', 'my_next_project', 'city', 'country_code', 'state_code'];
+    protected $fillable = [
+        'about_me',
+        'my_favorite_style',
+        'my_next_project',
+        'city',
+        'country_code',
+        'state_code',
+        'facebook',
+        'twitter',
+        'google_plus',
+        'linkedin',
+        'website'
+    ];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

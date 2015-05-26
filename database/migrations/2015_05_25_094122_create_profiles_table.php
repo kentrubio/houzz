@@ -24,6 +24,11 @@ class CreateProfilesTable extends Migration {
             $table->char('country_code', 2)->index();
             $table->char('state_code', 10)->index()->nullable();
             $table->string('city')->nullable();
+            $table->string('facebook')->nullable();
+            $table->string('twitter')->nullable();
+            $table->string('google_plus')->nullable();
+            $table->string('linkedin')->nullable();
+            $table->string('website')->nullable();
 
             $table->timestamps();
 

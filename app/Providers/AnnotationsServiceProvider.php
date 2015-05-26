@@ -23,6 +23,7 @@ class AnnotationsServiceProvider extends ServiceProvider {
         'App\Http\Controllers\User\UploadController',
         'App\Http\Controllers\User\ContactController',
         'App\Http\Controllers\User\ProfileController',
+        'App\Http\Controllers\User\SocialMediaController',
     ];
 
     /**

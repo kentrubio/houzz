@@ -11,12 +11,14 @@ class Book extends Model {
      */
     protected $table = 'books';
 
+    protected $fillable = ['name', 'updated_by'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function user()
     {
-        return $this->hasOne('App\Eloquent\User', 'id', 'user_id');
+        return $this->hasOne('App\Eloquent\User');
     }
 
     /**
@@ -24,7 +26,7 @@ class Book extends Model {
      */
     public function photos()
     {
-        return $this->belongsToMany('App\Eloquent\Photo');
+        return $this->belongsToMany('App\Eloquent\Photo', 'book_photos');
     }
 
 

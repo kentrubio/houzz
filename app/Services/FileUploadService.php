@@ -15,14 +15,14 @@ use App\Eloquent\Project;
 
 class FileUploadService
 {
-    protected $looged_user;
+    protected $logged_user;
 
     /**
      * @param $user
      */
     public function __construct($user)
     {
-        $this->looged_user = $user;
+        $this->logged_user = $user;
     }
 
     public function uploadProcess($request)
@@ -39,14 +39,14 @@ class FileUploadService
             try {
                 if ($id == 0) {
                     $name = $request->get($upload_to . '_name');
-                    $obj = $upload_to == 'project' ? new Project() : new Book();
-                    $obj->user_id = $this->looged_user->id;
-                    $obj->name = $name;
-                    $obj->save();
+                    $object = $upload_to == 'project' ? new Project() : new Book();
+                    $object->user_id = $object->updated_by = $this->logged_user->id;
+                    $object->name = $name;
+                    $object->save();
                 } else {
-                    $obj = $upload_to == 'project' ? Project::find($id) : Book::find($id);
+                    $object = $upload_to == 'project' ? Project::find($id) : Book::find($id);
                 }
-                $id = $obj->id;
+                $id = $object->id;
 
             } catch (\PDOException $e) {
                 $error[] = $e->getMessage();
@@ -58,21 +58,21 @@ class FileUploadService
                 try {
 
                     $file_directory = storage_path();
-                    $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->looged_user->id;
+                    $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->logged_user->id;
                     $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $id;
-                    $chk_dir = $this->checkDirectory($file_directory);
+//                    $chk_dir = $this->checkDirectory($file_directory);
 
-                    if ($chk_dir === true) {
+//                    if ($chk_dir === true) {
                         foreach ($files as $file) {
 
-                            $file_name = $file->getClientOriginalName();
-                            $file->move($file_directory, $file_name);
+                            $filename = $file->getClientOriginalName();
+                            //$file->move($file_directory, $filename);
 
                             if($upload_to == 'project')
                             {
                                 $photo = new Photo([
                                     'title' => $name,
-                                    'file_name' => $file_name,
+                                    'file_name' => $filename,
                                     'category_id' => $request->get('category_id'),
                                     'style_id' => $request->get('style_id'),
                                     'country' => $request->get('country'),
@@ -83,24 +83,24 @@ class FileUploadService
                                     'keywords' => $request->get('keywords'),
                                     'description' => $request->get('description')
                                 ]);
-                                $obj->photos()->save($photo);
+                                $object->photos()->save($photo);
                             }
                             else
                             {
                                 $photo = Photo::create([
                                     'title' => $name,
-                                    'file_name' => $file_name
+                                    'filename' => $filename
                                 ]);
 
-                                $obj->photos()->attach($photo->id);
+                                $object->photos()->attach($photo->id);
 
                             }
 
                         }
-                    } else {
-                        $error[] = $chk_dir;
-                        $ok = false;
-                    }
+//                    } else {
+//                        $error[] = $chk_dir;
+//                        $ok = false;
+//                    }
 
                 } catch (\Exception $e) {
                     $error[] = $e->getMessage();

@@ -15,7 +15,7 @@ class Photo extends Model {
      */
     protected $table = 'photos';
 
-    protected $fillable = ['user_id', 'title', 'filename', 'updated_by'];
+    protected $fillable = ['user_id', 'title', 'filename', 'description', 'updated_by'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

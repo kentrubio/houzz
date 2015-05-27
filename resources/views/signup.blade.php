@@ -26,7 +26,7 @@
             <div class="row">
                 <div class="col-md-5 padding-ten-thirty">
                     @include('partials.form-errors')
-                    {!! Form::open(['url' => 'signup']) !!}
+                    {!! Form::open(['url' => '/signup']) !!}
                     <div class="form-group">
                         <label for="first-name">{{trans('app.first_name')}}</label>
                         <input type="text" name="first_name" id="first-name" class="form-control"

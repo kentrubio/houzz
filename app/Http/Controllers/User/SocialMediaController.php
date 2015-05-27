@@ -1,23 +1,22 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Eloquent\Profile;
+use App\Eloquent\State;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 /**
- * Class ProfileController
+ * Class ContactController
  * @package App\Http\Controllers\User
  *
  * @Middleware("auth")
  */
-class ProfileController extends Controller {
+class SocialMediaController extends Controller {
 
     /**
-     * Edit User's profile
-     *
-     * @Get("/edit-profile")
+     * @Get("/social-media-settings")
      */
     public function edit()
     {
@@ -29,15 +28,16 @@ class ProfileController extends Controller {
         }
 
         $this->data['user'] = $user;
-        $this->data['page_title'] = trans('app.edit_your_profile');
 
-        return $this->template('user.edit-profile');
+        $this->data['page_title'] = trans('app.link_to_your_social_media_profiles');
+
+        return $this->template('user.social-media-settings');
     }
 
     /**
-     * Post function for Edit User's profile
+     * Post function for Edit User's contact
      *
-     * @Patch("/edit-profile")
+     * @Patch("/social-media-settings")
      */
     public function postEdit()
     {
@@ -61,35 +61,11 @@ class ProfileController extends Controller {
         }
         else
         {
-            $user->profile->about_me = $profile_input['about_me'];
-            $user->profile->my_favorite_style = $profile_input['my_favorite_style'];
-            $user->profile->my_next_project = $profile_input['my_next_project'];
+            $user->profile->fill($profile_input);
 
             $user->profile->save();
         }
 
-        $user->update(Input::all());
-
-        return redirect('/edit-profile')->with('success', trans('app.success_update_message'));
-    }
-
-    /**
-     * @Get("@{username}")
-     *
-     * @param $username
-     * @return \Illuminate\View\View
-     */
-    public function show($username)
-    {
-        $user = User::whereUsername($username)->first();
-
-        if ( ! $user)
-        {
-            return Response::make('errors.404', 404);
-        }
-
-        $this->data['page_title'] = trans('app.my_profile');
-
-        return $this->template('user.show-profile');
+        return redirect('/social-media-settings')->with('success', trans('app.success_update_message'));
     }
 }

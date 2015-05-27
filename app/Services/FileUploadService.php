@@ -61,7 +61,7 @@ class FileUploadService
 
                 try {
 
-                    $file_directory = storage_path();
+                    $file_directory = public_path();
                     $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->logged_user->id;
                     $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $id;
                     $chk_dir = $this->checkDirectory($file_directory);

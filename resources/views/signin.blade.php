@@ -14,7 +14,7 @@
             <div class="col-md-5 padding-ten-thirty">
                 @include('partials.form-errors')
 
-                {!! Form::open(['url' => 'signin']) !!}
+                {!! Form::open(['url' => '/signin']) !!}
                 <div class="form-group">
                     <label for="email">{{ trans('app.email') }}</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="{{ trans('app.email') }}">

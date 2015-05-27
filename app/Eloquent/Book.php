@@ -11,7 +11,7 @@ class Book extends Model {
      */
     protected $table = 'books';
 
-    protected $fillable = ['name', 'updated_by'];
+    protected $fillable = ['name', 'description', 'updated_by'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

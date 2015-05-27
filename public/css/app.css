@@ -113,6 +113,18 @@ h3{
     display:none;
 }
 
+.border-gray{
+    border:1px solid #dedede;
+}
+.background-gray{
+    background:#efefef;
+}
+.border-white{
+    border: 5px solid #ffffff;
+}
+.border-5{
+    border: 5px solid;
+}
 /*TODO: for deletion*/
 .border{
     border:1px solid red;

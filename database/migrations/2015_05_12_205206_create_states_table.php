@@ -25,7 +25,7 @@ class CreateStatesTable extends Migration {
             $table->increments('id');
             $table->char('code', 10)->index();
             $table->string('name');
-            $table->char('country_code', 2);
+            $table->char('country_code', 2)->index();
 
             $table->foreign('country_code')->references('code')->on('countries')->onDelete('cascade');
 

@@ -2,6 +2,7 @@
 Standard CSS Theme
 */
 
+/*HEADER CSS*/
 .page-header  {margin:0;padding-bottom:0;  border-bottom:none;}
 .btn { padding: 9px 12px;background-color:#6ac1a9 ;}
 .btn-default {  border-color: #6ac1a9;}
@@ -11,9 +12,25 @@ Standard CSS Theme
 .navbar {border-radius:0;}
 .navbar-nav>li>a {line-height: 28px;}
 
+/*Boostrap custom*/
+.dropdown-menu {background-color:#6ac1a9;border:solid 1px #fff; }
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {  background: #2d7e68 !important;}
+.navbar-default .navbar-nav>.open>a:hover {color:#fff !important;}
+.btn-primary {padding: 11px 12px;}
+.dropdown-menu>li>a:hover {background-color:#2d7e68;color:#fff !important;}
+.dropdown-menu .divider {  background-color: #fff !important;}
+.btn-primary {  background: #6ac1a9 !important;  border-color: #6ac1a9 !important;}
+.btn-primary:hover, .btn-primary:focus {border-radius:0 !important; border: 0 !important;background-color:none !important;}
+
 .head-box {  padding: 20px 0;}
 .head-nav ul li a {color:#ffffff !important;font-size: 14px}
+.s-top-b {margin-top: 27px;}
+.s-top-c {margin-top: 21px;}
+.s-top-ca {margin-top: 30px;}
+.s-top-cb img {float:left;}
 
+.user-top {font-size: 16px; color: #6ac1a9; padding-left: 10px; margin-top: 9px; float: left; }
+/*END HEADER CSS*/
 
 /*colors-scheme*/
 .white-txt {color:#ffffff;}
@@ -22,8 +39,6 @@ Standard CSS Theme
 .bg-light-green a:hover {color:#2d7e68 !important;}
 .bg-dark-green {background-color:#2d7e68;}
 .bg-dark-green a:hover {color:#6ac1a9 !important;}
-
-
 
 /*Removed Border Radius*/
 .btn,.form-control {border-radius:0;}

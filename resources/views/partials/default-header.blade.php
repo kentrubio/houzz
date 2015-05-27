@@ -5,7 +5,7 @@
                     <img src="{{asset('images/sample-logo.png')}}" alt="DRC Sports Race Management" id="DRCS-logo" />
             </div>
 
-            <div class="col-md-4">
+            <div class="col-md-4 s-top-b">
                 <div class="input-group">
                   <span class="input-group-btn">
                     <button class="btn btn-default" type="button"><i class="fa fa-2x fa-search white-txt"></i></button>
@@ -14,15 +14,17 @@
                 </div><!-- /input-group -->
             </div>
 
-            <div class="col-md-3 col-md-offset-2">
+          
+            <!--<div class="col-md-3 col-md-offset-1 s-top-c pull-right">
                 <div class="row">
-                    <div class="col-md-3"><i class="fa fa-shopping-cart fa-2x light-green"></i></div>
-                    <div class="col-md-8">
+                    <div class="col-md-1 col-md-offset-1 s-top-ca"><i class="fa fa-shopping-cart fa-2x light-green"></i></div>
+                    <div class="col-md-9 s-top-cb">
                         <img src="{{asset('images/small-profile-pic.png')}}" alt="Your Name here">
-                        <a href="">John Doe</a>
+                        <a class="user-top" href="">John Doe</a>
                     </div>
                 </div>
-            </div>
+            </div>-->
+            
         </div>
 </div>
         <!--Header-->

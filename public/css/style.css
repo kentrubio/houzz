@@ -14,13 +14,14 @@ body {padding-bottom: 0 !important}
 .div-spacer {display: block;margin:10px 0; }
 .no-m-btm {margin-bottom:0; border: none;}
 .no-pad-left {padding-left: 0;}
+.top-s-btn {  padding: 10px 12px !important;}
 
 /*HEADER CSS*/
 .page-header  {margin:0;padding-bottom:0;  border-bottom:none;}
-.btn { padding: 9px 12px;background-color:#6ac1a9 ;}
+.btn { padding: 12px 12px;background-color:#6ac1a9 ;border:0;font-size: 14px;}
 .btn-default {  border-color: #6ac1a9;}
 .btn:hover {background-color:#3d7f6b; }
-.form-control {height:44px;border: 1px solid #6ac1a9;}
+.form-control {height:43px;border: 1px solid #6ac1a9;}
 .form-control:focus, .form-control:active {border: 1px solid #6ac1a9;}
 .navbar {border-radius:0;}
 .navbar-nav>li>a {line-height: 28px;}
@@ -29,7 +30,7 @@ body {padding-bottom: 0 !important}
 .dropdown-menu {background-color:#6ac1a9;border:solid 1px #fff; }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {  background: #2d7e68 !important;}
 .navbar-default .navbar-nav>.open>a:hover {color:#fff !important;}
-.btn-primary {padding: 11px 12px;}
+.btn-primary {padding: 12px 12px;}
 .dropdown-menu>li>a:hover {background-color:#2d7e68;color:#fff !important;}
 .dropdown-menu .divider {  background-color: #fff !important;}
 .btn-primary {  background: #6ac1a9 !important;  border-color: #6ac1a9 !important;}

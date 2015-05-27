@@ -2,6 +2,11 @@
 @section('header')
     @include('partials.default-header')
 @endsection
+
+@section('page_css')
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
+@endsection
+
 @section('content')
     {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
     {!! Form::hidden('id') !!}

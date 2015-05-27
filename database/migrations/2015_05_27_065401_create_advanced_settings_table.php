@@ -20,6 +20,7 @@ class CreateAdvancedSettingsTable extends Migration {
             $table->unsignedInteger('user_id')->index();
             $table->text('email_notification');
             $table->text('send_email_when');
+            $table->text('visible_to_public');
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

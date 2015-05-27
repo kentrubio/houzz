@@ -16,7 +16,19 @@
             <div class="col-md-12">
                 @include('partials.form-errors')
 
-                <div>Send me an email when:</div>
+                <h3>Email notification:</h3>
+
+                <div class="form-group">
+                    <input type="checkbox" name="email[newsletter]" value="1" {{array_key_exists('newsletter', $email_notification) ? 'checked' : ''}}> Subscribe to the Houzz Newsletter.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="email[general_updates]" value="1" {{array_key_exists('general_updates', $email_notification) ? 'checked' : ''}}> Subscribe to general updates, promotions and research emails.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="email[shop]" value="1" {{array_key_exists('shop', $email_notification) ? 'checked' : ''}}> Subscribe to the Shop Houzz Newsletter.<br>
+                </div>
+
+                <h3>Send me an email when:</h3>
 
                 @foreach($send_email_when as $key => $values)
 
@@ -30,6 +42,27 @@
                         </select>
                     </div>
                 @endforeach
+
+                <h3>My Profile Pages</h3>
+                <h4>The following will be visible on my public profile page, and shared with my followers:</h4>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[books]" value="1" {{array_key_exists('books', $visible_to_public) ? 'checked' : ''}}> My public books.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[uploaded]" value="1" {{array_key_exists('uploaded', $visible_to_public) ? 'checked' : ''}}> My uploaded photos and projects.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[discussions]" value="1" {{array_key_exists('discussions', $visible_to_public) ? 'checked' : ''}}> My discussions.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[social_media]" value="1" {{array_key_exists('social_media', $visible_to_public) ? 'checked' : ''}}> My social media profiles.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[followers]" value="1" {{array_key_exists('followers', $visible_to_public) ? 'checked' : ''}}> People who follow me.<br>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" name="visible_to_public[following]" value="1" {{array_key_exists('following', $visible_to_public) ? 'checked' : ''}}> People I follow.<br>
+                </div>
 
                 <div class="form-group">
                     {!! Form::submit(trans('app.update'), ['class' => 'btn btn-success col-xs-12 col-md-3']) !!}

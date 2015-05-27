@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers\User;
 
-use App\Eloquent\Country;
+use App\Eloquent\Profile;
 use App\Eloquent\State;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
@@ -43,36 +43,34 @@ class ContactController extends Controller {
      */
     public function postEdit()
     {
-        $user = User::whereId(Input::get('id'))->first();
+        $user = User::with('profile')->whereId(Input::get('id'))->first();
+
+        $profile_input = Input::only('country_code', 'state_code', 'city');
 
         if ( ! $user)
         {
             return Response::make('errors.404', 404);
         }
 
-        $user->update(Input::all());
+        // No profile information yet? We'll create it for you.
+        if (is_null($user->profile))
+        {
+            $profile = new Profile;
+
+            $profile->fill($profile_input);
+
+            $user->profile()->save($profile);
+        }
+        else
+        {
+            $user->profile->city = $profile_input['city'];
+            $user->profile->country_code = $profile_input['country_code'];
+            $user->profile->state_code = $profile_input['state_code'];
+
+            $user->profile->save();
+        }
 
         return redirect('/edit-contact')->with('success', trans('app.success_update_message'));
-    }
-
-    /**
-     * @Get("@{username}")
-     *
-     * @param $username
-     * @return \Illuminate\View\View
-     */
-    public function show($username)
-    {
-        $user = User::whereUsername($username)->first();
-
-        if ( ! $user)
-        {
-            return Response::make('errors.404', 404);
-        }
-
-        $this->data['page_title'] =  trans('app.my_contact');
-
-        return $this->template('user.show-contact');
     }
 
     /**

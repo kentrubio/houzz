@@ -48,7 +48,6 @@
         <hr />
         <div class="row">
             <div class="col-md-12">
-                @include('partials.form-errors')
                 <div class="form-group">
                     <label for="first_name" class="control-label">{{ trans('app.first_name') }} <small>(publicly displayed)</small></label>
                     {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => trans('app.first_name')]) !!}

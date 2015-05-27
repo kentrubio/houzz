@@ -15,6 +15,8 @@ class Photo extends Model {
      */
     protected $table = 'photos';
 
+    protected $fillable = ['title', 'filename'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
@@ -28,7 +30,7 @@ class Photo extends Model {
      */
     public function books()
     {
-        return $this->belongsToMany('App\Eloquent\Book');
+        return $this->belongsToMany('App\Eloquent\Book', 'book_photos');
     }
 
     /**

@@ -1,5 +1,7 @@
 <?php namespace App\Http\Controllers\User;
 
+use App\Eloquent\Country;
+use App\Eloquent\State;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
@@ -20,12 +22,14 @@ class ContactController extends Controller {
      */
     public function edit()
     {
-        $user = $this->logged_user;
+        $user = User::with('profile')->whereId($this->logged_user->id)->first();
 
         if ( ! $user)
         {
             return Response::make('errors.404', 404);
         }
+
+        $this->data['user'] = $user;
 
         $this->data['page_title'] = trans('app.edit_your_contact');
 
@@ -69,5 +73,18 @@ class ContactController extends Controller {
         $this->data['page_title'] =  trans('app.my_contact');
 
         return $this->template('user.show-contact');
+    }
+
+    /**
+     * @Post("update-state-values")
+     *
+     */
+    public function updateStateValues()
+    {
+        $country_code = Input::get('country_code');
+
+        $states = State::whereCountryCode($country_code)->get(['code', 'name'])->toJson();
+
+        return Response::json($states);
     }
 }

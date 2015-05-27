@@ -2,10 +2,17 @@
 
 use Illuminate\Database\Eloquent\Model;
 
+/**
+ * Class NotificationSetting
+ * @package App\Eloquent
+ */
 class NotificationSetting extends Model {
 
-	//
+    //
 
+    /**
+     * @return array
+     */
     public static function getNameWithOptions()
     {
         $notifications = self::all();
@@ -29,14 +36,19 @@ class NotificationSetting extends Model {
         return $notification_array;
     }
 
+    /**
+     * @param $user
+     * @param $column
+     * @return array
+     */
     public static function getUserData($user, $column)
     {
         $notification_array = [];
-        if (!empty($user->advancedSettings->$column))
+        if ( ! empty($user->advancedSettings->$column))
         {
             $notif = json_decode($user->advancedSettings->$column);
 
-            foreach($notif as $k => $n)
+            foreach ($notif as $k => $n)
             {
                 $notification_array[$k] = $n;
             }
@@ -45,6 +57,11 @@ class NotificationSetting extends Model {
         return $notification_array;
     }
 
+    /**
+     * @param $user
+     * @param $email_settings
+     * @param $column
+     */
     public static function storeUserSetting($user, $email_settings, $column)
     {
         if (is_array($email_settings))

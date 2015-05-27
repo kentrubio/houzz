@@ -32,7 +32,7 @@ class AdvancedSettingsController extends Controller {
         $this->data['advanced_settings'] = NotificationSetting::getUserData($user, 'send_email_when');
         $this->data['email_notification'] = NotificationSetting::getUserData($user, 'email_notification');
         $this->data['visible_to_public'] = NotificationSetting::getUserData($user, 'visible_to_public');
-        $this->data['send_email_when']   = NotificationSetting::getNameWithOptions();
+        $this->data['send_email_when'] = NotificationSetting::getNameWithOptions();
 
         $this->data['page_title'] = trans('app.link_to_your_social_media_profiles');
 

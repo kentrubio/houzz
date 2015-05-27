@@ -24,7 +24,8 @@
                         <label for="{{$key}}" class="control-label">{{ trans('app.'.$key) }}</label>
                         <select name="{{$key}}" class="form-control" id="{{$key}}">
                         @foreach($values as $k => $value)
-                            <option value="{{$k}}" {{isset($advanced_settings[$key]) and $advanced_settings[$key] == $k ? 'selected' : ''}}>{{trans('app.'.$value)}}</option>
+
+                            <option value="{{$k}}" {{(array_key_exists($key, $advanced_settings) and ($advanced_settings[$key] == $k)) ? 'selected' : ''}}>{{trans('app.'.$value)}}</option>
                         @endforeach
                         </select>
                     </div>

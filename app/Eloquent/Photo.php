@@ -15,7 +15,7 @@ class Photo extends Model {
      */
     protected $table = 'photos';
 
-    protected $fillable = ['title', 'filename'];
+    protected $fillable = ['user_id', 'title', 'filename', 'updated_by'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
@@ -38,6 +38,6 @@ class Photo extends Model {
      */
     public function project()
     {
-        return $this->belongsTo('App\Eloquent\Project');
+        return $this->belongsTo('App\Eloquent\Project', 'project_id');
     }
 }

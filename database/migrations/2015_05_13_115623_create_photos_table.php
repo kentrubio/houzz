@@ -26,10 +26,10 @@ class CreatePhotosTable extends Migration {
             $table->string('filename');
             $table->integer('category_id')->nullable()->index();
             $table->integer('style_id')->nullable()->index();
-            $table->integer('country')->index();
-            $table->integer('state')->index();
-            $table->integer('city')->index();
-            $table->string('zip');
+            $table->integer('country')->nullable()->index();
+            $table->integer('state')->nullable()->index();
+            $table->integer('city')->nullable()->index();
+            $table->string('zip')->nullable();
             $table->string('url')->nullable();
             $table->text('keywords')->nullable();
             $table->text('description')->nullable();

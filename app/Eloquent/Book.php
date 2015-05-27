@@ -27,6 +27,7 @@ class Book extends Model {
     public function photos()
     {
         return $this->belongsToMany('App\Eloquent\Photo', 'book_photos');
+
     }
 
 

@@ -12,6 +12,7 @@ namespace App\Services;
 use App\Eloquent\Book;
 use App\Eloquent\Photo;
 use App\Eloquent\Project;
+use DB;
 
 class FileUploadService
 {
@@ -31,6 +32,8 @@ class FileUploadService
         $files = $request->file('file');
         $ok = true;
         $error = [];
+        $photos = [];
+        $id = 0;
 
         if (count($files) > 0) {
 
@@ -45,6 +48,7 @@ class FileUploadService
                     $object->save();
                 } else {
                     $object = $upload_to == 'project' ? Project::find($id) : Book::find($id);
+                    $name = $object->name;
                 }
                 $id = $object->id;
 
@@ -60,19 +64,20 @@ class FileUploadService
                     $file_directory = storage_path();
                     $file_directory .= DIRECTORY_SEPARATOR . 'uploads' . DIRECTORY_SEPARATOR . $this->logged_user->id;
                     $file_directory .= DIRECTORY_SEPARATOR . $upload_to . DIRECTORY_SEPARATOR . $id;
-//                    $chk_dir = $this->checkDirectory($file_directory);
+                    $chk_dir = $this->checkDirectory($file_directory);
 
-//                    if ($chk_dir === true) {
+                    if ($chk_dir === true) {
                         foreach ($files as $file) {
 
                             $filename = $file->getClientOriginalName();
-                            //$file->move($file_directory, $filename);
+
 
                             if($upload_to == 'project')
                             {
-                                $photo = new Photo([
+                                /*$photo = new Photo([
+                                    'user_id' => $this->logged_user->id,
                                     'title' => $name,
-                                    'file_name' => $filename,
+                                    'filename' => $filename,
                                     'category_id' => $request->get('category_id'),
                                     'style_id' => $request->get('style_id'),
                                     'country' => $request->get('country'),
@@ -81,26 +86,49 @@ class FileUploadService
                                     'zip' => $request->get('zip'),
                                     'url' => $request->get('url'),
                                     'keywords' => $request->get('keywords'),
-                                    'description' => $request->get('description')
+                                    'description' => $request->get('description'),
+                                    'updated_by' => $this->logged_user->id
                                 ]);
-                                $object->photos()->save($photo);
+                                $object->photos()->save($photo);*/
                             }
                             else
                             {
-                                $photo = Photo::create([
-                                    'title' => $name,
-                                    'filename' => $filename
+                                $photo = new Photo();
+                                $photo->user_id = $this->logged_user->id;
+                                $photo->title = $name;
+                                $photo->filename = $filename;
+                                $photo->updated_by = $this->logged_user->id;
+                                $photo->save();
+
+                                DB::table('book_photos')->insert([
+                                    'book_id' => $object->id,
+                                    'photo_id' => $photo->id,
+                                    'created_by' => $this->logged_user->id,
+                                    'updated_by' => $this->logged_user->id
                                 ]);
 
-                                $object->photos()->attach($photo->id);
+                                $file->move($file_directory, $photo->id.'_'.$filename);
+
+                                $photos[] = $photo->id;
+
+/*                                $photo = Photo::create([
+                                    'user_id' => $this->logged_user->id,
+                                    'title' => $name,
+                                    'filename' => $filename,
+                                    'updated_by' => $this->logged_user->id
+
+                                ]);
+
+                                $object->photos()->attach($photo->id);*/
 
                             }
 
                         }
-//                    } else {
-//                        $error[] = $chk_dir;
-//                        $ok = false;
-//                    }
+                    } else {
+                        $error[] = $chk_dir;
+                        $ok = false;
+                    }
+
 
                 } catch (\Exception $e) {
                     $error[] = $e->getMessage();
@@ -117,6 +145,8 @@ class FileUploadService
         if ($ok) {
             $result['code'] = '100';
             $result['text'] = 'success';
+            $result['id'] = $id;
+            $result['photos'] = $photos;
         } else {
             $result['code'] = '300';
             $result['text'] = $error;

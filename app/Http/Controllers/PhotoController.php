@@ -1,13 +1,11 @@
 <?php namespace App\Http\Controllers;
 
- use App\Http\Requests;
+use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
-use App\Http\Requests\EditIdeabookRequest;
-use App\Ideabook;
 use Illuminate\Http\Request;
 
-class IdeabookController extends Controller {
+class PhotoController extends Controller {
 
 	/**
 	 * Display a listing of the resource.
@@ -50,23 +48,15 @@ class IdeabookController extends Controller {
 		//
 	}
 
-    /**
-     * Show the form for editing the specified resource.
-     * @Get("edit-ideabook")
-     * @param  int $id
-     * @param EditIdeabookRequest $request
-     * @return Response
-     */
-	public function edit($id, EditIdeabookRequest $request)
+	/**
+	 * Show the form for editing the specified resource.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function edit($id)
 	{
 		//
-        $images = base64_decode($request->get('images'));
-        $book = Ideabook::find($id)->whereUserId($this->logged_user->id)->first();
-        if(!$book){
-            App::abort(404);
-        }
-
-
 	}
 
 	/**

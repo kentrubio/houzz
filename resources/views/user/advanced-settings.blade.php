@@ -16,7 +16,7 @@
             <div class="col-md-12">
                 @include('partials.form-errors')
 
-                <h3>Email notification:</h3>
+                <h3>{{trans('app.email_notification')}}</h3>
 
                 <div class="form-group">
                     <input type="checkbox" name="email[newsletter]" value="1" {{array_key_exists('newsletter', $email_notification) ? 'checked' : ''}}> Subscribe to the Houzz Newsletter.<br>
@@ -28,7 +28,7 @@
                     <input type="checkbox" name="email[shop]" value="1" {{array_key_exists('shop', $email_notification) ? 'checked' : ''}}> Subscribe to the Shop Houzz Newsletter.<br>
                 </div>
 
-                <h3>Send me an email when:</h3>
+                <h3>{{trans('app.send_me_email_when')}}:</h3>
 
                 @foreach($send_email_when as $key => $values)
 
@@ -43,8 +43,8 @@
                     </div>
                 @endforeach
 
-                <h3>My Profile Pages</h3>
-                <h4>The following will be visible on my public profile page, and shared with my followers:</h4>
+                <h3>{{trans('app.my_profile_pages')}}</h3>
+                <h4>{{trans('app.visible_on_my_public_profile_page')}}:</h4>
                 <div class="form-group">
                     <input type="checkbox" name="visible_to_public[books]" value="1" {{array_key_exists('books', $visible_to_public) ? 'checked' : ''}}> My public books.<br>
                 </div>

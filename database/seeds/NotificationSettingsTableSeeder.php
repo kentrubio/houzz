@@ -90,7 +90,7 @@ class NotificationSettingsTableSeeder extends Seeder {
                 ],
                 [
                     'id'         => 11,
-                    'name'       => 'i_earn_a_barge',
+                    'name'       => 'i_earn_a_badge',
                     'values'     => '[1, 5]',
                     'created_at' => Carbon::now(),
                     'updated_at' => Carbon::now()

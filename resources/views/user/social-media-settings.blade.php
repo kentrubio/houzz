@@ -6,15 +6,17 @@
     {!! Form::model($user, ['method' => 'PATCH', 'url' => '/social-media-settings']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
+         @include('partials.profile-info-container')
+
         <div class="row">
-            <div class="col-md-12">
-                <h3>{{trans('app.link_to_your_social_media_profiles')}}</h3>
+            <div class="col-md-2">
+                @include('partials.user-profile-nav')
             </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
+            
+            <div class="col-md-10">
                 @include('partials.form-errors')
+                <h3>{{trans('app.link_to_your_social_media_profiles')}}</h3>
+                <hr />
                 <div class="form-group">
                     <label for="facebook" class="control-label">{{ trans('app.facebook') }}</label>
                     {!! Form::text('profile[facebook]', null, ['class' => 'form-control', 'placeholder' => trans('app.facebook')]) !!}

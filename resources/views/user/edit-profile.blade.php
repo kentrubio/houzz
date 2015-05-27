@@ -7,14 +7,27 @@
     {!! Form::hidden('id') !!}
     <div class="container">
         @include('partials.profile-info-container')
+
+        
+
         <div class="row">
-            <div class="col-md-12">
-                <h3>{{trans('app.account_information')}}</h3>
+
+            <div class="col-md-2 l-accnt-nav">
+                <h3>Account</h3>
+                <ul class="list-unstyled">
+                    <li><a href="">Profile Info</a></li>
+                    <li><a href="">Contact Info</a></li>             
+                    <li><a href="">Password</a></li>
+                    <li><a href="">Social Media Settings</a></li>
+                    <li><a href="">Advanced Settings</a></li>
+                </ul>
+                <hr />
             </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
+
+            <div class="col-md-10">
+
+                <h3>{{trans('app.account_information')}}</h3>
+                <hr />
                 @include('partials.form-errors')
                 <div class="form-group">
                     <label for="username" class="control-label">{{ trans('app.username') }}</label>
@@ -34,16 +47,9 @@
                          </span>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-md-12">
+
                 <h3>{{trans('app.profile_information')}}</h3>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
+                <hr />
                 <div class="form-group">
                     <label for="first_name" class="control-label">{{ trans('app.first_name') }} <small>(publicly displayed)</small></label>
                     {!! Form::text('first_name', null, ['class' => 'form-control', 'placeholder' => trans('app.first_name')]) !!}
@@ -68,7 +74,10 @@
                     {!! Form::submit(trans('app.update'), ['class' => 'btn btn-success col-xs-12 col-md-3']) !!}
                 </div>
             </div>
+
         </div>
+       
+
     </div>
 {!! Form::close() !!}
 @endsection

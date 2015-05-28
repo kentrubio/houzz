@@ -74,7 +74,7 @@ class FileUploadService
 
                             if($upload_to == 'project')
                             {
-                                /*$photo = new Photo([
+                                $photo = new Photo([
                                     'user_id' => $this->logged_user->id,
                                     'title' => $name,
                                     'filename' => $filename,
@@ -89,7 +89,24 @@ class FileUploadService
                                     'description' => $request->get('description'),
                                     'updated_by' => $this->logged_user->id
                                 ]);
-                                $object->photos()->save($photo);*/
+                                $object->photos()->save($photo);
+                                /*
+                                $photo = new Photo();
+                                $photo->user_id = $this->logged_user->id;
+                                $photo->title = $name;
+                                $photo->filename = $filename;
+                                $photo->category_id = $request->get('category_id');
+                                $photo->style_id = $request->get('style_id');
+                                $photo->country = $request->get('country');
+                                $photo->state = $request->get('state');
+                                $photo->city = $request->get('city');
+                                $photo->zip = $request->get('zip');
+                                $photo->url = $request->get('url');
+                                $photo->keywords = $request->get('keywords');
+                                $photo->description = $request->get('description');
+                                $photo->updated_by = $request->get('updated_by');
+                                $photo->save();*/
+
                             }
                             else
                             {
@@ -107,9 +124,7 @@ class FileUploadService
                                     'updated_by' => $this->logged_user->id
                                 ]);
 
-                                $file->move($file_directory, $photo->id.'_'.$filename);
 
-                                $photos[] = $photo->id;
 
 /*                                $photo = Photo::create([
                                     'user_id' => $this->logged_user->id,
@@ -122,6 +137,10 @@ class FileUploadService
                                 $object->photos()->attach($photo->id);*/
 
                             }
+
+                            $file->move($file_directory, $photo->id.'_'.$filename);
+
+                            $photos[] = $photo->id;
 
                         }
                     } else {
@@ -147,6 +166,7 @@ class FileUploadService
             $result['text'] = 'success';
             $result['id'] = $id;
             $result['photos'] = $photos;
+            $result['to'] = $upload_to;
         } else {
             $result['code'] = '300';
             $result['text'] = $error;

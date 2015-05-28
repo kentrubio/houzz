@@ -12,20 +12,21 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers\User
  * @Middleware("auth")
  */
-class UploadController extends Controller
-{
+class UploadController extends Controller {
 
     /**
-     * @Get("file-upload")
+     * @Get("/file-upload")
      * @param null $upload_to
      * @param null $id
      * @return \Illuminate\View\View
      */
     public function GetFileUpload($upload_to = null, $id = null)
     {
-        if ($upload_to == null) {
+        if ($upload_to == null)
+        {
             $upload_to = 'book';
-            if ($this->logged_user->hasAccess('professional')) {
+            if ($this->logged_user->hasAccess('professional'))
+            {
                 $upload_to = 'project';
             }
         }
@@ -35,12 +36,13 @@ class UploadController extends Controller
         $this->data['books'] = Book::whereUserId($this->logged_user->id)->get();
         $this->data['no_nav'] = true;
         $this->data['page_title'] = 'Upload File';
+
         return $this->template('user.file-upload');
     }
 
 
     /**
-     * @Post("file-upload")
+     * @Post("/file-upload")
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -48,11 +50,11 @@ class UploadController extends Controller
     {
         $file_upload_service = new FileUploadService($this->logged_user);
         $result = $file_upload_service->uploadProcess($request);
-        if($request->ajax()){
+        if ($request->ajax())
+        {
             return response()->json($result);
         }
     }
-
 
 
 }

@@ -25,15 +25,20 @@ $(document).ready(function () {
             });
         },
         success: function (file, response) {
-            console.log(response);
             if(response.code == 100)
             {
-                document.location.href="/book/edit/"+response.id+"?photo="+response.photos.join(',');
+                if(response.to == 'project')
+                {
+                    document.location.href="/project/edit/"+response.id+"?photo="+response.photos.join(',');
+                }
+                else
+                {
+                    document.location.href="/book/edit/"+response.id+"?photo="+response.photos.join(',');
+                }
             }
             else
             {
                 $("#form-submit").html('Upload');
-                alert(response.text);
             }
 
         }

@@ -1,14 +1,13 @@
 <?php namespace App\Http\Controllers\User;
 
 use App\Eloquent\Profile;
-use App\Eloquent\State;
 use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 /**
- * Class ContactController
+ * Class SocialMediaController
  * @package App\Http\Controllers\User
  *
  * @Middleware("auth")
@@ -35,7 +34,7 @@ class SocialMediaController extends Controller {
     }
 
     /**
-     * Post function for Edit User's contact
+     * Post function for Edit User's social media settings
      *
      * @Patch("/social-media-settings")
      */

@@ -92,8 +92,7 @@ class ProjectController extends Controller {
         $this->data['photos'] = $photo;
         $this->data['no_nav'] = true;
         $this->data['page_title'] = 'Edit Project';
-        dd($this->data);
-        
+
         return $this->template('user.edit-project');
 	}
 

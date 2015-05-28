@@ -6,16 +6,15 @@
     {!! Form::model($user, ['method' => 'PATCH', 'url' => '/advanced-settings']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
+         @include('partials.profile-info-container')
         <div class="row">
-            <div class="col-md-12">
-                <h3>{{trans('app.advanced_settings')}}</h3>
+            <div class="col-md-2">
+                @include('partials.user-profile-nav')
             </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-10">
                 @include('partials.form-errors')
-
+                <h3>{{trans('app.advanced_settings')}}</h3>
+                <hr />
                 <h3>Email notification:</h3>
 
                 <div class="form-group">

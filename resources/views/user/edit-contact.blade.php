@@ -6,14 +6,17 @@
     {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-contact']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
+         @include('partials.profile-info-container')
+        
         <div class="row">
-            <div class="col-md-12">
-                <h3>{{trans('app.contact_information')}}</h3>
+
+            <div class="col-md-2">
+                @include('partials.user-profile-nav')
             </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-12">
+
+            <div class="col-md-10">
+                <h3>{{trans('app.contact_information')}}</h3>
+                <hr />
                 @include('partials.form-errors')
                 <div class="form-group">
                     <label for="city" class="control-label">{{ trans('app.city') }} <small>(publicly displayed)</small></label>

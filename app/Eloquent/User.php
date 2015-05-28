@@ -70,4 +70,9 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
         return $this->hasOne('App\Eloquent\Profile', 'user_id', 'id');
     }
 
+    public function advancedSettings()
+    {
+        return $this->hasOne('App\Eloquent\AdvancedSetting', 'user_id', 'id');
+    }
+
 }

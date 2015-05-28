@@ -29,21 +29,10 @@ class AdvancedSettingsController extends Controller {
 
         $this->data['user'] = $user;
 
-        $notification_array = [];
-        if (isset($user->advancedSettings->send_email_when))
-        {
-            $notif = json_decode($user->advancedSettings->send_email_when);
-
-            foreach($notif as $k => $n)
-            {
-                $notification_array[$k] = $n;
-            }
-        }
-
-        $this->data['advanced_settings'] = $notification_array;
-
+        $this->data['advanced_settings'] = NotificationSetting::getUserData($user, 'send_email_when');
+        $this->data['email_notification'] = NotificationSetting::getUserData($user, 'email_notification');
+        $this->data['visible_to_public'] = NotificationSetting::getUserData($user, 'visible_to_public');
         $this->data['send_email_when'] = NotificationSetting::getNameWithOptions();
-
 
         $this->data['page_title'] = trans('app.link_to_your_social_media_profiles');
 
@@ -81,6 +70,9 @@ class AdvancedSettingsController extends Controller {
 
             $user->advancedSettings->save();
         }
+
+        NotificationSetting::storeUserSetting($user, Input::get('email'), 'email_notification');
+        NotificationSetting::storeUserSetting($user, Input::get('visible_to_public'), 'visible_to_public');
 
         return redirect('/advanced-settings')->with('success', trans('app.success_update_message'));
     }

@@ -4,5 +4,6 @@
 .env.*
 .env
 /.idea
+/public/uploads
 /storage/uploads
 composer.lock

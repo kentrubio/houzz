@@ -1,3 +1,7 @@
+@section('page_css')
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/profile-info.css')}}"/>
+@endsection
+
 <div class="row">
 
 

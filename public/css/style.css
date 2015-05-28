@@ -34,7 +34,7 @@ body {padding-bottom: 0 !important}
 .dropdown-menu>li>a:hover {background-color:#2d7e68;color:#fff !important;}
 .dropdown-menu .divider {  background-color: #fff !important;}
 .btn-primary {  background: #6ac1a9 !important;  border-color: #6ac1a9 !important;}
-.btn-primary:hover, .btn-primary:focus {border-radius:0 !important; border: 0 !important;background-color:none !important;}
+.btn-primary:hover, .btn-primary:focus {border-radius:0 !important; border: 0 !important;background-color:#3d7f6b !important;}
 
 .head-box {  padding: 20px 0;}
 .head-nav ul li a {color:#ffffff !important;font-size: 14px}
@@ -56,6 +56,12 @@ body {padding-bottom: 0 !important}
 .profile-box .row .col-md-4 h2 {margin-top: 118px;color:#fff;}
 .profile-box .row .col-md-4 h2 a {color:#fff;}
 .profile-box .row .col-md-4 h2 a:hover {text-decoration: none;color:#2d7e68;}
+
+
+/*sign-in-or-sign-up*/
+.fb-btn {}
+
+/*END sign-in-or-sign-up*/
 
 /*Footer*/
 .footer-box {background-color:#6ac1a9;margin-top:25px; }

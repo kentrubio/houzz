@@ -5,6 +5,7 @@ use App\Eloquent\Photo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Response;
 
 /**
  * Class BookController
@@ -56,6 +57,7 @@ class BookController extends Controller {
     /**
      * Show the form for editing the specified resource.
      * @Get("/book/edit/{id}")
+     * @param Request $request
      * @param  int $id
      * @return Response
      */
@@ -88,7 +90,8 @@ class BookController extends Controller {
         {
             return Response::make('errors.404', 404);
         }
-        $directory = '/uploads/' . $this->logged_user->id . '/book/' . $book->id;
+
+        $directory = '/uploads/' . $this->logged_user->id . '/book/' . $id;
         $this->data['directory'] = $directory;
         $this->data['edit_book'] = $edit_book;
         $this->data['book'] = $book;

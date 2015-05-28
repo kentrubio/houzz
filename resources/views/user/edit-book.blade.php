@@ -18,13 +18,13 @@
                             <a class="btn btn-default" href="javascript:void(0);"
                                id="move-photos">{{ trans('app.move_photos_to') }}</a>
                             <a class="btn btn-default" href="javascript:void(0);"
-                               id="copy-photos">{{ trans('app.move_photos_to') }}</a>
+                               id="copy-photos">{{ trans('app.copy_photos_to') }}</a>
                         @endif
                         <a class="btn btn-default" href="javascript:void(0);"
                            id="remove-photos">{{ trans('app.remove_photos') }}</a>
                     </div>
                     @if($edit_book)
-                        <div class="col-md-5 ">
+                        <div class="col-md-5">
                             <div class="col-md-6">
                                 <a class="btn btn-danger" href="javascript:void(0);"
                                    id="delete-book">{{ trans('app.delete_book') }}</a>
@@ -49,15 +49,15 @@
             <div class="form-horizontal margin-top-twenty">
 
                 <div class='form-group'>
-                    <div class="control-label col-xs-2 text-left"><label for="book-title">{{trans('app.book_title')}}</label></div>
-                    <div class="controls col-xs-9"><input type="text" maxlength="71" id="book-title"
+                    <div class="control-label col-md-2 text-left"><label for="book-title">{{trans('app.book_title')}}</label></div>
+                    <div class="controls col-md-9"><input type="text" maxlength="71" id="book-title"
                                                           name="book[name]" value="{{$book->name}}" class="form-control"/>
                     </div>
                 </div>
 
                 <div class='form-group'>
-                    <div class="control-label col-xs-2 text-left"><label for="book-description">Description</label></div>
-                    <div class="controls col-xs-9">
+                    <div class="control-label col-md-2 text-left"><label for="book-description">Description</label></div>
+                    <div class="controls col-md-9">
                         <textarea id="book-description" rows="5" name="book[description]" class="form-control">{{$book->description}}</textarea>
                     </div>
                 </div>
@@ -65,7 +65,7 @@
         @endif
         <div class="row margin-top-twenty">
 
-            <div class="col-md-12">
+            <div class="col-md-11">
                 @if($photos)
                     @foreach($photos as $photo)
 
@@ -93,7 +93,7 @@
                         </div>
                     @endforeach
                 @else
-                    <div id="notification-danger" class="alert alert-danger">
+                    <div id="notification-danger" class="alert alert-danger col-md-11">
                         {{trans('app.no_photos_found')}}
                     </div>
                 @endif

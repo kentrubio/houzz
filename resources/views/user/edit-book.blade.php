@@ -4,6 +4,7 @@
 @endsection
 @section('content')
     <div class="container">
+        
         {!! Form::open(['url' => '/book/update']) !!}
         {!! Form::hidden('book_id', $book->id) !!}
 

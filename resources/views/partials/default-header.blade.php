@@ -2,13 +2,13 @@
 <div class="container">
         <div class="row head-box">
             <div class="col-md-3">
-                    <img src="{{asset('images/sample-logo.png')}}" alt="DRC Sports Race Management" id="DRCS-logo" />
+                    <img src="{{asset('images/sample-logo.png')}}" alt="Logo Alt here"/>
             </div>
 
             <div class="col-md-4 s-top-b">
                 <div class="input-group">
                   <span class="input-group-btn">
-                    <button class="btn btn-default" type="button"><i class="fa fa-2x fa-search white-txt"></i></button>
+                    <button class="btn btn-default top-s-btn" type="button"><i class="fa fa-2x fa-search white-txt"></i></button>
                   </span>
                   <input type="text" class="form-control" placeholder="Search for...">
                 </div><!-- /input-group -->
@@ -30,8 +30,8 @@
         <!--Header-->
 
 <!--  navbar -->
-<nav class="navbar navbar-default bg-light-green">
-    <div class="container">
+<nav class="navbar navbar-default bg-light-green no-m-btm">
+    <div class="container no-pad-left">
 
 
         <div class="navbar-header">
@@ -43,7 +43,7 @@
                 <span class="icon-bar"></span>
             </button>
         </div>
-        <div id="navbar" class="navbar-collapse collapse head-nav">
+        <div id="navbar" class="navbar-collapse collapse head-nav no-pad-left">
             @if(!(isset($no_nav) && $no_nav))
                 <ul class="nav navbar-nav">
                     <li class="bg-dark-green"><a href="/photos"><i class="fa fa-photo white-txt fa-2x"></i> {{ trans('app.photos') }}</a></li>

@@ -1,13 +1,27 @@
 /*
 Standard CSS Theme
 */
+/*colors-scheme*/
+.white-txt {color:#ffffff;}
+.light-green {color:#6ac1a9;}
+.bg-light-green {background-color:#6ac1a9;}
+.bg-light-green a:hover {color:#2d7e68 !important;}
+.bg-dark-green {background-color:#2d7e68;}
+.bg-dark-green a:hover {color:#6ac1a9 !important;}
+
+html, body {background-color: #fff;font-family: 'Open Sans', sans-serif;}
+body {padding-bottom: 0 !important}
+.div-spacer {display: block;margin:10px 0; }
+.no-m-btm {margin-bottom:0; border: none;}
+.no-pad-left {padding-left: 0;}
+.top-s-btn {  padding: 10px 12px !important;}
 
 /*HEADER CSS*/
 .page-header  {margin:0;padding-bottom:0;  border-bottom:none;}
-.btn { padding: 9px 12px;background-color:#6ac1a9 ;}
+.btn { padding: 12px 12px;background-color:#6ac1a9 ;border:0;font-size: 14px;}
 .btn-default {  border-color: #6ac1a9;}
 .btn:hover {background-color:#3d7f6b; }
-.form-control {height:44px;border: 1px solid #6ac1a9;}
+.form-control {height:43px;border: 1px solid #6ac1a9;}
 .form-control:focus, .form-control:active {border: 1px solid #6ac1a9;}
 .navbar {border-radius:0;}
 .navbar-nav>li>a {line-height: 28px;}
@@ -16,11 +30,11 @@ Standard CSS Theme
 .dropdown-menu {background-color:#6ac1a9;border:solid 1px #fff; }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.active>a {  background: #2d7e68 !important;}
 .navbar-default .navbar-nav>.open>a:hover {color:#fff !important;}
-.btn-primary {padding: 11px 12px;}
+.btn-primary {padding: 12px 12px;}
 .dropdown-menu>li>a:hover {background-color:#2d7e68;color:#fff !important;}
 .dropdown-menu .divider {  background-color: #fff !important;}
 .btn-primary {  background: #6ac1a9 !important;  border-color: #6ac1a9 !important;}
-.btn-primary:hover, .btn-primary:focus {border-radius:0 !important; border: 0 !important;background-color:none !important;}
+.btn-primary:hover, .btn-primary:focus {border-radius:0 !important; border: 0 !important;background-color:#3d7f6b !important;}
 
 .head-box {  padding: 20px 0;}
 .head-nav ul li a {color:#ffffff !important;font-size: 14px}
@@ -32,13 +46,38 @@ Standard CSS Theme
 .user-top {font-size: 16px; color: #6ac1a9; padding-left: 10px; margin-top: 9px; float: left; }
 /*END HEADER CSS*/
 
-/*colors-scheme*/
-.white-txt {color:#ffffff;}
-.light-green {color:#6ac1a9;}
-.bg-light-green {background-color:#6ac1a9;}
-.bg-light-green a:hover {color:#2d7e68 !important;}
-.bg-dark-green {background-color:#2d7e68;}
-.bg-dark-green a:hover {color:#6ac1a9 !important;}
+/*PROFILE INFO*/
+.adjst-left {  padding-left: 181px;}
+.profile-box {background: url('/images/profile-bg.jpg');display: block;height: 167px;  background-size: cover;}
+.profile-pic {position: absolute; z-index: 9999; margin-top: -107px; margin-left: 13px; }
+.sub-link {  background-color: #ececec; border: 0; }
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.active>a {background:#6ac1a9 !important;}
+.sub-link .container-fluid .navbar-collapse ul li:hover {background-color:#6ac1a9 !important;}
+.profile-box .row .col-md-4 h2 {margin-top: 118px;color:#fff;}
+.profile-box .row .col-md-4 h2 a {color:#fff;}
+.profile-box .row .col-md-4 h2 a:hover {text-decoration: none;color:#2d7e68;}
+
+
+/*sign-in-or-sign-up*/
+.fb-btn {}
+
+/*END sign-in-or-sign-up*/
+
+/*Footer*/
+.footer-box {background-color:#6ac1a9;margin-top:25px; }
+.footer-logo {text-align: center;}
+.footer-logo img, .footer-logo span {display: block;}
+.footer-logo img {margin-top:30px;}
+.footer-logo span {color:#fff;padding: 10px 0;font-size: 14px;}
+.copy-footer {background-color:#2d7e68;padding: 10px 0; }
+.copytext span {color:#fff;}
+.f-links, .f-links ul li a {color:#fff;  font-size: 14px;}
+.f-links h3 {font-size: 14px;font-weight: 600;  font-size: 14px;}
+.language-drop span {color:#fff;font-size: 12px}
+.f-links {margin-left: 20px;}
+/*END Footer*/
+
+
 
 /*Removed Border Radius*/
 .btn,.form-control {border-radius:0;}

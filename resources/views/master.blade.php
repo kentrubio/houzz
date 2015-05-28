@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <!-- page custom css -->
     <link rel="stylesheet" type="text/css" href="{{URL::asset('css/style.css')}}"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700,800' rel='stylesheet' type='text/css'>
     @yield('page_css')
 </head>
 <body>
@@ -26,8 +28,14 @@
         @yield('content')
     </div>
 </div>
-<div class="page-footer">
+
+<div class="row footer-box">
     @yield('footer')
+</div>
+<div class="row copy-footer text-center">
+    <div class="container copytext">
+    <span>&copy; {{date('Y')}} {{Config::get('app.name')}}</span>
+    </div>
 </div>
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>

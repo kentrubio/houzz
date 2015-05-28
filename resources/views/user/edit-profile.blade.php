@@ -6,6 +6,7 @@
     {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
+        @include('partials.profile-info-container')
         <div class="row">
             <div class="col-md-12">
                 <h3>{{trans('app.account_information')}}</h3>

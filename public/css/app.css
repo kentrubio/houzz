@@ -34,7 +34,7 @@ h3{
     background:#ffffff;
     margin:0;
     padding:0;
-    border-bottom:1px solid #efefef;
+    /*border-bottom:1px solid #efefef;*/
 }
 .page-content{
     padding:0;
@@ -44,10 +44,7 @@ h3{
 .jumbotron{
     background:#ffffff;
 }
-.page-footer
-{
-    border-top:1px solid #dedede;
-}
+
 .container-780
 {
     width:780px;

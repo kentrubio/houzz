@@ -9,6 +9,8 @@ Standard CSS Theme
 .bg-dark-green {background-color:#2d7e68;}
 .bg-dark-green a:hover {color:#6ac1a9 !important;}
 
+h1, h2, h3, h4, h5, h6, label {color:#6ac1a9 !important;}
+label {font-size: 14px}
 html, body {background-color: #fff;font-family: 'Open Sans', sans-serif;}
 body {padding-bottom: 0 !important}
 .div-spacer {display: block;margin:10px 0; }
@@ -56,10 +58,15 @@ body {padding-bottom: 0 !important}
 .profile-box .row .col-md-4 h2 {margin-top: 118px;color:#fff;}
 .profile-box .row .col-md-4 h2 a {color:#fff;}
 .profile-box .row .col-md-4 h2 a:hover {text-decoration: none;color:#2d7e68;}
+/*END PROFILE INFO*/
 
+/*EDI PROFILE*/
+.l-accnt-nav h3 {  font-size: 14px; font-weight: 700; }
+.l-accnt-nav ul li {padding: 6px 0 0 10px; font-size: 14px; }
+.l-accnt-nav ul li a {color:#6ac1a9;}
 
 /*sign-in-or-sign-up*/
-.fb-btn {}
+
 
 /*END sign-in-or-sign-up*/
 
@@ -73,7 +80,7 @@ body {padding-bottom: 0 !important}
 .copytext span {color:#fff;}
 .f-links, .f-links ul li a {color:#fff;  font-size: 14px;}
 .f-links h3 {font-size: 14px;font-weight: 600;  font-size: 14px;}
-.language-drop span {color:#fff;font-size: 12px}
+.language-drop span {color:#fff;font-size: 12px;  display: inline-block;}
 .f-links {margin-left: 20px;}
 /*END Footer*/
 

@@ -1,19 +1,7 @@
 <div class="container">
 
-	<div class="row div-spacer">
-		&nbsp;
-	</div>
 
-    <div class="row text-center">
 
-	    <div class="language-drop">
-	    <span>Language:</span>&nbsp; {!! Form::select('locale',['en'=>'English','ja'=>'日本語'], $locale, ['onchange'=>'document.location="/language/"+$(this).val();']) !!}
-	    </div>
-    </div>
-
-	<div class="row div-spacer">
-		&nbsp;
-	</div>
 
 	<div class="row">
 
@@ -21,7 +9,9 @@
 			 <img src="{{asset('images/footer-logo.gif')}}" alt="Title Alt Attributes here"/>
 			<span>Slogan of the company here</span>
 
-
+	    <div class="language-drop">
+	    <span>Language:</span>&nbsp; {!! Form::select('locale',['en'=>'English','ja'=>'日本語'], $locale, ['onchange'=>'document.location="/language/"+$(this).val();']) !!}
+	    </div>
 
 		</div>
 

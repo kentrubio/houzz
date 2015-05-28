@@ -49,9 +49,22 @@ class BookController extends Controller {
      * @param  int $id
      * @return Response
      */
-    public function show(Request $request, $id)
+    public function show($id)
     {
         //
+        $book = Book::whereUserId($this->logged_user->id)->whereId($id)->first();
+        if ( ! $book)
+        {
+            return Response::make('errors.404', 404);
+        }
+
+        $directory = '/uploads/' . $this->logged_user->id . '/book/' . $id;
+        $this->data['directory'] = $directory;
+        $this->data['book'] = $book;
+        $this->data['page_title'] = 'Show Book';
+
+        return $this->template('user.show-book');
+
     }
 
     /**
@@ -141,7 +154,7 @@ class BookController extends Controller {
 
             }
         }
-        return redirect()->back();
+        return redirect('/book/'.$book_id);
     }
 
     /**

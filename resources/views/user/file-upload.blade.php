@@ -9,6 +9,7 @@
 @endsection
 @section('content')
     <div class="container">
+
         <div class="row progression">
             <div class="col-md-4 step1 large-header">Step 1: Upload photo files</div>
             <div class="col-md-8 step2 large-header">Step 2: Tell us what you like about the photos</div>

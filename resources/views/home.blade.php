@@ -2,9 +2,66 @@
 @section('header')
     @include('partials.default-header')
 @endsection
+
+@section('page_css')
+    <link rel="stylesheet" type="text/css" href="{{URL::asset('css/showprofile.css')}}"/>
+@endsection
 @section('content')
+
+    <!--
+    <div class="row">
+        Banner here...
+    </div>
+
     <!-- Jumbotron -->
-    <div class="jumbotron text-center">
+    <div class="container">
+
+        <!--Welcome Content by KENT-->
+        <div class="row">
+
+
+            <div class="row div-spacer">
+                &nbsp;
+            </div>
+
+            <div class="col-md-8">
+                    <div class="talkbubble">
+                      <textarea></textarea>
+                    </div>
+
+                    <div class="feed-box">
+                        <div class="feed-img"><a href=""><img src="{{asset('images/sample-img-feeds_07.jpg')}}"></a></div>
+                        <div class="feed-content">
+                            <span>13 hours ago</span>
+                            <a href="">WizardOnCouch bookmarked an ideabook: Wish List</a>
+                        </div>
+                        <div class="feed-likes">
+                            <div class="likes-box"><a href=""><i class="fa fa-thumbs-up"></i> Like</a></div>
+                            <div class="comments-box"><a href=""><i class="fa fa-comment"></i> Comment</a></div>
+                        </div>
+                    </div>
+
+                    <div class="feed-box">
+                        <div class="feed-img"><a href=""><img src="{{asset('images/sample-img-feeds_07.jpg')}}"></a></div>
+                        <div class="feed-content">
+                            <span>13 hours ago</span>
+                            <a href="">WizardOnCouch bookmarked an ideabook: Wish List</a>
+                        </div>
+                        <div class="feed-likes">
+                            <div class="likes-box"><a href=""><i class="fa fa-thumbs-up"></i> Like</a></div>
+                            <div class="comments-box"><a href=""><i class="fa fa-comment"></i> Comment</a></div>
+                        </div>
+                    </div>
+
+            </div>
+
+            <div class="col-md-4">Sidebar Here...</div>
+
+        </div>
+
+
+        <!--End Welcome Content by KENT-->
+
         <p class="lead">{{Config::get('app.name')}} {{ trans('app.on_going') }}</p>
 
         @if(!isset($logged_user))
@@ -18,6 +75,10 @@
                 {{ trans('app.welcome') }} {{$logged_user->first_name}} {{$logged_user->last_name}}!!
             </p>
         @endif
+
+                <div class="row div-spacer">
+                    &nbsp;
+                </div>
     </div>
 @endsection
 @section('footer')

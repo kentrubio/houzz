@@ -1,0 +1,28 @@
+.content-btn {width: 100%;color:#fff;}
+.content-btn:hover {color:#fff;}
+.follow-box {margin: 0 auto; padding-top: 4px;}
+.follow-box a {width: 100%;background-color:#fff;border:solid #6ac1a9 1px;color:#6ac1a9;}
+.follow-box a:hover {color:#fff;}
+.no-brder-btm {  border-bottom: 0 !important;}
+.wedding-idea a {    margin-left: 15px; margin-bottom: 15px; height: 163px; width: 156px; position: relative; padding: 0; box-sizing: border-box; float: left; overflow: visible; display: block; }
+.wedding-idea a span {position: absolute; left: 0; right: 0; bottom: 0; padding: 5px 5px; background-color: #6ac1a9; display: block; color: #fff; }
+.upload-photo {border: dashed #6ac1a9 1px;}
+.upload-photo i {  margin-top: 44px; color: #ebebeb; }
+.upload-photo span {background-color: #fff !important; color: #6ac1a9 !important;  font-size: 14px !important; }
+.overlay {position: relative; }
+.overlay:after {position: absolute; content:""; top:0; left:0; width:100%; height:100%; opacity:0; }
+.overlay:hover:after  {opacity: .4; }
+.green:after {background-color: #3d7f6b; }
+/*YOUR UPDATES BUBBLE*/
+.talkbubble {position: relative; width: 94%; padding: 5px; border-radius: 0; border: solid #6ac1a9; background: #6ac1a9;float:right; }
+.talkbubble:before {content:""; position: absolute; right: 100%; top: 13px; width: 0; height: 0; border-top: 13px solid transparent; border-right: 26px solid #6ac1a9; border-bottom: 13px solid transparent; }
+.talkbubble textarea {position: inherit; width: inherit; height: inherit; background: inherit; margin: 0; padding: 0; border: none; resize: none;color:#fff;font-size:14px; }
+
+textarea:focus, .uneditable-input:focus {border-color: #fff; box-shadow: none; outline: 0 none; }
+.feed-box {  height: 110px; display: block; float: left; border: solid #6ac1a9 1px; width: 100%;  position: relative;  overflow: hidden;margin-top: 25px; }
+.feed-content {  padding: 10px 18px; float: left;color:#6ac1a9; }
+.feed-content a {display: block; color:#6ac1a9;}
+.feed-img {display: block; float: left;   position: relative;z-index: 999}
+.feed-likes { position: absolute; bottom: 0px; padding-left: 177px; background-color: #ececec; z-index: 1;  width: 100%;color:#fff; }
+.feed-likes a {color:#6ac1a9;}
+.likes-box, .comments-box {float:left;padding: 5px 10px}

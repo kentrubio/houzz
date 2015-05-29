@@ -304,6 +304,11 @@
             </div>
         </div>
         {!! Form::close() !!}
+
+                <div class="row div-spacer">
+                    &nbsp;
+                </div>
+        
     </div>
 @endsection
 @section('page_js')

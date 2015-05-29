@@ -9,7 +9,8 @@ Standard CSS Theme
 .bg-dark-green {background-color:#2d7e68;}
 .bg-dark-green a:hover {color:#6ac1a9 !important;}
 
-h1, h2, h3, h4, h5, h6, label {color:#6ac1a9 !important;}
+h1, h2, h3, h4, h5, h6, label {color:#6ac1a9 !important;font-size: 16px; color: #6ac1a9;  margin-bottom: 15px;}
+p, a {font-size: 14px}
 label {font-size: 14px}
 html, body {background-color: #fff;font-family: 'Open Sans', sans-serif;}
 body {padding-bottom: 0 !important}
@@ -17,6 +18,9 @@ body {padding-bottom: 0 !important}
 .no-m-btm {margin-bottom:0; border: none;}
 .no-pad-left {padding-left: 0;}
 .top-s-btn {  padding: 10px 12px !important;}
+.profile-name h2 a {font-size: 28px ;}
+.content-title {font-size: 16px; color: #6ac1a9;  margin-bottom: 15px; }
+.content-title a {color: #6ac1a9; }
 
 /*HEADER CSS*/
 .page-header  {margin:0;padding-bottom:0;  border-bottom:none;}
@@ -84,7 +88,9 @@ body {padding-bottom: 0 !important}
 .f-links {margin-left: 20px;}
 /*END Footer*/
 
-
+/*ADVERTS CSS*/
+.ads-box {height:305px;width: 100%;display: block;background-color: #e1e1e1;}
+.ads-box h2 {position: relative; display: block; top: 40%; text-align: center;color:#fff !important;font-weight: bold; }
 
 /*Removed Border Radius*/
 .btn,.form-control {border-radius:0;}

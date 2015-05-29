@@ -119,9 +119,7 @@ class FileUploadService
 
                                 DB::table('book_photos')->insert([
                                     'book_id' => $object->id,
-                                    'photo_id' => $photo->id,
-                                    'created_by' => $this->logged_user->id,
-                                    'updated_by' => $this->logged_user->id
+                                    'photo_id' => $photo->id
                                 ]);
 
 

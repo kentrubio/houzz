@@ -56,8 +56,16 @@
                 <h3 class="content-title">Your Updates</h3>
 
                 <div class="feeds-container">
-                    <div class="talkbubble">
-                      <textarea></textarea>
+
+                    <div class="home-buble-in">
+                        <h3 class="content-title">What's on your mind today?</h3>
+                        <div class="s-prof-pic"><a href=""><img src="{{asset('images/small-profile-pic.png')}}"></a></div>
+
+                        <div class="bubble-boxh">
+                            <div class="talkbubble">
+                              <textarea></textarea>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="feed-box">

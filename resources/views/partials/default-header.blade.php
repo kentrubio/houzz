@@ -74,7 +74,7 @@
                             <li>{!! Html::link("/profile/edit", trans('app.edit_profile'))  !!}</li>
                             <li><a href="/file-upload"><i class="fa fa-upload"></i>&nbsp;{{ trans('app.upload_photo_or_file') }}</a></li>
                             <li class="divider"></li>
-                            <li><a href="signout">{{ trans('app.sign_out') }}&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
+                            <li><a href="/signout">{{ trans('app.sign_out') }}&nbsp;&nbsp;<i class="fa fa-sign-out"></i></a></li>
                         </ul>
                     </li>
                 @else

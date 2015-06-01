@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('from')->index();
             $table->unsignedInteger('to')->index();
+            $table->string('subject');
             $table->text('message');
             $table->timestamps();
 

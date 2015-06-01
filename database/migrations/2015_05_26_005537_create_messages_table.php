@@ -22,6 +22,7 @@ class CreateMessagesTable extends Migration {
             $table->string('subject');
             $table->text('message');
             $table->timestamps();
+            $table->softDeletes();
 
             $table->foreign('from')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('to')->references('id')->on('users')->onDelete('cascade');

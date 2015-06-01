@@ -7,6 +7,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * Class MessageController
+ * @package App\Http\Controllers\User
+ */
 class MessageController extends Controller {
 
     /**
@@ -59,13 +63,26 @@ class MessageController extends Controller {
 
     /**
      * Display the specified resource.
+     * @Get("/message/{id}")
      *
      * @param  int  $id
      * @return Response
      */
     public function show($id)
     {
-        //
+        $message = Message::whereId($id)->first();
+
+        if (! $message)
+        {
+            dd('message id not found');
+        }
+
+
+        $this->data['user'] = $this->logged_user;
+        $this->data['message'] = $message;
+        $this->data['page_title'] = trans('app.view_message');
+
+        return $this->template('user.show-message');
     }
 
     /**

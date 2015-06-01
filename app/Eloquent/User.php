@@ -67,8 +67,9 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
      */
     public static function postUserCreation($user, $user_data)
     {
-        // TODO: check if duplicate username
         $username = substr($user_data['email'], 0, strpos($user_data['email'], '@'));
+
+        $username = User::setOrCreateAlternativeUsername($username, 1);
 
         $user->username = $username;
 
@@ -77,6 +78,24 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
         $user->save();
 
         return $user;
+    }
+
+    /**
+     * @param $username
+     * @param $instance
+     * @return mixed
+     */
+    private static function setOrCreateAlternativeUsername($username, $instance)
+    {
+        $db_user = User::whereUsername($username)->first();
+
+        // found a user with the same username, suggest a new username
+        if ($db_user)
+        {
+            $username = User::setOrCreateAlternativeUsername($username . $instance, $instance + 1);
+        }
+
+        return $username;
     }
 
     /**

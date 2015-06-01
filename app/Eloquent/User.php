@@ -37,39 +37,59 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
     protected $hidden = ['password', 'remember_token'];
 
     /**
-     * @param $userData
+     * @param $user_data
      * @return static
      */
-    public function findByUsernameOrCreate($userData)
+    public function findByUsernameOrCreate($user_data)
     {
-        $user = User::whereEmail($userData->user['email'])->first();
+        $user = User::whereEmail($user_data->user['email'])->first();
 
         if ( ! $user)
         {
             $user = User::create([
-                'first_name' => $userData->user['first_name'],
-                'last_name'  => $userData->user['last_name'],
+                'first_name' => $user_data->user['first_name'],
+                'last_name'  => $user_data->user['last_name'],
                 'password'   => Hash::make(str_random(40)),
-                'email'      => $userData->user['email'],
+                'email'      => $user_data->user['email'],
                 'activated'  => true,
             ]);
 
-            // TODO: check if duplicate username
-            $username = substr($userData->user['email'], 0, strpos($userData->user['email'], '@'));
-
-            $user->username = $username;
-            $user->save();
+            $user = $this->postUserCreation($user, $user_data->user);
         }
 
         return $user;
-
     }
 
+    /**
+     * @param $user
+     * @param $user_data
+     * @return mixed
+     */
+    public static function postUserCreation($user, $user_data)
+    {
+        // TODO: check if duplicate username
+        $username = substr($user_data['email'], 0, strpos($user_data['email'], '@'));
+
+        $user->username = $username;
+
+        $user->advancedSettings()->save(new AdvancedSetting);
+
+        $user->save();
+
+        return $user;
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function profile()
     {
         return $this->hasOne('App\Eloquent\Profile', 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function advancedSettings()
     {
         return $this->hasOne('App\Eloquent\AdvancedSetting', 'user_id', 'id');

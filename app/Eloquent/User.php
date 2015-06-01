@@ -27,7 +27,7 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
      *
      * @var array
      */
-    protected $fillable = ['email', 'password', 'activated', 'first_name', 'last_name'];
+    protected $fillable = ['email', 'password', 'activated', 'first_name', 'last_name', 'avatar'];
 
     /**
      * The attributes excluded from the model's JSON form.
@@ -44,6 +44,9 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
     {
         $user = User::whereEmail($user_data->user['email'])->first();
 
+        $avatar = $user_data->avatar;
+        $avatar = str_replace('?type=normal', '?type=large', $avatar);
+
         if ( ! $user)
         {
             $user = User::create([
@@ -51,6 +54,7 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
                 'last_name'  => $user_data->user['last_name'],
                 'password'   => Hash::make(str_random(40)),
                 'email'      => $user_data->user['email'],
+                'avatar'     => $avatar,
                 'activated'  => true,
             ]);
 

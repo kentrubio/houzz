@@ -18,7 +18,7 @@ class ContactController extends Controller {
     /**
      * Edit User's contact
      *
-     * @Get("/edit-contact")
+     * @Get("/contact/edit")
      */
     public function edit()
     {
@@ -39,7 +39,7 @@ class ContactController extends Controller {
     /**
      * Post function for Edit User's contact
      *
-     * @Patch("/edit-contact")
+     * @Patch("/contact")
      */
     public function postEdit()
     {
@@ -70,7 +70,7 @@ class ContactController extends Controller {
             $user->profile->save();
         }
 
-        return redirect('/edit-contact')->with('success', trans('app.success_update_message'));
+        return redirect('/contact/edit')->with('success', trans('app.success_update_message'));
     }
 
     /**

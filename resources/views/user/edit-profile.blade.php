@@ -3,7 +3,7 @@
     @include('partials.default-header')
 @endsection
 @section('content')
-    {!! Form::model($user, ['method' => 'PATCH', 'url' => '/edit-profile']) !!}
+    {!! Form::model($user, ['method' => 'PATCH', 'url' => '/profile']) !!}
     {!! Form::hidden('id') !!}
     <div class="container">
         @include('partials.profile-info-container')

@@ -109,7 +109,7 @@
 
 
            <div class="col-md-3">
-            <a class="btn btn-default content-btn" href="#" role="button"><i class="fa fa-upload fa-2x"></i> Upload Photos</a>
+            <a class="btn btn-default content-btn" href="/file-upload" role="button"><i class="fa fa-upload fa-2x"></i> Upload Photos</a>
             <!--ADVERTS AREA-->
             <div class="ads-box">
                 <h2>ADVERTISEMENT SPACE HERE...</h2>

@@ -2,6 +2,12 @@
 	<div class="profile-box">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-2 profile-name"><h2><a href="">{{$logged_user->first_name}} {{$logged_user->last_name}}</a></h2></div>
+
+			<!--Profile Edit Details here-->
+			<div class="">
+
+			</div>
+			<!--//Profile Edit Details here-->
 		</div>
 		
 	</div>

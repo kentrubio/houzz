@@ -69,7 +69,9 @@
 
         </div>
        
-
+                <div class="row div-spacer">
+                    &nbsp;
+                </div>
     </div>
 {!! Form::close() !!}
 @endsection

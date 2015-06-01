@@ -13,16 +13,10 @@
             </div>
 
             <div class="col-md-10">
-                <h3>{{trans('app.messages')}}</h3>
-                <hr />
-
-                @foreach($messages as $message)
-                    <div>
-                        {{ $message->sender->first_name }} {{ $message->sender->last_name }} {{ $message->created_at->diffForHumans() }}
-                        <a href="/message/{{$message->id}}">{{ $message->subject }}</a>
-
-                    </div>
-                @endforeach
+                
+                {{$message->id}}
+                {{$message->subject}}
+                {{$message->created_at->diffForHumans()}}
             </div>
         </div>
 

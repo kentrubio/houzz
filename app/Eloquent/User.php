@@ -44,11 +44,11 @@ class User extends SentryUser implements AuthenticatableContract, CanResetPasswo
     {
         $user = User::whereEmail($user_data->user['email'])->first();
 
-        $avatar = $user_data->avatar;
-        $avatar = str_replace('?type=normal', '?type=large', $avatar);
-
         if ( ! $user)
         {
+            $avatar = $user_data->avatar;
+            $avatar = str_replace('?type=normal', '?type=large', $avatar);
+            
             $user = User::create([
                 'first_name' => $user_data->user['first_name'],
                 'last_name'  => $user_data->user['last_name'],

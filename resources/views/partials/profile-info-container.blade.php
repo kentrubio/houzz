@@ -16,7 +16,7 @@
 		
 	</div>
 	<div class="">
-		<div class="profile-pic"><img src="{{asset('images/s-profile-pic.jpg')}}" alt="Logo Alt here"/></div>
+		<div class="profile-pic"><img src="{{$user->avatar}}" alt="Logo Alt here"/></div>
 		<nav class="navbar navbar-inverse sub-link">
 		  <div class="container-fluid adjst-left">
 		    <!-- Brand and toggle get grouped for better mobile display -->

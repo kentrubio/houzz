@@ -47,7 +47,7 @@ class MessageController extends Controller {
      *
      * @param Request $request
      * @return Response
-     * @throws \Exceptionp
+     * @throws \Exception
      */
     public function store(Request $request)
     {

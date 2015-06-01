@@ -5,7 +5,11 @@
 
 			<!--Profile Edit Details here-->
 			<div class="">
-
+                @if($logged_user->id == $user->id)
+                    I'm viewing my own data.
+                @else
+                    I'm viewing someone else's data.
+                @endif
 			</div>
 			<!--//Profile Edit Details here-->
 		</div>

@@ -88,6 +88,7 @@ class ProfileController extends Controller {
             return Response::make('errors.404', 404);
         }
 
+        $this->data['user'] = $user;
         $this->data['page_title'] = trans('app.my_profile');
 
         return $this->template('user.show-profile');

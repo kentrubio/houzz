@@ -1,4 +1,4 @@
-<?php
+haha<?php
 
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,7 +19,7 @@ class CreateMessagesTable extends Migration {
             $table->increments('id');
             $table->unsignedInteger('from')->index();
             $table->unsignedInteger('to')->index();
-            $table->unsignedInteger('message')->index();
+            $table->text('message');
             $table->timestamps();
 
             $table->foreign('from')->references('id')->on('users')->onDelete('cascade');

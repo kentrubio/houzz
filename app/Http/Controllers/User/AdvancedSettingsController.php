@@ -48,7 +48,7 @@ class AdvancedSettingsController extends Controller {
     {
         $user = User::with('advancedSettings')->whereId(Input::get('id'))->first();
 
-        $advanced_settings_input = Input::except('_method', '_token', 'id');
+        $advanced_settings_input = Input::except('_method', '_token', 'id', 'email', 'visible_to_public');
 
         if ( ! $user)
         {

@@ -17,7 +17,7 @@ class ProfileController extends Controller {
     /**
      * Edit User's profile
      *
-     * @Get("/edit-profile")
+     * @Get("/profile/edit")
      */
     public function edit()
     {
@@ -37,7 +37,7 @@ class ProfileController extends Controller {
     /**
      * Post function for Edit User's profile
      *
-     * @Patch("/edit-profile")
+     * @Patch("/profile")
      */
     public function postEdit()
     {
@@ -70,7 +70,7 @@ class ProfileController extends Controller {
 
         $user->update(Input::all());
 
-        return redirect('/edit-profile')->with('success', trans('app.success_update_message'));
+        return redirect('/profile/edit')->with('success', trans('app.success_update_message'));
     }
 
     /**

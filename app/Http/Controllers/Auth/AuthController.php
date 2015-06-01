@@ -3,6 +3,7 @@
 use App\AuthenticateUser;
 use App\AuthenticateUserListener;
 use App\Eloquent\SocialUser;
+use App\Eloquent\User;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\ActivateUserRequest;
 use App\Http\Requests\Auth\SigninRequest;
@@ -113,34 +114,35 @@ class AuthController extends Controller implements AuthenticateUserListener {
         $auth = $this->auth;
         try
         {
-            $first_name = $request->get('first_name');
-            $last_name = $request->get('last_name');
-            $email = $request->get('email');
-            $password = $request->get('password');
-
-            $username = substr($email, 0, strpos($email, '@'));
+            $user_data = [
+                'first_name' => $request->get('first_name'),
+                'last_name'  => $request->get('last_name'),
+                'email'      => $request->get('email'),
+                'password'   => $request->get('password'),
+            ];
 
             $user = $auth::register(
                 [
-                    'first_name' => $first_name,
-                    'last_name'  => $last_name,
-                    'email'      => $email,
-                    'password'   => $password,
+                    'first_name' => $user_data['first_name'],
+                    'last_name'  => $user_data['last_name'],
+                    'email'      => $user_data['email'],
+                    'password'   => $user_data['password'],
                 ]
             );
 
-            // TODO: check if duplicate username
-            $user->username = $username;
+            $user = User::postUserCreation($user, $user_data);
 
             $activation_code = $user->getActivationCode();
 
             $data = [
-                'first_name'      => $first_name,
-                'last_name'       => $last_name,
-                'email'           => $email,
+                'first_name'      => $user_data['first_name'],
+                'last_name'       => $user_data['last_name'],
+                'email'           => $user_data['email'],
                 'activation_code' => $activation_code,
                 'app_name'        => Config::get('app.name'),
             ];
+
+            $email = $user_data['email'];
 
             // Send email for user account activation
             // You need to run the artisan command `php artisan queue:listen`

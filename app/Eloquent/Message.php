@@ -14,7 +14,12 @@ class Message extends Model {
      *
      * @var array
      */
-    protected $fillable = ['from', 'to', 'message'];
+    protected $fillable = ['from', 'to', 'subject', 'message'];
+
+    /**
+     * @var array
+     */
+    protected $dates = ['created_at', 'updated_at'];
 
     /**
      * @param $data
@@ -35,7 +40,16 @@ class Message extends Model {
         return self::create([
             'from'    => $data['from'],
             'to'      => $data['to'],
+            'subject' => $data['subject'],
             'message' => $data['message']
         ]);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function sender()
+    {
+        return $this->belongsTo('App\Eloquent\User', 'from');
     }
 }

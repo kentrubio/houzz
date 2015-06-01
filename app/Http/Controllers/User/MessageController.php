@@ -12,11 +12,19 @@ class MessageController extends Controller {
     /**
      * Display a listing of the resource.
      *
+     * @Get("/messages")
+     *
      * @return Response
      */
-    public function index()
+    public function inbox()
     {
-        //
+        $messages = Message::with('sender')->whereTo($this->logged_user->id)->get();
+
+        $this->data['user'] = $this->logged_user;
+        $this->data['messages'] = $messages;
+        $this->data['page_title'] = trans('app.messages');
+
+        return $this->template('user.inbox');
     }
 
     /**
@@ -42,6 +50,7 @@ class MessageController extends Controller {
         $data = [
             'from'    => $request->get('from'),
             'to'      => $request->get('to'),
+            'subject' => $request->get('subject'),
             'message' => $request->get('content')
         ];
 

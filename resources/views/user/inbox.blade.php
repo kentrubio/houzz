@@ -17,10 +17,14 @@
                 <hr />
 
                 @foreach($messages as $message)
-                    <div>
-                        {{ $message->sender->first_name }} {{ $message->sender->last_name }} {{ $message->created_at->diffForHumans() }}
-                        <a href="/message/{{$message->id}}">{{ $message->subject }}</a>
+                    <div class="m-box">
+                        <div><a href=""><img src=""></a></div>
 
+                        <div>
+                            <div class="m-name-box"><span class="">{{ $message->sender->first_name }} {{ $message->sender->last_name }}</span>&nbsp;<span class="m-date">{{ $message->created_at->diffForHumans() }}</span> </div>
+                            
+                            <div class="m-subject"><a href="/message/{{$message->id}}">{{ $message->subject }}</a></div>
+                        </div>
                     </div>
                 @endforeach
             </div>

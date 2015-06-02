@@ -64,6 +64,7 @@ body {padding-bottom: 0 !important}
 .adjst-left {  padding-left: 181px;}
 .profile-box {background: url('/images/profile-bg.jpg');display: block;height: 167px;  background-size: cover;}
 .profile-pic {position: absolute; z-index: 9999; margin-top: -107px; margin-left: 13px; }
+.profile-pic img {height: 154px;width: 154px;display: block;}
 .sub-link {  background-color: #ececec; border: 0; }
 .navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.active>a {background:#6ac1a9 !important;}
 .sub-link .container-fluid .navbar-collapse ul li:hover {background-color:#6ac1a9 !important;}

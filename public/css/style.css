@@ -50,6 +50,14 @@ body {padding-bottom: 0 !important}
 .s-top-cb img {float:left;}
 
 .user-top {font-size: 16px; color: #6ac1a9; padding-left: 10px; margin-top: 9px; float: left; }
+
+.my-data-edit {width: 100%; text-align: right; margin-top: 40px; margin-right: 18px; float: right; }
+.my-data-edit .btn {  width: 125px; display: block; float: right; }
+.my-data-edit span {width: 100%; float: right; margin-top: 6px; }
+.my-data-edit span a {color:#fff; }
+.margin-left {  margin-left: 15px;}
+.social-top li {  margin-right: 0px;}
+.social-top a i:hover {color:#2d7e68;}
 /*END HEADER CSS*/
 
 /*PROFILE INFO*/

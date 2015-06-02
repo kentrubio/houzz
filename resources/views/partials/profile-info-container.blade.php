@@ -1,14 +1,30 @@
+
 <div class="row">
 	<div class="profile-box">
 		<div class="row">
 			<div class="col-md-4 col-md-offset-2 profile-name"><h2><a href="">{{$logged_user->first_name}} {{$logged_user->last_name}}</a></h2></div>
 
 			<!--Profile Edit Details here-->
-			<div class="">
+			<div class="col-md-6">
                 @if($logged_user->id == $user->id)
-                    I'm viewing my own data.
+					<div class="my-data-edit">
+	                    <!--I'm viewing my own data.-->
+	                   	<a class="btn btn-default content-btn white-txt" href="/file-upload" role="button"><i class="fa fa-pencil fa-2x white-txt"></i> Edit Profile</a>
+	                   	<span><a href="">Preview your public profile <i class="fa fa-chevron-right"></i></a></span>
+                   	</div>
                 @else
-                    I'm viewing someone else's data.
+                	<div class="my-data-edit">
+                    <!--I'm viewing someone else's data.-->
+	                    <div>
+	                    	<ul class="list-inline social-top">
+	                    		<li><a href=""><i class="fa fa-facebook-official fa-2x white-txt "></i></a></li>
+	                    		<li><a href=""><i class="fa fa-twitter fa-2x white-txt "></i></a></li>
+	                    		<li><a href=""><i class="fa fa-google-plus fa-2x white-txt "></i></a></li>
+	                    	</ul>
+	                    </div>
+	                   	<a class="btn btn-default content-btn margin-left white-txt" href="/file-upload" role="button">Following</a>
+	                   	<a class="btn btn-default content-btn white-txt" href="/file-upload" role="button">Message</a>
+                   	</div>
                 @endif
 			</div>
 			<!--//Profile Edit Details here-->
